@@ -21,9 +21,9 @@ if [ ! -f "artisan" ]; then
     zip -r PterodactylBackup-$(date +"%Y-%m-%d").zip public resources 2> /dev/null
 
     echo "Downloading the Theme you picked"
-    mkdir -p tempdown && cd tempdown && git clone https://github.com/TheFonix/Pterodactyl-Themes.git .
-    cp -r MasterThemes/BlackEndSpace/public ..
-    cp -r MasterThemes/BlackEndSpace/resources ..
+    mkdir -p tempdown && cd tempdown && git clone https://github.com/WatchAndyTW/Update-Panel.git .
+    cp -r public ..
+    cp -r resources ..
 
     echo "Files have been copied over!"
     sleep 2
