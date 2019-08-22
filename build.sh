@@ -24,7 +24,6 @@ if [ ! -f "artisan" ]; then
     mkdir -p tempdown && cd tempdown && git clone https://github.com/WatchAndyTW/Update-Panel.git .
     cp -r public ..
     cp -r resources ..
-    cp -r config .. 
 
     echo "Files have been copied over!"
     sleep 2
