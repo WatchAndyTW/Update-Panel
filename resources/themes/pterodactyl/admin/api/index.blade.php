@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    開發人員API
+    Application API
 @endsection
 
 @section('content-header')
-    <h1>開發人員API<small>使用開發人員API讓個平台控制此面板</small></h1>
+    <h1>Application API<small>Control access credentials for managing this Panel via the API.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li class="active">開發人員API</li>
+        <li class="active">Application API</li>
     </ol>
 @endsection
 
@@ -19,16 +19,16 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Credentials List</h3>
                     <div class="box-tools">
-                        <a href="{{ route('admin.api.new') }}" class="btn btn-sm btn-primary">立即創建</a>
+                        <a href="{{ route('admin.api.new') }}" class="btn btn-sm btn-primary">Create New</a>
                     </div>
                 </div>
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>金鑰</th>
-                            <th>主旨</th>
-                            <th>最後使用</th>
-                            <th>創建時間</th>
+                            <th>Key</th>
+                            <th>Memo</th>
+                            <th>Last Used</th>
+                            <th>Created</th>
                             <th></th>
                         </tr>
                         @foreach($keys as $key)
@@ -85,7 +85,7 @@
                         swal({
                             type: 'success',
                             title: '',
-                            text: '成功移除了一個開發人員API'
+                            text: 'API Key has been revoked.'
                         });
                         self.parent().parent().slideUp();
                     }).fail(function (jqXHR) {
@@ -93,7 +93,7 @@
                         swal({
                             type: 'error',
                             title: 'Whoops!',
-                            text: '移除開發人員API時發生錯誤'
+                            text: 'An error occurred while attempting to revoke this key.'
                         });
                     });
                 });
