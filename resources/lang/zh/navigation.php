@@ -3,8 +3,8 @@
 return [
     'home' => '首頁',
     'account' => [
-        'header' => '賬戶管理',
-        'my_account' => '我的賬戶',
+        'header' => '帳戶管理',
+        'my_account' => '我的帳戶',
         'security_controls' => '安全控制',
         'api_access' => 'API',
         'my_servers' => '我的伺服器',

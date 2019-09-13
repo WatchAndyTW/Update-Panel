@@ -309,10 +309,10 @@ return [
         ],
         'sftp' => [
             'header' => 'SFTP 配置',
-            'header_sub' => 'SFTP 連接所需的賬戶信息。',
+            'header_sub' => 'SFTP 連接所需的帳戶信息。',
             'details' => 'SFTP 信息',
             'conn_addr' => '連接地址',
-            'warning' => 'SFTP 密碼為您的賬戶密碼。請確保您的客戶端被設置為使用 SFTP 而非 FTP 或 FTPS，這些協議間存在差異。',
+            'warning' => 'SFTP 密碼為您的帳戶密碼。請確保您的客戶端被設置為使用 SFTP 而非 FTP 或 FTPS，這些協議間存在差異。',
         ],
         'database' => [
             'header' => '數據庫',

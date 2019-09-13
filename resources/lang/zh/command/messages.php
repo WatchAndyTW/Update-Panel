@@ -29,7 +29,7 @@ return [
         'ask_password_tip' => '若您想創建用戶並稍後發送生成的隨機密碼給用戶，請重新運行此命令（CTRL+C）並添加 `--no-password` 參數。',
         'ask_password_help' => '密碼長度必須至少為八位且包含至少一位大寫字母和數字。',
         '2fa_help_text' => [
-            '此命令將關閉賬戶的兩步驗證（若啟用）。此命令應作為賬戶被鎖定時的恢覆措施。',
+            '此命令將關閉帳戶的兩步驗證（若啟用）。此命令應作為帳戶被鎖定時的恢覆措施。',
             '若您不想這麽做，請使用 CTRL+C 退出進程。',
         ],
         '2fa_disabled' => '已成功為 :email 禁用兩步驗證。',
@@ -67,7 +67,7 @@ return [
             'host' => '數據庫主機',
             'port' => '數據庫端口',
             'database' => '數據庫名',
-            'username_warning' => '不僅翼龍面板不允許使用 "root" 賬戶連接 MySQL 數據庫，且這將產生嚴重安全漏洞。您應為此軟件單獨創建 MySQL 賬戶。',
+            'username_warning' => '不僅翼龍面板不允許使用 "root" 帳戶連接 MySQL 數據庫，且這將產生嚴重安全漏洞。您應為此軟件單獨創建 MySQL 帳戶。',
             'username' => '數據庫用戶名',
             'password_defined' => '您似乎已創建了帶有密碼的 MySQL 連接，您是否想更改？',
             'password' => '數據庫密碼',
