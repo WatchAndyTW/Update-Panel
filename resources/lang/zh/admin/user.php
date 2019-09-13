@@ -9,10 +9,10 @@
 
 return [
     'exceptions' => [
-        'user_has_servers' => '无法删除已绑定活跃服务器的账户。请删除服务器后继续。',
+        'user_has_servers' => '無法刪除已綁定活躍服務器的賬戶。請刪除服務器後繼續。',
     ],
     'notices' => [
-        'account_created' => '已成功创建用户。',
-        'account_updated' => '已成功更新用户。',
+        'account_created' => '已成功創建用戶。',
+        'account_updated' => '已成功更新用戶。',
     ],
 ];
