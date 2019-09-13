@@ -16,7 +16,7 @@ return [
         'allocations_added' => '已成功為此節點分配地址。',
         'node_deleted' => '已成功從面板中移除節點。',
         'location_required' => '您必須至少配置一個區域才能添加節點至面板。',
-        'node_created' => '已成功新建節點！您可通過\'配置\'選項卡已自動配置此機器上的守護程序。<strong>在您添加服務器前，您必須先分配一個 IP 地址及端口。</strong>',
+        'node_created' => '已成功新建節點！您可通過\'配置\'選項卡已自動配置此機器上的守護程序。<strong>在您添加伺服器前，您必須先分配一個 IP 地址及端口。</strong>',
         'node_updated' => '已更新節點信息。若守護程序設置更改，您需要重啟守護程序才能生效。',
         'unallocated_deleted' => '已為 <code>:ip</code> 刪除所有未分配的端口。',
     ],

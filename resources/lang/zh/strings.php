@@ -7,7 +7,7 @@ return [
     'confirm_password' => '確認密碼',
     'login' => '登錄',
     'home' => '首頁',
-    'servers' => '服務器',
+    'servers' => '伺服器',
     'id' => '編號',
     'name' => '名稱',
     'node' => '節點',

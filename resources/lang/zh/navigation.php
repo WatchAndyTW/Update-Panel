@@ -7,10 +7,10 @@ return [
         'my_account' => '我的賬戶',
         'security_controls' => '安全控制',
         'api_access' => 'API',
-        'my_servers' => '我的服務器',
+        'my_servers' => '我的伺服器',
     ],
     'server' => [
-        'header' => '服務器管理',
+        'header' => '伺服器管理',
         'console' => '控制台',
         'console-pop' => '全屏控制台',
         'file_management' => '文件管理',
@@ -26,7 +26,7 @@ return [
         'databases' => '數據庫',
         'edit_file' => '編輯文件',
         'admin_header' => '管理',
-        'admin' => '服務器配置',
-        'server_name' => '服務器名',
+        'admin' => '伺服器配置',
+        'server_name' => '伺服器名',
     ],
 ];

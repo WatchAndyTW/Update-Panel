@@ -43,7 +43,7 @@ return [
     'server' => [
         'rebuild_failed' => '節點 ":node" 上的重構操作 ":name"（#:id） 發生了 :message 錯誤。',
         'power' => [
-            'confirm' => '您將在 :count 台服務器上執行 :action 操作。是否繼續？',
+            'confirm' => '您將在 :count 台伺服器上執行 :action 操作。是否繼續？',
             'action_failed' => '節點 ":node" 上的電源命令 ":name"（#:id） 發生了 :message 錯誤。',
         ],
     ],
@@ -71,7 +71,7 @@ return [
             'username' => '數據庫用戶名',
             'password_defined' => '您似乎已創建了帶有密碼的 MySQL 連接，您是否想更改？',
             'password' => '數據庫密碼',
-            'connection_error' => '無法使用提供的憑證連接 MySQL 服務器。 返回的錯誤為 ":error"。',
+            'connection_error' => '無法使用提供的憑證連接 MySQL 伺服器。 返回的錯誤為 ":error"。',
             'creds_not_saved' => '您的數據庫訪問憑證尚未保存。您需要在繼續前提供有效的連接信息。',
             'try_again' => '是否返回重試？',
         ],
@@ -89,7 +89,7 @@ return [
             'using_redis' => '若您選擇使用 Redis，請在下方提供有效的連接信息。在您未更改設置的大多數情況下，您均可使用默認值。',
             'redis_host' => 'Redis 主機',
             'redis_password' => 'Redis 密碼',
-            'redis_pass_help' => '默認情況下，Redis 服務器實例無需密碼且在本地運行禁止外界訪問。這種情況下，您只需回車即可。',
+            'redis_pass_help' => '默認情況下，Redis 伺服器實例無需密碼且在本地運行禁止外界訪問。這種情況下，您只需回車即可。',
             'redis_port' => 'Redis 端口',
             'redis_pass_defined' => '您似乎已為 Redis 配置了密碼，您是否想更改？',
         ],

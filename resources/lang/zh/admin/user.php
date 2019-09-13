@@ -9,7 +9,7 @@
 
 return [
     'exceptions' => [
-        'user_has_servers' => '無法刪除已綁定活躍服務器的賬戶。請刪除服務器後繼續。',
+        'user_has_servers' => '無法刪除已綁定活躍伺服器的賬戶。請刪除伺服器後繼續。',
     ],
     'notices' => [
         'account_created' => '已成功創建用戶。',
