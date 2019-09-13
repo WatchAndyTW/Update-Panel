@@ -1,0 +1,6 @@
+{
+    "name": "securesrv",
+    "extends": null,
+    "views-path": "securesrv",
+    "asset-path": "themes/securesrv"
+}
