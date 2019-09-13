@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-12" style="width: 100%;">
+    <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">@lang('base.index.list')</h3>

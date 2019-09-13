@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-12" style="width: 100%;">
+    <div class="col-xs-12">
         <div class="box
             @if($version->isLatestPanel())
                 box-success
@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-<div class="row" style=" flex-wrap: nowrap; ">
+<div class="row">
     <div class="col-xs-6 col-sm-3 text-center">
         <a href="{{ $version->getDiscord() }}"><button class="btn btn-warning" style="width:100%;"><i class="fa fa-fw fa-support"></i> Get Help <small>(via Discord)</small></button></a>
     </div>

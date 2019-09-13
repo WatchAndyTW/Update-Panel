@@ -20,11 +20,14 @@
 @endsection
 
 @section('content')
-<div class="row" style="display: block;">
-    <div class="col-xs-12" style="width: 100%;">
+<div class="row">
+    <div class="col-xs-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ $file }}</h3>
+                <div class="pull-right box-tools">
+                    <a href="/server/{{ $server->uuidShort }}/files#{{ rawurlencode($directory) }}" class="pull-right"><button class="btn btn-default btn-sm">@lang('server.files.edit.return')</button></a>
+                </div>
             </div>
             <input type="hidden" name="file" value="{{ $file }}" />
             <textarea id="editorSetContent" class="hidden">{{ $contents }}</textarea>

@@ -12,8 +12,6 @@
         {!! Theme::css('css/terminal.css') !!}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-	
-	
     <body id="terminal-body">
         <div id="terminal" style="width:100%;max-height: none !important;"></div>
         <div id="terminal_input" class="form-group no-margin">

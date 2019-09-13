@@ -22,7 +22,11 @@
 
         @section('scripts')
             {!! Theme::css('vendor/bootstrap/bootstrap.min.css?t={cache-version}') !!}
-           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">			
+            {!! Theme::css('vendor/adminlte/admin.min.css?t={cache-version}') !!}
+            {!! Theme::css('css/pterodactyl.css?t={cache-version}') !!}
+            {!! Theme::css('css/login.css?t={cache-version}') !!}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
             <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -33,13 +37,31 @@
     <body id="particles-js" class="hold-transition login-page">
         <div class="container">
             <div id="login-position-elements">
+                <div class="login-logo">
+                    <img src="{!! Theme::url('img/logo-white.png?t={cache-version}') !!}" class="logo-image">
+                </div>
                 @yield('content')
+                <p class="small login-copyright text-center">
+                    Copyright &copy; 2015 - {{ date('Y') }} <a href="https://pterodactyl.io/" target="_blank">Pterodactyl Software</a>.<br />
+                </p>
             </div>
+        </div>
+        <div class="login-corner-info small">
+            <strong><i class="fa fa-fw {{ $appIsGit ? 'fa-git-square' : 'fa-code-fork' }}"></i></strong> {{ $appVersion }}<br />
+            <strong><i class="fa fa-fw fa-clock-o"></i></strong> {{ round(microtime(true) - LARAVEL_START, 3) }}s
         </div>
 
         {!! Theme::js('vendor/jquery/jquery.min.js?t={cache-version}') !!}
         {!! Theme::js('vendor/bootstrap/bootstrap.min.js?t={cache-version}') !!}
         {!! Theme::js('js/autocomplete.js?t={cache-version}') !!}
         {!! Theme::js('vendor/particlesjs/particles.min.js?t={cache-version}') !!}
+        <script type="text/javascript">
+            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+            $(function () {
+                particlesJS.load('particles-js', '{!! Theme::url('vendor/particlesjs/particles.json?t={cache-version}') !!}', function() {});
+            })
+        </script>
+
+        @if(config('pterodactyl.lang.in_context')) {!! Theme::js('vendor/phraseapp/phraseapp.js?t={cache-version}') !!} @endif
     </body>
 </html>

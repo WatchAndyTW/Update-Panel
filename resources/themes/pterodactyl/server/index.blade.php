@@ -23,73 +23,8 @@
 @endsection
 
 @section('content')
-
 <div class="row">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">info</i>
-                  </div>
-                  <p class="card-category">Server Name</p>
-                  <h3 class="card-title">{{ $server->name }}</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">memory</i>
-                  </div>
-                  <p class="card-category">Ram Usage</p>
-                  <h3 class="card-title dynamic-update" data-server="{{ $server->uuidShort }}"><span data-action="memory">--</span> / {{ $server->memory === 0 ? '&infin;' : $server->memory }} <small>MB</small></h3>
-				</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">memory</i>
-                  </div>
-                  <p class="card-category">CPU Usage Percentage</p>
-                  <h3 class="card-title dynamic-update" data-server="{{ $server->uuidShort }}"><span data-action="cpu" data-cpumax="{{ $server->cpu }}">--</span> %</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">computer</i>
-                  </div>
-                  <p class="card-category">Allocated Disk Space</p>
-                  <h3 class="card-title dynamic-update" data-server="{{ $server->uuidShort }}"><span data-action="disk" data-cpumax="{{ $server->disk }}">{{ $server->disk }}MB</span></h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-<div class="row">
-    <div class="col-xs-12" style=" width: 100%; ">
+    <div class="col-xs-12">
         <div class="box">
             <div class="box-body position-relative">
                 <div id="terminal" style="width:100%;"></div>
@@ -134,8 +69,6 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 
 @section('footer-scripts')
@@ -146,9 +79,7 @@
     {!! Theme::js('js/frontend/console.js') !!}
     {!! Theme::js('vendor/chartjs/chart.min.js') !!}
     {!! Theme::js('vendor/jquery/date-format.min.js') !!}
-	{!! Theme::js('js/frontend/serverlist.js') !!}
     @if($server->nest->name === 'Minecraft' && $server->nest->author === 'support@pterodactyl.io')
         {!! Theme::js('js/plugins/minecraft/eula.js') !!}
     @endif
-
 @endsection

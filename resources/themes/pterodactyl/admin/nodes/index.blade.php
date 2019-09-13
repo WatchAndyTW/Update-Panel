@@ -24,7 +24,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-12" style="width: 100%;">
+    <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Node List</h3>

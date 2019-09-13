@@ -18,16 +18,16 @@
 @endsection
 
 @section('content')
-<div class="row" style="display: block;">
+<div class="row">
     <div class="col-sm-6">
         <div class="row">
             <div class="col-xs-12">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h3 class="card-title">@lang('base.account.update_pass')</h3>
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">@lang('base.account.update_pass')</h3>
                     </div>
                     <form action="{{ route('account') }}" method="post">
-                        <div class="card-body">
+                        <div class="box-body">
                             <div class="form-group">
                                 <label for="current_password" class="control-label">@lang('base.account.current_password')</label>
                                 <div>
@@ -51,7 +51,7 @@
                         <div class="box-footer">
                             {!! csrf_field() !!}
                             <input type="hidden" name="do_action" value="password" />
-                            <input type="submit" class="btn btn-primaryc pull-right" value="@lang('base.account.update_pass')" /><div class="ripple-container"></div>
+                            <input type="submit" class="btn btn-primary btn-sm" value="@lang('base.account.update_pass')" />
                         </div>
                     </form>
                 </div>
@@ -59,14 +59,14 @@
         </div>
     </div>
     <div class="col-sm-6">
-        <div class="row" style="display: block;">
+        <div class="row">
             <div class="col-xs-12">
-                <div class="card">
+                <div class="box box-primary">
                     <form action="{{ route('account') }}" method="POST">
-                        <div class="card-header card-header-primary">
-                            <h3 class="card-title">@lang('base.account.update_identity')</h3>
+                        <div class="box-header with-border">
+                            <h3 class="box-title">@lang('base.account.update_identity')</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="box-body">
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <label for="first_name" class="control-label">@lang('base.account.first_name')</label>
@@ -106,21 +106,20 @@
                         <div class="box-footer with-border">
                             {!! csrf_field() !!}
                             <input type="hidden" name="do_action" value="identity" />
-                            <button type="submit" class="btn btn-primaryc pull-right">@lang('base.account.update_identity')</button>
-							<div class="clearfix"></div>
+                            <button type="submit" class="btn btn-sm btn-primary">@lang('base.account.update_identity')</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="row" style="display: block;">
-            <div class="col-xs-12" style="width: 100%;">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h3 class="card-title">@lang('base.account.update_email')</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">@lang('base.account.update_email')</h3>
                     </div>
                     <form action="{{ route('account') }}" method="post">
-                        <div class="card-body">
+                        <div class="box-body">
                             <div class="form-group">
                                 <label for="new_email" class="control-label">@lang('base.account.new_email')</label>
                                 <div>
@@ -137,7 +136,7 @@
                         <div class="box-footer">
                             {!! csrf_field() !!}
                             <input type="hidden" name="do_action" value="email" />
-                            <input type="submit" class="btn btn-primaryc pull-right" value="@lang('base.account.update_email')" />
+                            <input type="submit" class="btn btn-primary btn-sm" value="@lang('base.account.update_email')" />
                         </div>
                     </form>
                 </div>

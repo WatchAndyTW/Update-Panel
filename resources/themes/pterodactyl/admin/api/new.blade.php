@@ -16,7 +16,7 @@
 @section('content')
     <div class="row">
         <form method="POST" action="{{ route('admin.api.new') }}">
-            <div class="col-sm-8 col-xs-12" style="width:100%">
+            <div class="col-sm-8 col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Select Permissions</h3>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-xs-12" style="width:100%">
+            <div class="col-sm-4 col-xs-12">
                 <div class="box box-primary">
                     <div class="box-body">
                         <div class="form-group">

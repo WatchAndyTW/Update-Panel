@@ -113,6 +113,18 @@
     left: 0;
 }
 
+code {
+    background-color: #eef1f6;
+    color: #596981;
+    border-radius: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    line-height: 1.4;
+    font-size: 85%;
+    border: 1px solid rgba(0, 0, 0, .1);
+    display: inline-block;
+}
+
 p {
     line-height: 1.6 !important;
 }
@@ -269,6 +281,14 @@ span[aria-labelledby="select2-pUserId-container"] {
 
 .callout-slim a {
     color: #555 !important;
+}
+
+.bg-purple {
+    background-color: #79589f !important;
+}
+
+.label-default {
+    background-color: #eef1f6 !important;
 }
 
 .callout.callout-info.callout-slim {
