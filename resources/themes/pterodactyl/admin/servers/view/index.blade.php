@@ -19,11 +19,11 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
+                <li class="active1"><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
                 @if($server->installed === 1)
                     <li><a href="{{ route('admin.servers.view.details', $server->id) }}">Details</a></li>
                     <li><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col-sm-8">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="width: 100%;">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Information</h3>
@@ -124,7 +124,7 @@
                         </div>
                     @endif
                     @if($server->installed !== 1)
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" style="width: 100%;">
                             <div class="small-box {{ (! $server->installed) ? 'bg-blue' : 'bg-maroon' }}">
                                 <div class="inner">
                                     <h3 class="no-margin">{{ (! $server->installed) ? 'Installing' : 'Install Failed' }}</h3>
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                     @endif
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="width: 100%;">
                         <div class="small-box bg-gray">
                             <div class="inner">
                                 <h3>{{ str_limit($server->user->username, 16) }}</h3>
@@ -144,7 +144,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="width: 100%;">
                         <div class="small-box bg-gray">
                             <div class="inner">
                                 <h3>{{ str_limit($server->node->name, 16) }}</h3>
