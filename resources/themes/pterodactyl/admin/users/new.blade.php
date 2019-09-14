@@ -19,14 +19,18 @@
 @endsection
 
 @section('content')
-<div class="row">
     <form method="post">
+      <div class="row mt--7 align-items-start">
         <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Identity</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Identity</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="email" class="control-label">Email</label>
                         <div>
@@ -63,18 +67,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer mt--2">
                     {!! csrf_field() !!}
                     <input type="submit" value="Create User" class="btn btn-success btn-sm">
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Permissions</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Permissions</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group col-md-12">
                         <label for="root_admin" class="control-label">Administrator</label>
                         <div>
@@ -87,15 +95,17 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Password</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Password</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="alert alert-info">
-                        <p>Providing a user password is optional. New user emails prompt users to create a password the first time they login. If a password is provided here you will need to find a different method of providing it to the user.</p>
+                        <p class="m-0">Providing a user password is optional. New user emails prompt users to create a password the first time they login. If a password is provided here you will need to find a different method of providing it to the user.</p>
                     </div>
                     <div id="gen_pass" class=" alert alert-success" style="display:none;margin-bottom: 10px;"></div>
                     <div class="form-group">
@@ -107,8 +117,8 @@
                 </div>
             </div>
         </div>
+      </div>
     </form>
-</div>
 @endsection
 
 @section('footer-scripts')

@@ -122,7 +122,7 @@ class ActionsClass {
                     to: `${val}`,
                 }),
             }).done(data => {
-                nameBlock.parent().addClass('warning').delay(200).fadeOut();
+                nameBlock.parent().addClass('table-selected').delay(200).fadeOut();
                 swal.close();
             }).fail(jqXHR => {
                 console.error(jqXHR);
@@ -145,8 +145,8 @@ class ActionsClass {
         const currentLink = nameBlock.find('a');
         const currentName = decodeURIComponent(nameBlock.attr('data-name'));
         const attachEditor = `
-            <input class="form-control input-sm" type="text" value="${currentName}" />
-            <span class="input-loader"><i class="fa fa-refresh fa-spin fa-fw"></i></span>
+            <input class="form-control form-control-sm" type="text" value="${currentName}" />
+            <span class="input-loader"><i class="fas fa-sync fa-spin fa-fw"></i></span>
         `;
 
         nameBlock.html(attachEditor);
@@ -316,7 +316,7 @@ class ActionsClass {
                     items: [`${delPath}${delName}`]
                 }),
             }).done(data => {
-                nameBlock.parent().addClass('warning').delay(200).fadeOut();
+                nameBlock.parent().addClass('table-selected').delay(200).fadeOut();
                 swal({
                     type: 'success',
                     title: 'File Deleted'
@@ -347,10 +347,10 @@ class ActionsClass {
 
         if($(item).is(':checked')) {
             $(item).prop('checked', false);
-            parent.removeClass('warning').delay(200);
+            parent.removeClass('table-selected').delay(200);
         } else {
             $(item).prop('checked', true);
-            parent.addClass('warning').delay(200);
+            parent.addClass('table-selected').delay(200);
         }
     }
 
@@ -362,13 +362,13 @@ class ActionsClass {
           $('#file_listing input[type=checkbox]').prop('checked', false);
           $('#file_listing input[data-action="addSelection"]').each(function() {
               parent = $(this).closest('tr');
-              parent.removeClass('warning').delay(200);
+              parent.removeClass('table-selected').delay(200);
           });
         } else {
           $('#file_listing input[type=checkbox]').prop('checked', true);
           $('#file_listing input[data-action="addSelection"]').each(function() {
               parent = $(this).closest('tr');
-              parent.addClass('warning').delay(200);
+              parent.addClass('table-selected').delay(200);
           });
         }
     }
@@ -432,7 +432,7 @@ class ActionsClass {
                     });
 
                     $.each(selectedItemsElements, function() {
-                        $(this).addClass('warning').delay(200).fadeOut();
+                        $(this).addClass('table-selected').delay(200).fadeOut();
                     })
 
                     swal({
@@ -522,8 +522,8 @@ class ActionsClass {
             Files.list(compPath, err => {
                 if (err) return;
                 const fileListing = $('#file_listing').find(`[data-name="${data.saved_as}"]`).parent();
-                fileListing.addClass('success pulsate').delay(3000).queue(() => {
-                    fileListing.removeClass('success pulsate').dequeue();
+                fileListing.addClass('table-success pulsate').delay(3000).queue(() => {
+                    fileListing.removeClass('table-success pulsate').dequeue();
                 });
             });
         }).fail(jqXHR => {

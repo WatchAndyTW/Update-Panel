@@ -20,91 +20,116 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="nav-tabs-custom nav-tabs-floating">
-            <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
-                <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
-                <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
-                <li class="active1"><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
-                <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
-            </ul>
+<div class="row mt--7 mb-cs">
+   <div class="col-lg-12">
+      <div class="card shadow bg-secondary">
+        <div class="card-body bg-secondary" style="padding: 0.75rem">
+          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view', $node->id) }}" role="tab">About</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.settings', $node->id) }}" role="tab">Settings</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.configuration', $node->id) }}" role="tab">Configuration</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nodes.view.allocation', $node->id) }}" role="tab">Allocation</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.servers', $node->id) }}" role="tab">Servers</a>
+             </li>
+          </ul>
         </div>
-    </div>
+      </div>
+   </div>
 </div>
 <div class="row">
-    <div class="col-sm-8">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Existing Allocations</h3>
+    <div class="col-lg-8 mb-cs">
+        <div class="card shadow">
+            <div class="card-header border-0">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Existing Allocations</h3>
+                  </div>
+                  <div class="col text-right">
+                    <div class="btn-group hidden-xs">
+                               <button type="button" id="mass_actions" class="btn btn-sm btn-primary dropdown-toggle disabled"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('server.allocations.mass_actions') <span class="caret"></span>
+                               </button>
+                               <ul class="dropdown-menu dropdown-massactions">
+                                   <a class="dropdown-item" href="#" id="selective-deletion" data-action="selective-deletion"><i class="fas fa-fw fa-trash"></i> @lang('server.allocations.delete')</i></a>
+                               </ul>
+                           </div>
+                  </div>
+               </div>
             </div>
-            <div class="box-body table-responsive no-padding" style="overflow-x: visible">
-                <table class="table table-hover" style="margin-bottom:0;">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover align-items-center table-flush" style="margin-bottom:0;">
+                  <thead class="thead-light">
                     <tr>
-                        <th>
-                            <input type="checkbox" class="select-all-files hidden-xs" data-action="selectAll">
+                        <th class="min-size middle">
+                            <input type="checkbox" class="select-all-files hidden-xs middle" data-action="selectAll">
                         </th>
-                        <th>IP Address <i class="fa fa-fw fa-minus-square" style="font-weight:normal;color:#d9534f;cursor:pointer;" data-toggle="modal" data-target="#allocationModal"></i></th>
+                        <th>IP Address <i class="fas fa-fw fa-minus-square" style="color:#d9534f;cursor:pointer;" data-toggle="modal" data-target="#allocationModal"></i></th>
                         <th>IP Alias</th>
                         <th>Port</th>
                         <th>Assigned To</th>
-                        <th>
-                            <div class="btn-group hidden-xs">
-                                <button type="button" id="mass_actions" class="btn btn-sm btn-default dropdown-toggle disabled"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('server.allocations.mass_actions') <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-massactions">
-                                    <li><a href="#" id="selective-deletion" data-action="selective-deletion">@lang('server.allocations.delete') <i class="fa fa-fw fa-trash-o"></i></a></li>
-                                </ul>
-                            </div>
-                        </th>
+                        <th></th>
                     </tr>
+                    </thead>
+                    <tbody>
                     @foreach($node->allocations as $allocation)
                         <tr>
-                            <td class="middle min-size" data-identifier="type">
+                            <td class="min-size middle" data-identifier="type">
                                 @if(is_null($allocation->server_id))
-                                <input type="checkbox" class="select-file hidden-xs" data-action="addSelection">
+                                <input type="checkbox" class="select-file hidden-xs middle" data-action="addSelection">
                                 @else
-                                <input disabled="disabled" type="checkbox" class="select-file hidden-xs" data-action="addSelection">
+                                <input disabled="disabled" type="checkbox" class="select-file hidden-xs middle" data-action="addSelection">
                                 @endif
                             </td>
-                            <td class="col-sm-3 middle" data-identifier="ip">{{ $allocation->ip }}</td>
-                            <td class="col-sm-3 middle">
-                                <input class="form-control input-sm" type="text" value="{{ $allocation->ip_alias }}" data-action="set-alias" data-id="{{ $allocation->id }}" placeholder="none" />
-                                <span class="input-loader"><i class="fa fa-refresh fa-spin fa-fw"></i></span>
+                            <td class="middle" data-identifier="ip">{{ $allocation->ip }}</td>
+                            <td class="middle">
+                                <input class="form-control form-control-sm" type="text" value="{{ $allocation->ip_alias }}" data-action="set-alias" data-id="{{ $allocation->id }}" placeholder="none" />
+                                <span class="input-loader"><i class="fas fa-sync fa-spin fa-fw"></i></span>
                             </td>
-                            <td class="col-sm-2 middle" data-identifier="port">{{ $allocation->port }}</td>
-                            <td class="col-sm-3 middle">
+                            <td class="middle" data-identifier="port">{{ $allocation->port }}</td>
+                            <td class="middle">
                                 @if(! is_null($allocation->server))
                                     <a href="{{ route('admin.servers.view', $allocation->server_id) }}">{{ $allocation->server->name }}</a>
                                 @endif
                             </td>
-                            <td class="col-sm-1 middle">
+                            <td class="middle">
                                 @if(is_null($allocation->server_id))
-                                    <button data-action="deallocate" data-id="{{ $allocation->id }}" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
+                                    <button data-action="deallocate" data-id="{{ $allocation->id }}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                 @else
-                                    <button class="btn btn-sm disabled"><i class="fa fa-trash-o"></i></button>
+                                    <button class="btn btn-sm disabled"><i class="fas fa-trash"></i></button>
                                 @endif
                             </td>
                         </tr>
                     @endforeach
+                    </tbody>
                 </table>
             </div>
             @if($node->allocations->hasPages())
-                <div class="box-footer text-center">
-                    {{ $node->allocations->render() }}
+                <div class="card-footer mb--3">
+                    <div class="col-lg-12 text-center">{{ $node->allocations->render() }}</div>
                 </div>
             @endif
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-lg-4">
         <form action="{{ route('admin.nodes.view.allocation', $node->id) }}" method="POST">
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Assign New Allocations</h3>
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Assign New Allocations</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pAllocationIP" class="control-label">IP Address</label>
                         <div>
@@ -131,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-success btn-sm pull-right">Submit</button>
                 </div>
@@ -140,11 +165,11 @@
     </div>
 </div>
 <div class="modal fade" id="allocationModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Delete Allocations for IP Block</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <form action="{{ route('admin.nodes.view.allocation.removeBlock', $node->id) }}" method="POST">
                 <div class="modal-body">
@@ -160,8 +185,8 @@
                 </div>
                 <div class="modal-footer">
                     {{{ csrf_field() }}}
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete Allocations</button>
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-danger ml-auto">Delete Allocations</button>
                 </div>
             </form>
         </div>
@@ -237,7 +262,7 @@
     var typingTimer;
     $('input[data-action="set-alias"]').keyup(function () {
         clearTimeout(typingTimer);
-        $(this).parent().removeClass('has-error has-success');
+        $(this).removeClass('is-invalid is-valid');
         typingTimer = setTimeout(sendAlias, 250, $(this));
     });
 
@@ -254,10 +279,10 @@
                 allocation_id: element.data('id'),
             }
         }).done(function () {
-            element.parent().addClass('has-success');
+            element.addClass('is-valid');
         }).fail(function (jqXHR) {
             console.error(jqXHR);
-            element.parent().addClass('has-error');
+            element.addClass('is-invalid');
         }).always(function () {
             element.parent().find('.input-loader').hide();
             fadeTimers[element.data('id')] = setTimeout(clearHighlight, 2500, element);
@@ -265,7 +290,7 @@
     }
 
     function clearHighlight(element) {
-        element.parent().removeClass('has-error has-success');
+        element.removeClass('is-invalid is-valid');
     }
 
     function updateMassActions() {

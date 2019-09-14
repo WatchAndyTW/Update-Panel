@@ -19,14 +19,19 @@
 @endsection
 
 @section('content')
-<div class="row">
+
     <form action="{{ route('admin.users.view', $user->id) }}" method="post">
+      <div class="row mt--7 align-items-start">
         <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Identity</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Identity</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="email" class="control-label">Email</label>
                         <div>
@@ -63,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
                     {!! method_field('PATCH') !!}
                     <input type="submit" value="Update User" class="btn btn-primary btn-sm">
@@ -71,11 +76,15 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Password</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Password</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="alert alert-success" style="display:none;margin-bottom:10px;" id="gen_pass"></div>
                     <div class="form-group no-margin-bottom">
                         <label for="password" class="control-label">Password <span class="field-optional"></span></label>
@@ -86,13 +95,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Permissions</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Permissions</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="root_admin" class="control-label">Administrator</label>
                         <div>
@@ -102,17 +113,18 @@
                             </select>
                             <p class="text-muted"><small>Setting this to 'Yes' gives a user full administrative access.</small></p>
                         </div>
-                        <div class="checkbox checkbox-primary">
-                            <input type="checkbox" id="pIgnoreConnectionError" value="1" name="ignore_connection_error">
-                            <label for="pIgnoreConnectionError"> Ignore exceptions raised while revoking keys.</label>
-                            <p class="text-muted small">If checked, any errors thrown while revoking keys across nodes will be ignored. You should avoid this checkbox if possible as any non-revoked keys could continue to be active for up to 24 hours after this account is changed. If you are needing to revoke account permissions immediately and are facing node issues, you should check this box and then restart any nodes that failed to be updated to clear out any stored keys.</p>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="pIgnoreConnectionError" value="1" name="ignore_connection_error">
+                            <label class="custom-control-label" for="pIgnoreConnectionError"> Ignore exceptions raised while revoking keys.</label>
                         </div>
+                        <p class="text-muted small">If checked, any errors thrown while revoking keys across nodes will be ignored. You should avoid this checkbox if possible as any non-revoked keys could continue to be active for up to 24 hours after this account is changed. If you are needing to revoke account permissions immediately and are facing node issues, you should check this box and then restart any nodes that failed to be updated to clear out any stored keys.</p>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
     </form>
-    {{--<div class="col-xs-12" style="width: 100%;">--}}
+    {{--<div class="col-xs-12">--}}
         {{--<div class="box">--}}
             {{--<div class="box-header with-border">--}}
                 {{--<h3 class="box-title">Associated Servers</h3>--}}
@@ -151,22 +163,27 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="box box-danger">
-            <div class="box-header with-border">
-                <h3 class="box-title">Delete User</h3>
-            </div>
-            <div class="box-body">
-                <p class="no-margin">There must be no servers associated with this account in order for it to be deleted.</p>
-            </div>
-            <div class="box-footer">
-                <form action="{{ route('admin.users.view', $user->id) }}" method="POST">
-                    {!! csrf_field() !!}
-                    {!! method_field('DELETE') !!}
-                    <input id="delete" type="submit" class="btn btn-sm btn-danger pull-right" {{ $user->servers->count() < 1 ?: 'disabled' }} value="Delete User" />
-                </form>
-            </div>
-        </div>
+    <div class="row align-items-start">
+      <div class="col-md-12">
+          <div class="card shadow mb-cs">
+              <div class="card-header border-transparent">
+                 <div class="row align-items-center">
+                    <div class="col">
+                       <h3 class="mb-0">Delete User</h3>
+                    </div>
+                 </div>
+              </div>
+              <div class="card-body">
+                  <p class="no-margin">There must be no servers associated with this account in order for it to be deleted.</p>
+              </div>
+              <div class="card-footer">
+                  <form action="{{ route('admin.users.view', $user->id) }}" method="POST">
+                      {!! csrf_field() !!}
+                      {!! method_field('DELETE') !!}
+                      <input id="delete" type="submit" class="btn btn-sm btn-danger pull-right" {{ $user->servers->count() < 1 ?: 'disabled' }} value="Delete User" />
+                  </form>
+              </div>
+          </div>
+      </div>
     </div>
-</div>
 @endsection

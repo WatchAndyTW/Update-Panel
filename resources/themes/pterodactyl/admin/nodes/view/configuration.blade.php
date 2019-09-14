@@ -20,43 +20,63 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="nav-tabs-custom nav-tabs-floating">
-            <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
-                <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
-                <li class="active1"><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
-                <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
-                <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
-            </ul>
+<div class="row mt--7 mb-cs">
+   <div class="col-lg-12">
+      <div class="card shadow bg-secondary">
+        <div class="card-body bg-secondary" style="padding: 0.75rem">
+          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view', $node->id) }}" role="tab">About</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.settings', $node->id) }}" role="tab">Settings</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nodes.view.configuration', $node->id) }}" role="tab">Configuration</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.allocation', $node->id) }}" role="tab">Allocation</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.servers', $node->id) }}" role="tab">Servers</a>
+             </li>
+          </ul>
         </div>
-    </div>
+      </div>
+   </div>
 </div>
 <div class="row">
-    <div class="col-sm-8">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Configuration File</h3>
+    <div class="col-lg-8 mb-cs">
+        <div class="card shadow">
+            <div class="card-header border-transparent">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Configuration File</h3>
+                  </div>
+               </div>
             </div>
-            <div class="box-body">
+            <div class="card-body">
                 <pre class="no-margin">{{ $node->getConfigurationAsJson(true) }}</pre>
             </div>
-            <div class="box-footer">
-                <p class="no-margin">This file should be placed in your daemon's <code>config</code> directory in a file called <code>core.json</code>.</p>
+            <div class="card-footer">
+                <p class="no-margin mb-0">This file should be placed in your daemon's <code>config</code> directory in a file called <code>core.json</code>.</p>
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="box box-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">Auto-Deploy</h3>
+    <div class="col-lg-4">
+        <div class="card shadow">
+            <div class="card-header border-transparent">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Auto-Deploy</h3>
+                  </div>
+               </div>
             </div>
-            <div class="box-body">
+            <div class="card-body">
                 <p class="text-muted small">To simplify the configuration of nodes it is possible to fetch the config from the panel. A token is required for this process. The button below will generate a token and provide you with the commands necessary for automatic configuration of the node. <em>Tokens are only valid for 5 minutes.</em></p>
             </div>
-            <div class="box-footer">
-                <button type="button" id="configTokenBtn" class="btn btn-sm btn-default" style="width:100%;">Generate Token</button>
+            <div class="card-footer">
+                <button type="button" id="configTokenBtn" class="btn btn-sm btn-primary btn-block">Generate Token</button>
             </div>
         </div>
     </div>

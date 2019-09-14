@@ -5,193 +5,93 @@
 {{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.auth')
 
-<link href="/themes/pterodactyl/vendor/home/animate.css" rel="stylesheet" type="text/css">
-<link href="/themes/pterodactyl/vendor/home/animsition.min.css" rel="stylesheet" type="text/css">
-<link href="/themes/pterodactyl/vendor/home/util.css" rel="stylesheet" type="text/css">
-<link href="/themes/pterodactyl/vendor/home/select2.min.css" rel="stylesheet" type="text/css">
-<link href="/themes/pterodactyl/vendor/home/hamburgers.min.css" rel="stylesheet" type="text/css">
-<link href="/themes/pterodactyl/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="/themes/pterodactyl/vendor/home/daterangepicker.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/themes/pterodactyl/vendor/home/main.css">
-<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-<style>
-body {
-    margin: 0;
-    font-family: Poppins,sans-serif;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #525f7f;
-    text-align: left;
-    background-color: #171941;
-	width: 100%;
-	overflow-x:hidden;
-}
-.squares {
-	animation: a 1s infinite;
-	background: #ba54f5;
-	background: linear-gradient(0deg, #ba54f5, #e14eca);
-	position: absolute;
-	transition: .5s ease-out;
-	overflow: hidden;
-	border-radius: 20%
-}
-.squares.square1 {
-	animation: a 4s infinite;
-	height: 300px;
-	width: 300px;
-	opacity: .5;
-	left: 3%;
-	top: -21%
-}
-.squares.square2 {
-	animation: a 6s infinite;
-	height: 400px;
-	width: 400px;
-	opacity: .4;
-	right: -5%;
-	top: -12%
-}
-.squares.square3 {
-	animation: a 5s infinite;
-	height: 200px;
-	width: 200px;
-	opacity: .1;
-	left: -5%;
-	bottom: 0
-}
-.squares.square4 {
-	animation: a 10s infinite;
-	height: 100px;
-	width: 100px;
-	opacity: .9;
-	right: 27%;
-	top: 70%
-}
-.squares.square5 {
-	animation: a 6s infinite;
-	height: 250px;
-	width: 250px;
-	opacity: .1;
-	left: 32%;
-	bottom: 29%
-}
-.squares.square6 {
-	animation: a 9s infinite;
-	left: 10%;
-	top: 35%;
-	height: 80px;
-	width: 80px;
-	opacity: .8
-}
-.squares.square7 {
-	animation: a 3s infinite;
-	width: 300px;
-	height: 300px;
-	right: -5%;
-	bottom: 0;
-	opacity: .1
-}
-.alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    font-size: 150%;
-    margin-top: 10%;
-}
-</style>
-
 @section('title')
-    Forgot Password
+Forgot Password
 @endsection
 
 @section('content')
-
-<div class="row">
-    <div class="col-sm-offset-3 col-xs-offset-1 col-sm-6 col-xs-10">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @lang('auth.auth_error')<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+<div class="header bg-gradient-primary py-7 py-lg-8">
+   <div class="container">
+      <div class="header-body text-center mb-7">
+         <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+               <h1 class="text-white">Welcome!</h1>
+               <p class="text-lead text-white">This is our powerful and intuitive control panel where you can easily manage your hosting services.</p>
             </div>
-        @endif
-        @if (session('status'))
-            <div class="alert alert-success">
-                @lang('auth.email_sent')
-            </div>
-        @endif
-    </div>
-</div>
-
-
-
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url(../../assets/img/dots.png);background-size:contain;background-repeat: repeat;">
-    <div>
-      <div class="squares square1"></div>
-      <div class="squares square2"></div>
-      <div class="squares square3"></div>
-      <div class="squares square4"></div>
-      <div class="squares square5"></div>
-      <div class="squares square6"></div>
-      <div class="squares square7"></div>
-        <div class="content-center brand">
+         </div>
       </div>
-    </div>
-
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form id="resetForm" action="{{ route('auth.password') }}" method="post" class="login100-form validate-form" >
-					<span class="login100-form-title p-b-49">Password Reset</span>
-					<div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
-						<span class="label-input100">Email</span>
-						<input type="email" name="email" class="input100" value="{{ old('email') }}" required placeholder="@lang('strings.email')" autofocus>
-						<span class="focus-input100" data-symbol=""></span>
-                    @if ($errors->has('email'))
-                        <span class="help-block text-red small">
-                            {{ $errors->first('email') }}
-                        </span>
-                    @endif
-					</div>
-					
-					<div class="text-right p-t-8 p-b-31">
-						<a href="/auth/login">Back To Login?</a>
-					</div
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<div class="col-xs-4">
-							</div>
-							<div style="width:100%;!important;" class="col-xs-offset-4 col-xs-4">
-								{!! csrf_field() !!}
-								<button type="submit" class="login100-form-btn g-recaptcha pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('auth.request_reset')</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</body>
-
-
-
+   </div>
+   <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+         <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+   </div>
+</div>
+<div class="container mt--8 pb-5">
+   <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+         @if (count($errors) > 0)
+         <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            @lang('auth.auth_error')<br><br>
+            <ul>
+               @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+               @endforeach
+            </ul>
+         </div>
+         @endif
+         @if (session('status'))
+         <div class="alert alert-success">
+            @lang('auth.email_sent')
+         </div>
+         @endif
+      </div>
+   </div>
+   <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+         <div class="card bg-secondary shadow border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+               <div class="text-center text-muted mb-4 mt--3">
+                  <small>Enter your email address in order to continue.</small>
+               </div>
+               <form role="form" id="resetForm" action="{{ route('auth.password') }}" method="POST">
+                  <div class="form-group mb-3">
+                     <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" name="email" class="form-control" value="{{ old('email') }}" required placeholder="@lang('strings.email')" autofocus>
+                     </div>
+                  </div>
+                  <div class="text-center">
+                     {!! csrf_field() !!}
+                     <button type="submit" class="btn btn-primary btn-block g-recaptcha mb-0" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('auth.request_reset')</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-6">
+               <a href="{{ route('index') }}" class="text-light"><small>Sign in</small></a>
+            </div>
+            <div class="col-6 text-right">
+               <a href="#" class="text-light"><small>Not a customer yet?</small></a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 @endsection
 
 @section('scripts')
     @parent
     @if(config('recaptcha.enabled'))
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script>
-        function onSubmit(token) {
-            document.getElementById("resetForm").submit();
-        }
-        </script>
-     @endif
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+       function onSubmit(token) {
+           document.getElementById("resetForm").submit();
+       }
+    </script>
+    @endif
 @endsection

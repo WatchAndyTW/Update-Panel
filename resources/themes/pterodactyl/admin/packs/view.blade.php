@@ -20,13 +20,17 @@
 
 @section('content')
 <form action="{{ route('admin.packs.view', $pack->id) }}" method="POST">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Pack Details</h3>
+    <div class="row mt--7">
+        <div class="col-md-6 mb-cs">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Pack Details</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pName" class="form-label">Name</label>
                         <input name="name" type="text" id="pName" class="form-control" value="{{ $pack->name }}" />
@@ -49,12 +53,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Pack Configuration</h3>
+        <div class="col-md-6 mb-cs">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Pack Configuration</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pEggId" class="form-label">Associated Option</label>
                         <select id="pEggId" name="egg_id" class="form-control">
@@ -96,29 +104,36 @@
                         <p class="text-muted small">Check this box if servers assigned this pack should not be able to switch to a different pack.</p>
                     </div>
                 </div>
-                <div class="box-footer with-border">
+                <div class="card-footer with-border">
                     {!! csrf_field() !!}
                     <button name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right" type="submit">Save</button>
-                    <button name="_method" value="DELETE" class="btn btn-sm btn-danger pull-left muted muted-hover" type="submit"><i class="fa fa-trash-o"></i></button>
+                    <button name="_method" value="DELETE" class="btn btn-sm btn-danger pull-left" type="submit"><i class="fas fa-trash"></i></button>
                 </div>
             </div>
         </div>
     </div>
 </form>
 <div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Servers Using This Pack</h3>
+    <div class="col-md-12 mb-cs">
+        <div class="card shadow">
+            <div class="card-header border-0">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Servers Using This Pack</h3>
+                  </div>
+               </div>
             </div>
-            <div class="box-body no-padding table-responsive">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover align-items-center table-flush">
+                  <thead class="thead-light">
                     <tr>
                         <th>ID</th>
                         <th>Server Name</th>
                         <th>Node</th>
                         <th>Owner</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     @foreach($pack->servers as $server)
                         <tr>
                             <td><code>{{ $server->uuidShort }}</code></td>
@@ -127,13 +142,14 @@
                             <td><a href="{{ route('admin.users.view', $server->user->id) }}">{{ $server->user->email }}</a></td>
                         </tr>
                     @endforeach
+                  </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6 col-md-5 col-md-offset-7 col-xs-offset-6">
+    <div class="col-md-5 offset-md-7">
         <form action="{{ route('admin.packs.view.export', $pack->id) }}" method="POST">
             {!! csrf_field() !!}
             <button type="submit" class="btn btn-sm btn-success pull-right">Export</button>

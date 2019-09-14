@@ -18,25 +18,30 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="row mt--7">
+    <div class="col-lg-12">
         <div class="alert alert-danger">
             Eggs are a powerful feature of Pterodactyl Panel that allow for extreme flexibility and configuration. Please note that while powerful, modifying an egg wrongly can very easily brick your servers and cause more problems. Please avoid editing our default eggs — those provided by <code>support@pterodactyl.io</code> — unless you are absolutely sure of what you are doing.
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Configured Nests</h3>
-                <div class="box-tools">
+    <div class="col-lg-12">
+        <div class="card shadow">
+            <div class="card-header border-0">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Configured Nests</h3>
+                  </div>
+                  <div class="col text-right">
                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#importServiceOptionModal" role="button"><i class="fa fa-upload"></i> Import Egg</a>
                     <a href="{{ route('admin.nests.new') }}" class="btn btn-primary btn-sm">Create New</a>
-                </div>
+                  </div>
+               </div>
             </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover align-items-center table-flush">
+                  <thead class="thead-light">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -45,6 +50,8 @@
                         <th class="text-center">Packs</th>
                         <th class="text-center">Servers</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     @foreach($nests as $nest)
                         <tr>
                             <td class="middle"><code>{{ $nest->id }}</code></td>
@@ -55,17 +62,18 @@
                             <td class="text-center middle">{{ $nest->servers_count }}</td>
                         </tr>
                     @endforeach
+                  </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="importServiceOptionModal">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
+              <h4 class="modal-title">Import an Egg</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Import an Egg</h4>
             </div>
             <form action="{{ route('admin.nests.egg.import') }}" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
@@ -90,8 +98,8 @@
                 </div>
                 <div class="modal-footer">
                     {{ csrf_field() }}
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Import</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success btn-sm ml-auto">Import</button>
                 </div>
             </form>
         </div>

@@ -17,27 +17,49 @@
     </ol>
 @endsection
 
+@section('search')
+<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" action="{{ route('admin.servers') }}" method="GET">
+   <div class="form-group mb-0">
+      <div class="input-group input-group-alternative">
+         <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+         </div>
+         <input class="form-control" name="query" value="{{ request()->input('query') }}" placeholder="Search Servers" type="text">
+      </div>
+   </div>
+</form>
+@endsection
+
+@section('mobile-search')
+<form class="mt-4 mb-3 d-md-none" action="{{ route('admin.servers') }}" method="GET">
+   <div class="input-group input-group-rounded input-group-merge">
+      <input type="search" name="query" class="form-control form-control-rounded form-control-prepended" value="{{ request()->input('query') }}" placeholder="Search Servers" aria-label="Search Servers">
+      <div class="input-group-prepend">
+         <div class="input-group-text">
+            <span class="fa fa-search"></span>
+         </div>
+      </div>
+   </div>
+</form>
+@endsection
+
 @section('content')
-<div class="row">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Server List</h3>
-                <div class="box-tools">
-                    <form action="{{ route('admin.servers') }}" method="GET">
-                        <div class="input-group input-group-sm">
-                            <input type="text" name="query" class="form-control pull-right" style="width:30%;" value="{{ request()->input('query') }}" placeholder="Search Servers">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                <a href="{{ route('admin.servers.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Create New</button></a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<div class="row mt--7">
+    <div class="col-lg-12">
+        <div class="card shadow">
+            <div class="card-header border-0">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Server List</h3>
+                  </div>
+                  <div class="col text-right">
+                     <a href="{{ route('admin.servers.new') }}" class="btn btn-sm btn-primary">Create New</a>
+                  </div>
+               </div>
             </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                    <tbody>
+            <div class="table-responsive">
+                <table class="table table-hover align-items-center table-flush table-sm">
+                      <thead class="thead-light">
                         <tr>
                             <th>Server Name</th>
                             <th>UUID</th>
@@ -47,6 +69,8 @@
                             <th></th>
                             <th></th>
                         </tr>
+                      </thead>
+                      <tbody>
                         @foreach ($servers as $server)
                             <tr data-server="{{ $server->uuidShort }}">
                                 <td><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></td>
@@ -58,16 +82,16 @@
                                 </td>
                                 <td class="text-center">
                                     @if($server->suspended)
-                                        <span class="label bg-maroon">Suspended</span>
+                                        <span class="badge badge-danger">Suspended</span>
                                     @elseif(! $server->installed)
-                                        <span class="label label-warning">Installing</span>
+                                        <span class="badge badge-warning">Installing</span>
                                     @else
-                                        <span class="label label-success">Active</span>
+                                        <span class="badge badge-success">Active</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-xs btn-default" href="{{ route('server.index', $server->uuidShort) }}"><i class="fa fa-wrench"></i></a>
-                                    <a class="btn btn-xs btn-default console-popout" href="{{ route('server.console', $server->uuidShort) }}"><i class="fa fa-terminal"></i></a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('server.index', $server->uuidShort) }}"><i class="fas fa-wrench"></i></a>
+                                    <a class="btn btn-sm btn-danger console-popout" href="{{ route('server.console', $server->uuidShort) }}"><i class="fas fa-terminal"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -75,8 +99,8 @@
                 </table>
             </div>
             @if($servers->hasPages())
-                <div class="box-footer with-border">
-                    <div class="col-md-12 text-center">{!! $servers->appends(['query' => Request::input('query')])->render() !!}</div>
+                <div class="card-footer mb--3">
+                    <div class="col-lg-12 text-center">{!! $servers->appends(['query' => Request::input('query')])->render() !!}</div>
                 </div>
             @endif
         </div>

@@ -19,34 +19,56 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="nav-tabs-custom nav-tabs-floating">
-            <ul class="nav nav-tabs">
-                <li class="active1"><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
-                @if($server->installed === 1)
-                    <li><a href="{{ route('admin.servers.view.details', $server->id) }}">Details</a></li>
-                    <li><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
-                    <li><a href="{{ route('admin.servers.view.startup', $server->id) }}">Startup</a></li>
-                    <li><a href="{{ route('admin.servers.view.database', $server->id) }}">Database</a></li>
-                    <li><a href="{{ route('admin.servers.view.manage', $server->id) }}">Manage</a></li>
-                @endif
-                <li class="tab-danger"><a href="{{ route('admin.servers.view.delete', $server->id) }}">Delete</a></li>
-                <li class="tab-success"><a href="{{ route('server.index', $server->uuidShort) }}"><i class="fa fa-external-link"></i></a></li>
-            </ul>
+<div class="row mt--7 mb-cs">
+   <div class="col-lg-12">
+      <div class="card shadow bg-secondary">
+        <div class="card-body bg-secondary" style="padding: 0.75rem">
+          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.servers.view', $server->id) }}" role="tab">About</a>
+             </li>
+             @if($server->installed === 1)
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.details', $server->id) }}" role="tab">Details</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.build', $server->id) }}" role="tab">Build Configuration</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.startup', $server->id) }}" role="tab">Startup</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.database', $server->id) }}" role="tab">Database</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.manage', $server->id) }}" role="tab">Manage</a>
+             </li>
+             @endif
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.delete', $server->id) }}" role="tab">Delete</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('server.index', $server->uuidShort) }}" role="tab"><i class="fas fa-external-link-alt"></i></a>
+             </li>
+          </ul>
         </div>
-    </div>
+      </div>
+   </div>
 </div>
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-8 mb-cs">
         <div class="row">
-            <div class="col-xs-12" style="width: 100%;">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Information</h3>
+            <div class="col-lg-12">
+                <div class="card shadow">
+                    <div class="card-header border-transparent">
+                       <div class="row align-items-center">
+                          <div class="col">
+                             <h3 class="mb-0">Information</h3>
+                          </div>
+                       </div>
                     </div>
-                    <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
+                    <div class="table-responsive no-padding">
+                        <table class="table table-sm table-hover align-items-center table-flush">
                             <tr>
                                 <td>Internal Identifier</td>
                                 <td><code>{{ $server->id }}</code></td>
@@ -54,7 +76,7 @@
                             <tr>
                                 <td>External Identifier</td>
                                 @if(is_null($server->external_id))
-                                    <td><span class="label label-default">Not Set</span></td>
+                                    <td><span class="badge badge-primary">Not Set</span></td>
                                 @else
                                     <td><code>{{ $server->external_id }}</code></td>
                                 @endif
@@ -100,7 +122,7 @@
                                     @if($server->allocation->alias !== $server->allocation->ip)
                                         <code>{{ $server->allocation->alias }}:{{ $server->allocation->port }}</code>
                                     @else
-                                        <span class="label label-default">No Alias Assigned</span>
+                                        <span class="badge badge-primary">No Alias Assigned</span>
                                     @endif
                                 </td>
                             </tr>
@@ -111,54 +133,64 @@
         </div>
     </div>
     <div class="col-sm-4">
-        <div class="box box-primary">
-            <div class="box-body" style="padding-bottom: 0px;">
-                <div class="row">
-                    @if($server->suspended)
-                        <div class="col-sm-12">
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3 class="no-margin">Suspended</h3>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    @if($server->installed !== 1)
-                        <div class="col-sm-12" style="width: 100%;">
-                            <div class="small-box {{ (! $server->installed) ? 'bg-blue' : 'bg-maroon' }}">
-                                <div class="inner">
-                                    <h3 class="no-margin">{{ (! $server->installed) ? 'Installing' : 'Install Failed' }}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    <div class="col-sm-12" style="width: 100%;">
-                        <div class="small-box bg-gray">
-                            <div class="inner">
-                                <h3>{{ str_limit($server->user->username, 16) }}</h3>
-                                <p>Server Owner</p>
-                            </div>
-                            <div class="icon"><i class="fa fa-user"></i></div>
-                            <a href="{{ route('admin.users.view', $server->user->id) }}" class="small-box-footer">
-                                More info <i class="fa fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-12" style="width: 100%;">
-                        <div class="small-box bg-gray">
-                            <div class="inner">
-                                <h3>{{ str_limit($server->node->name, 16) }}</h3>
-                                <p>Server Node</p>
-                            </div>
-                            <div class="icon"><i class="fa fa-codepen"></i></div>
-                            <a href="{{ route('admin.nodes.view', $server->node->id) }}" class="small-box-footer">
-                                More info <i class="fa fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      @if($server->suspended)
+            <div class="card card-stats bg-warning shadow mb-4">
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col">
+                        <span class="h2 font-weight-bold mb-0 text-white">Suspended</span>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
+      @endif
+      @if($server->installed !== 1)
+          <div class="card card-stats bg-{{ (! $server->installed) ? 'primary' : 'warning' }} shadow mb-4">
+             <div class="card-body">
+                <div class="row">
+                   <div class="col">
+                      <span class="h2 font-weight-bold mb-0 text-white">{{ (! $server->installed) ? 'Installing' : 'Install Failed' }}</span>
+                   </div>
+                </div>
+             </div>
+          </div>
+      @endif
+      <div class="card card-stats shadow mb-4">
+         <div class="card-body">
+            <div class="row">
+               <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Server Owner</h5>
+                  <span class="h2 font-weight-bold mb-0">{{ str_limit($server->user->username, 16) }}</span>
+               </div>
+               <div class="col-auto">
+                  <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                     <i class="fas fa-user"></i>
+                  </div>
+               </div>
+            </div>
+            <p class="mt-0 mb-0 text-muted text-sm">
+               <span><a href="{{ route('admin.users.view', $server->user->id) }}">More info</a></span>
+            </p>
+         </div>
+      </div>
+      <div class="card card-stats shadow mb-4">
+         <div class="card-body">
+            <div class="row">
+               <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Server Node</h5>
+                  <span class="h2 font-weight-bold mb-0">{{ str_limit($server->node->name, 16) }}</span>
+               </div>
+               <div class="col-auto">
+                  <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                     <i class="fas fa-user"></i>
+                  </div>
+               </div>
+            </div>
+            <p class="mt-0 mb-0 text-muted text-sm">
+               <span><a href="{{ route('admin.nodes.view', $server->node->id) }}">More info</a></span>
+            </p>
+         </div>
+      </div>
     </div>
 </div>
 @endsection

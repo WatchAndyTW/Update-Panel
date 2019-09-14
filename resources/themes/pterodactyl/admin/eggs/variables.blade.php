@@ -21,21 +21,29 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom nav-tabs-floating">
-            <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.nests.egg.view', $egg->id) }}">Configuration</a></li>
-                <li class="active"><a href="{{ route('admin.nests.egg.variables', $egg->id) }}">Variables</a></li>
-                <li><a href="{{ route('admin.nests.egg.scripts', $egg->id) }}">Scripts</a></li>
-            </ul>
-        </div>
+<div class="row mt--7">
+    <div class="col-md-12">
+       <div class="card shadow bg-secondary mb-cs">
+         <div class="card-body bg-secondary" style="padding: 0.75rem">
+           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+              <li class="nav-item">
+                 <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nests.egg.view', $egg->id) }}" role="tab">Configuration</a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nests.egg.variables', $egg->id) }}" role="tab">Variables</a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nests.egg.scripts', $egg->id) }}" role="tab">Scripts</a>
+              </li>
+           </ul>
+         </div>
+       </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
-        <div class="box no-border">
-            <div class="box-body">
+    <div class="col-md-12">
+        <div class="card shadow mb-cs">
+            <div class="card-footer">
                 <a href="#" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#newVariableModal">Create New Variable</a>
             </div>
         </div>
@@ -44,12 +52,16 @@
 <div class="row">
     @foreach($egg->variables as $variable)
         <div class="col-sm-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ $variable->name }}</h3>
+          <form action="{{ route('admin.nests.egg.variables.edit', ['id' => $egg->id, 'variable' => $variable->id]) }}" method="POST">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">{{ $variable->name }}</h3>
+                      </div>
+                   </div>
                 </div>
-                <form action="{{ route('admin.nests.egg.variables.edit', ['id' => $egg->id, 'variable' => $variable->id]) }}" method="POST">
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="form-group">
                             <label class="form-label">Name</label>
                             <input type="text" name="name" value="{{ $variable->name }}" class="form-control" />
@@ -67,7 +79,7 @@
                                 <label class="form-label">Default Value</label>
                                 <input type="text" name="default_value" value="{{ $variable->default_value }}" class="form-control" />
                             </div>
-                            <div class="col-xs-12">
+                            <div class="col-md-12">
                                 <p class="text-muted small">This variable can be accessed in the startup command by using <code>{{ $variable->env_variable }}</code>.</p>
                             </div>
                         </div>
@@ -84,22 +96,22 @@
                             <p class="text-muted small">These rules are defined using standard Laravel Framework validation rules.</p>
                         </div>
                     </div>
-                    <div class="box-footer">
+                    <div class="card-footer">
                         {!! csrf_field() !!}
                         <button class="btn btn-sm btn-primary pull-right" name="_method" value="PATCH" type="submit">Save</button>
-                        <button class="btn btn-sm btn-danger pull-left muted muted-hover" data-action="delete" name="_method" value="DELETE" type="submit"><i class="fa fa-trash-o"></i></button>
+                        <button class="btn btn-sm btn-danger pull-left" data-action="delete" name="_method" value="DELETE" type="submit"><i class="fas fa-trash"></i></button>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
     @endforeach
 </div>
 <div class="modal fade" id="newVariableModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Create New Egg Variable</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <form action="{{ route('admin.nests.egg.variables', $egg->id) }}" method="POST">
                 <div class="modal-body">
@@ -120,7 +132,7 @@
                             <label class="control-label">Default Value</label>
                             <input type="text" name="default_value" class="form-control" value="{{ old('default_value') }}" />
                         </div>
-                        <div class="col-xs-12">
+                        <div class="col-md-12">
                             <p class="text-muted small">This variable can be accessed in the startup command by entering <code>@{{environment variable value}}</code>.</p>
                         </div>
                     </div>
@@ -139,8 +151,8 @@
                 </div>
                 <div class="modal-footer">
                     {!! csrf_field() !!}
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create Variable</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm ml-auto">Create Variable</button>
                 </div>
             </form>
         </div>
@@ -153,9 +165,9 @@
     <script>
         $('.pOptions').select2();
         $('[data-action="delete"]').on('mouseenter', function (event) {
-            $(this).find('i').html(' Delete Variable');
+            $(this).html('<i class="fas fa-trash"></i> Delete Variable');
         }).on('mouseleave', function (event) {
-            $(this).find('i').html('');
+            $(this).html('<i class="fas fa-trash"></i>');
         });
     </script>
 @endsection

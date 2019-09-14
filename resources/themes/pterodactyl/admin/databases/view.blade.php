@@ -20,13 +20,17 @@
 
 @section('content')
 <form action="{{ route('admin.databases.view', $host->id) }}" method="POST">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Host Details</h3>
+    <div class="row mt--7">
+        <div class="col-lg-6 mb-cs">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Host Details</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pName" class="form-label">Name</label>
                         <input type="text" id="pName" name="name" class="form-control" value="{{ old('name', $host->name) }}" />
@@ -53,17 +57,21 @@
                                 </optgroup>
                             @endforeach
                         </select>
-                        <p class="text-muted small">This setting does nothing other than default to this database host when adding a database to a server on the selected node.</p>
+                        <p class="text-muted small no-margin">This setting does nothing other than default to this database host when adding a database to a server on the selected node.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">User Details</h3>
+        <div class="col-lg-6 mb-cs">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">User Details</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pUsername" class="form-label">Username</label>
                         <input type="text" name="username" id="pUsername" class="form-control" value="{{ old('username', $host->username) }}" />
@@ -77,23 +85,28 @@
                     <hr />
                     <p class="text-danger small text-left">The account defined for this database host <strong>must</strong> have the <code>WITH GRANT OPTION</code> permission. If the defined account does not have this permission requests to create databases <em>will</em> fail. <strong>Do not use the same account details for MySQL that you have defined for this panel.</strong></p>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer mt--2">
                     {!! csrf_field() !!}
                     <button name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>
-                    <button name="_method" value="DELETE" class="btn btn-sm btn-danger pull-left muted muted-hover"><i class="fa fa-trash-o"></i></button>
+                    <button name="_method" value="DELETE" class="btn btn-sm btn-danger pull-left muted muted-hover"><i class="fas fa-trash"></i></button>
                 </div>
             </div>
         </div>
     </div>
 </form>
 <div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Databases</h3>
+    <div class="col-lg-12">
+        <div class="card shadow">
+            <div class="card-header border-0">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Databases</h3>
+                  </div>
+               </div>
             </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover align-items-center table-flush table-sm">
+                  <thead class="thead-light">
                     <tr>
                         <th>Server</th>
                         <th>Database Name</th>
@@ -101,6 +114,8 @@
                         <th>Connections From</th>
                         <th></th>
                     </tr>
+                  </thead>
+                  <tbody>
                     @foreach($databases as $database)
                         <tr>
                             <td class="middle"><a href="{{ route('admin.servers.view', $database->getRelation('server')->id) }}">{{ $database->getRelation('server')->name }}</a></td>
@@ -109,16 +124,17 @@
                             <td class="middle">{{ $database->remote }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.servers.view.database', $database->getRelation('server')->id) }}">
-                                    <button class="btn btn-xs btn-primary">Manage</button>
+                                    <button class="btn btn-sm btn-primary">Manage</button>
                                 </a>
                             </td>
                         </tr>
                     @endforeach
+                  </tbody>
                 </table>
             </div>
             @if($databases->hasPages())
-                <div class="box-footer with-border">
-                    <div class="col-md-12 text-center">{!! $databases->render() !!}</div>
+                <div class="card-footer mb--3">
+                    <div class="col-lg-12 text-center">{!! $databases->render() !!}</div>
                 </div>
             @endif
         </div>

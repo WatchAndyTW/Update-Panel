@@ -20,32 +20,54 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="nav-tabs-custom nav-tabs-floating">
-            <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
-                @if($server->installed === 1)
-                    <li class="active1"><a href="{{ route('admin.servers.view.details', $server->id) }}">Details</a></li>
-                    <li><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
-                    <li><a href="{{ route('admin.servers.view.startup', $server->id) }}">Startup</a></li>
-                    <li><a href="{{ route('admin.servers.view.database', $server->id) }}">Database</a></li>
-                    <li><a href="{{ route('admin.servers.view.manage', $server->id) }}">Manage</a></li>
-                @endif
-                <li class="tab-danger"><a href="{{ route('admin.servers.view.delete', $server->id) }}">Delete</a></li>
-                <li class="tab-success"><a href="{{ route('server.index', $server->uuidShort) }}"><i class="fa fa-external-link"></i></a></li>
-            </ul>
+<div class="row mt--7 mb-cs">
+   <div class="col-lg-12">
+      <div class="card shadow bg-secondary">
+        <div class="card-body bg-secondary" style="padding: 0.75rem">
+          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view', $server->id) }}" role="tab">About</a>
+             </li>
+             @if($server->installed === 1)
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.servers.view.details', $server->id) }}" role="tab">Details</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.build', $server->id) }}" role="tab">Build Configuration</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.startup', $server->id) }}" role="tab">Startup</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.database', $server->id) }}" role="tab">Database</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.manage', $server->id) }}" role="tab">Manage</a>
+             </li>
+             @endif
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.delete', $server->id) }}" role="tab">Delete</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('server.index', $server->uuidShort) }}" role="tab"><i class="fas fa-external-link-alt"></i></a>
+             </li>
+          </ul>
         </div>
-    </div>
+      </div>
+   </div>
 </div>
 <div class="row">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Base Information</h3>
+    <div class="col-lg-12">
+      <form action="{{ route('admin.servers.view.details', $server->id) }}" method="POST">
+        <div class="card shadow">
+            <div class="card-header border-transparent">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Base Information</h3>
+                  </div>
+               </div>
             </div>
-            <form action="{{ route('admin.servers.view.details', $server->id) }}" method="POST">
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="name" class="control-label">Server Name <span class="field-required"></span></label>
                         <input type="text" name="name" value="{{ old('name', $server->name) }}" class="form-control" />
@@ -69,13 +91,13 @@
                         <p class="text-muted small">A brief description of this server.</p>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
                     {!! method_field('PATCH') !!}
                     <input type="submit" class="btn btn-sm btn-primary" value="Update Details" />
                 </div>
-            </form>
         </div>
+      </form>
     </div>
 </div>
 @endsection

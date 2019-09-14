@@ -20,13 +20,17 @@
 
 @section('content')
 <form action="{{ route('admin.nests.egg.new') }}" method="POST">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Configuration</h3>
+    <div class="row mt--7">
+        <div class="col-md-12">
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Configuration</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -67,16 +71,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Process Management</h3>
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Process Management</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-md-12">
                             <div class="alert alert-warning">
-                                <p>All fields are required unless you select a separate option from the 'Copy Settings From' dropdown, in which case fields may be left blank to use the values from that option.</p>
+                                All fields are required unless you select a separate option from the 'Copy Settings From' dropdown, in which case fields may be left blank to use the values from that option.
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -112,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-success btn-sm pull-right">Create</button>
                 </div>

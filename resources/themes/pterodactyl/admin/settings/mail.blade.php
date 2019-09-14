@@ -16,15 +16,22 @@
 @section('content')
     @yield('settings::nav')
     <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Email Settings</h3>
-                </div>
+        <div class="col-lg-12">
+          @if(!$disabled)
+          <form>
+          @endif
+            <div class="card shadow">
+              <div class="card-header border-transparent">
+                 <div class="row align-items-center">
+                    <div class="col">
+                       <h3 class="mb-0">Email Settings</h3>
+                    </div>
+                 </div>
+              </div>
                 @if($disabled)
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-lg-12">
                                 <div class="alert alert-info no-margin-bottom">
                                     This interface is limited to instances using SMTP as the mail driver. Please either use <code>php artisan p:environment:mail</code> command to update your email settings, or set <code>MAIL_DRIVER=smtp</code> in your environment file.
                                 </div>
@@ -32,8 +39,7 @@
                         </div>
                     </div>
                 @else
-                    <form>
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">SMTP Host</label>
@@ -78,8 +84,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr />
                             <div class="row">
-                                <hr />
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Mail From</label>
                                     <div>
@@ -96,16 +102,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="box-footer">
+                        <div class="card-footer">
                             {{ csrf_field() }}
                             <div class="pull-right">
                                 <button type="button" id="testButton" class="btn btn-sm btn-success">Test</button>
                                 <button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>
                             </div>
                         </div>
-                    </form>
                 @endif
             </div>
+            @if(!$disabled)
+          </form>
+            @endif
         </div>
     </div>
 @endsection

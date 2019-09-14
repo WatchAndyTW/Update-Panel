@@ -59,7 +59,7 @@ $(document).ready(function() {
             if (data.loading) return data.text;
 
             return '<div class="user-block"> \
-                <img class="img-circle img-bordered-xs" src="https://www.gravatar.com/avatar/' + data.md5 + '?s=120" alt="User Image"> \
+                <img class="rounded-circle img-bordered-xs" src="https://www.gravatar.com/avatar/' + data.md5 + '?s=120" style="width: 40px;height: 40px;float: left;" alt="User Image"> \
                 <span class="username"> \
                     <a href="#">' + data.name_first + ' ' + data.name_last +'</a> \
                 </span> \
@@ -69,7 +69,7 @@ $(document).ready(function() {
         templateSelection: function (data) {
             return '<div> \
                 <span> \
-                    <img class="img-rounded img-bordered-xs" src="https://www.gravatar.com/avatar/' + data.md5 + '?s=120" style="height:28px;margin-top:-4px;" alt="User Image"> \
+                    <img class="rounded img-bordered-xs" src="https://www.gravatar.com/avatar/' + data.md5 + '?s=120" style="height:28px;margin-top:-4px;" alt="User Image"> \
                 </span> \
                 <span style="padding-left:5px;"> \
                     ' + data.name_first + ' ' + data.name_last + ' (<strong>' + data.email + '</strong>) \
@@ -78,6 +78,8 @@ $(document).ready(function() {
         }
     });
 });
+
+/*
 
 var lastActiveBox = null;
 $(document).on('click', function (event) {
@@ -88,6 +90,8 @@ $(document).on('click', function (event) {
     lastActiveBox = $(event.target).closest('.box');
     lastActiveBox.addClass('box-primary');
 });
+
+*/
 
 $('#pNodeId').on('change', function () {
     currentNode = $(this).val();
@@ -141,12 +145,12 @@ $('#pEggId').on('change', function (event) {
 
     $('#appendVariablesTo').html('');
     $.each(_.get(objectChain, 'variables', []), function (i, item) {
-        var isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
+        var isRequired = (item.required === 1) ? '<span class="badge badge-danger">Required</span> ' : '';
         var dataAppend = ' \
             <div class="form-group col-sm-6"> \
                 <label for="var_ref_' + item.id + '" class="control-label">' + isRequired + item.name + '</label> \
                 <input type="text" id="var_ref_' + item.id + '" autocomplete="off" name="environment[' + item.env_variable + ']" class="form-control" value="' + item.default_value + '" /> \
-                <p class="text-muted small">' + item.description + '<br /> \
+                <p class="text-muted small m-0">' + item.description + '<br /> \
                 <strong>Access in Startup:</strong> <code>{{' + item.env_variable + '}}</code><br /> \
                 <strong>Validation Rules:</strong> <code>' + item.rules + '</code></small></p> \
             </div> \

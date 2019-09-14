@@ -76,22 +76,22 @@
             var element = $('tr[data-server="' + uuid + '"]');
             switch (info.status) {
                 case 0:
-                    element.find('[data-action="status"]').html('<span class="label label-danger">Offline</span>');
+                    element.find('[data-action="status"]').html('<span class="badge badge-dot"> <i class="bg-danger"></i> Offline </span>');
                     break;
                 case 1:
-                    element.find('[data-action="status"]').html('<span class="label label-success">Online</span>');
+                    element.find('[data-action="status"]').html('<span class="badge badge-dot"> <i class="bg-success"></i> Online </span>');
                     break;
                 case 2:
-                    element.find('[data-action="status"]').html('<span class="label label-info">Starting</span>');
+                    element.find('[data-action="status"]').html('<span class="badge badge-dot"> <i class="bg-info"></i> Starting </span>');
                     break;
                 case 3:
-                    element.find('[data-action="status"]').html('<span class="label label-info">Stopping</span>');
+                    element.find('[data-action="status"]').html('<span class="badge badge-dot"> <i class="bg-warning"></i> Stopping </span>');
                     break;
                 case 20:
-                    element.find('[data-action="status"]').html('<span class="label label-warning">Installing</span>');
+                    element.find('[data-action="status"]').html('<span class="badge badge-dot"> <i class="bg-info"></i> Installing </span>');
                     break;
                 case 30:
-                    element.find('[data-action="status"]').html('<span class="label label-warning">Suspended</span>');
+                    element.find('[data-action="status"]').html('<span class="badge badge-dot"> <i class="bg-warning"></i> Suspended </span>');
                     break;
             }
             if (info.status !== 0) {

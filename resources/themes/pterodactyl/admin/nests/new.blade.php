@@ -20,13 +20,17 @@
 
 @section('content')
 <form action="{{ route('admin.nests.new') }}" method="POST">
-    <div class="row">
+    <div class="row mt--7">
         <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">New Nest</h3>
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">New Nest</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label class="control-label">Name</label>
                         <div>
@@ -41,9 +45,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-primary pull-right">Save</button>
+                    <button type="submit" class="btn btn-sm btn-primary pull-right">Save</button>
                 </div>
             </div>
         </div>

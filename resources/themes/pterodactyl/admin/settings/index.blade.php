@@ -16,13 +16,17 @@
 @section('content')
     @yield('settings::nav')
     <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Panel Settings</h3>
+        <div class="col-lg-12">
+          <form action="{{ route('admin.settings') }}" method="POST">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Panel Settings</h3>
+                      </div>
+                   </div>
                 </div>
-                <form action="{{ route('admin.settings') }}" method="POST">
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label class="control-label">Company Name</label>
@@ -34,24 +38,18 @@
                             <div class="form-group col-md-4">
                                 <label class="control-label">Require 2-Factor Authentication</label>
                                 <div>
-                                    <div class="btn-group" data-toggle="buttons">
-                                        @php
-                                            $level = old('pterodactyl:auth:2fa_required', config('pterodactyl.auth.2fa_required'));
-                                        @endphp
-                                        <label class="btn btn-primary @if ($level == 0) active @endif">
-                                            <input type="radio" style="display:none;" name="pterodactyl:auth:2fa_required" autocomplete="off" value="0" @if ($level == 0) checked @endif> Not Required
-                                        </label>
-                                        <label class="btn btn-primary @if ($level == 1) active @endif">
-                                            <input type="radio" style="display:none;" name="pterodactyl:auth:2fa_required" autocomplete="off" value="1" @if ($level == 1) checked @endif> Admin Only
-                                        </label>
-                                        <label class="btn btn-primary @if ($level == 2) active @endif">
-                                            <input type="radio" style="display:none;" name="pterodactyl:auth:2fa_required" autocomplete="off" value="2" @if ($level == 2) checked @endif> All Users
-                                        </label>
-                                    </div>
+                                    @php
+                                        $level = old('pterodactyl:auth:2fa_required', config('pterodactyl.auth.2fa_required'));
+                                    @endphp
+                                    <select name="pterodactyl:auth:2fa_required" class="form-control">
+                                            <option value="0"  @if ($level == 0) selected @endif>Not Required</option>
+                                            <option value="1"  @if ($level == 1) selected @endif>Admin Only</option>
+                                            <option value="2"  @if ($level == 2) selected @endif>All Users</option>
+                                    </select>
                                     <p class="text-muted"><small>If enabled, any account falling into the selected grouping will be required to have 2-Factor authentication enabled to use the Panel.</small></p>
                                 </div>
                             </div>
-                            <div class="form-group col-md-9">
+                            <div class="form-group col-md-4">
                                 <label class="control-label">Default Language</label>
                                 <div>
                                     <select name="app:locale" class="form-control">
@@ -64,12 +62,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-footer">
+                    <div class="card-footer mt--3">
                         {!! csrf_field() !!}
                         <button type="submit" name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>
                     </div>
-                </form>
             </div>
+          </form>
         </div>
     </div>
 @endsection

@@ -16,13 +16,17 @@
 @section('content')
     @yield('settings::nav')
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             <form action="" method="POST">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">reCAPTCHA</h3>
+                <div class="card shadow mb-cs">
+                    <div class="card-header border-transparent">
+                       <div class="row align-items-center">
+                          <div class="col">
+                             <h3 class="mb-0">reCAPTCHA</h3>
+                          </div>
+                       </div>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label class="control-label">Status</label>
@@ -50,7 +54,7 @@
                         </div>
                         @if($showRecaptchaWarning)
                             <div class="row">
-                                <div class="col-xs-12">
+                                <div class="col-lg-12">
                                     <div class="alert alert-warning no-margin">
                                         You are currently using reCAPTCHA keys that were shipped with this Panel. For improved security it is recommended to <a href="https://www.google.com/recaptcha/admin">generate new invisible reCAPTCHA keys</a> that tied specifically to your website.
                                     </div>
@@ -59,11 +63,15 @@
                         @endif
                     </div>
                 </div>
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">HTTP Connections</h3>
+                <div class="card shadow mb-cs">
+                    <div class="card-header border-transparent">
+                       <div class="row align-items-center">
+                          <div class="col">
+                             <h3 class="mb-0">HTTP Connections</h3>
+                          </div>
+                       </div>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">Connection Timeout</label>
@@ -82,11 +90,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Console</h3>
+                <div class="card shadow mb-cs">
+                    <div class="card-header border-transparent">
+                       <div class="row align-items-center">
+                          <div class="col">
+                             <h3 class="mb-0">Console</h3>
+                          </div>
+                       </div>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label class="control-label">Message Count</label>
@@ -105,8 +117,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="box box-primary">
-                    <div class="box-footer">
+                <div class="card shadow">
+                    <div class="card-footer">
                         {{ csrf_field() }}
                         <button type="submit" name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>
                     </div>

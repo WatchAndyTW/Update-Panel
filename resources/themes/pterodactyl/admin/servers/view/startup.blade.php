@@ -20,41 +20,63 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
-        <div class="nav-tabs-custom nav-tabs-floating">
-            <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
-                @if($server->installed === 1)
-                    <li><a href="{{ route('admin.servers.view.details', $server->id) }}">Details</a></li>
-                    <li><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
-                    <li class="active1"><a href="{{ route('admin.servers.view.startup', $server->id) }}">Startup</a></li>
-                    <li><a href="{{ route('admin.servers.view.database', $server->id) }}">Database</a></li>
-                    <li><a href="{{ route('admin.servers.view.manage', $server->id) }}">Manage</a></li>
-                @endif
-                <li class="tab-danger"><a href="{{ route('admin.servers.view.delete', $server->id) }}">Delete</a></li>
-                <li class="tab-success"><a href="{{ route('server.index', $server->uuidShort) }}"><i class="fa fa-external-link"></i></a></li>
-            </ul>
+<div class="row mt--7 mb-cs">
+   <div class="col-lg-12">
+      <div class="card shadow bg-secondary">
+        <div class="card-body bg-secondary" style="padding: 0.75rem">
+          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view', $server->id) }}" role="tab">About</a>
+             </li>
+             @if($server->installed === 1)
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.details', $server->id) }}" role="tab">Details</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 " href="{{ route('admin.servers.view.build', $server->id) }}" role="tab">Build Configuration</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.servers.view.startup', $server->id) }}" role="tab">Startup</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.database', $server->id) }}" role="tab">Database</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.manage', $server->id) }}" role="tab">Manage</a>
+             </li>
+             @endif
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.servers.view.delete', $server->id) }}" role="tab">Delete</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('server.index', $server->uuidShort) }}" role="tab"><i class="fas fa-external-link-alt"></i></a>
+             </li>
+          </ul>
         </div>
-    </div>
+      </div>
+   </div>
 </div>
 <form action="{{ route('admin.servers.view.startup', $server->id) }}" method="POST">
-    <div class="row">
-        <div class="col-xs-12" style="width:100%">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Startup Command Modification</h3>
+    <div class="row mb-cs">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Startup Command Modification</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <label for="pStartup" class="form-label">Startup Command</label>
                     <input id="pStartup" name="startup" class="form-control" type="text" value="{{ old('startup', $server->startup) }}" />
                     <p class="small text-muted">Edit your server's startup command here. The following variables are available by default: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, and <code>@{{SERVER_PORT}}</code>.</p>
                 </div>
-                <div class="box-body">
+                <div class="card-body mt--5">
                     <label for="pDefaultStartupCommand" class="form-label">Default Service Start Command</label>
                     <input id="pDefaultStartupCommand" class="form-control" type="text" readonly />
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary btn-sm pull-right">Save Modifications</button>
                 </div>
@@ -63,12 +85,16 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Service Configuration</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Service Configuration</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body row">
-                    <div class="col-xs-12" style="width:100%">
+                <div class="card-body row">
+                    <div class="col-md-12">
                         <p class="small text-danger">
                             Changing any of the below values will result in the server processing a re-install command. The server will be stopped and will then proceed.
                             If you are changing the pack, existing data <em>may</em> be overwritten. If you would like the service scripts to not run, ensure the box is checked at the bottom.
@@ -77,7 +103,7 @@
                             <strong>This is a destructive operation in many cases. This server will be stopped immediately in order for this action to proceed.</strong>
                         </p>
                     </div>
-                    <div class="form-group col-xs-12" style="width:100%">
+                    <div class="form-group col-md-12">
                         <label for="pNestId">Nest</label>
                         <select name="nest_id" id="pNestId" class="form-control">
                             @foreach($nests as $nest)
@@ -88,32 +114,36 @@
                                 >{{ $nest->name }}</option>
                             @endforeach
                         </select>
-                        <p class="small text-muted no-margin">Select the Nest that this server will be grouped into.</p>
+                        <p class="small text-muted m-0">Select the Nest that this server will be grouped into.</p>
                     </div>
-                    <div class="form-group col-xs-12" style="width:100%">
+                    <div class="form-group col-md-12">
                         <label for="pEggId">Egg</label>
                         <select name="egg_id" id="pEggId" class="form-control"></select>
-                        <p class="small text-muted no-margin">Select the Egg that will provide processing data for this server.</p>
+                        <p class="small text-muted m-0">Select the Egg that will provide processing data for this server.</p>
                     </div>
-                    <div class="form-group col-xs-12" style="width:100%">
+                    <div class="form-group col-md-12">
                         <label for="pPackId">Data Pack</label>
                         <select name="pack_id" id="pPackId" class="form-control"></select>
-                        <p class="small text-muted no-margin">Select a data pack to be automatically installed on this server when first created.</p>
+                        <p class="small text-muted m-0">Select a data pack to be automatically installed on this server when first created.</p>
                     </div>
-                    <div class="form-group col-xs-12" style="width:100%">
-                        <div class="checkbox checkbox-primary no-margin-bottom">
-                            <input id="pSkipScripting" name="skip_scripting" type="checkbox" value="1" @if($server->skip_scripts) checked @endif />
-                            <label for="pSkipScripting" class="strong">Skip Egg Install Script</label>
+                    <div class="form-group col-md-12">
+                        <div class="custom-control custom-checkbox mb-0">
+                            <input class="custom-control-input" id="pSkipScripting" name="skip_scripts" type="checkbox" value="1" @if($server->skip_scripts) checked @endif />
+                            <label class="custom-control-label" for="pSkipScripting" class="strong">Skip Egg Install Script</label>
                         </div>
-                        <p class="small text-muted no-margin">If the selected Egg has an install script attached to it, the script will run during install after the pack is installed. If you would like to skip this step, check this box.</p>
+                        <p class="small text-muted m-0">If the selected Egg has an install script attached to it, the script will run during install after the pack is installed. If you would like to skip this step, check this box.</p>
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Docker Container Configuration</h3>
+            <div class="card shadow mb-cs">
+                <div class="card-header border-transparent">
+                   <div class="row align-items-center">
+                      <div class="col">
+                         <h3 class="mb-0">Docker Container Configuration</h3>
+                      </div>
+                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pDockerImage" class="control-label">Image</label>
                         <input type="text" name="docker_image" id="pDockerImage" value="{{ $server->image }}" class="form-control" />
@@ -170,20 +200,24 @@
             $('#appendVariablesTo').html('');
             $.each(_.get(objectChain, 'variables', []), function (i, item) {
                 var setValue = _.get(Pterodactyl.server_variables, item.env_variable, item.default_value);
-                var isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
+                var isRequired = (item.required === 1) ? '<span class="badge badge-danger">Required</span> ' : '';
                 var dataAppend = ' \
-                    <div class="col-xs-12" style="width:100%"> \
-                        <div class="box"> \
-                            <div class="box-header with-border"> \
-                                <h3 class="box-title">' + isRequired + item.name + '</h3> \
+                    <div class="col-md-12"> \
+                        <div class="card shadow mb-cs"> \
+                            <div class="card-header border-transparent"> \
+                               <div class="row align-items-center"> \
+                                  <div class="col"> \
+                                     <h3 class="mb-0">' + isRequired + item.name + '</h3> \
+                                  </div> \
+                               </div> \
                             </div> \
-                            <div class="box-body"> \
+                            <div class="card-body"> \
                                 <input name="environment[' + item.env_variable + ']" class="form-control" type="text" id="egg_variable_' + item.env_variable + '" /> \
-                                <p class="no-margin small text-muted">' + item.description + '</p> \
+                                <p class="small text-muted m-0">' + item.description + '</p> \
                             </div> \
-                            <div class="box-footer"> \
-                                <p class="no-margin text-muted small"><strong>Startup Command Variable:</strong> <code>' + item.env_variable + '</code></p> \
-                                <p class="no-margin text-muted small"><strong>Input Rules:</strong> <code>' + item.rules + '</code></p> \
+                            <div class="card-footer"> \
+                                <p class="text-muted small m-0"><strong>Startup Command Variable:</strong> <code>' + item.env_variable + '</code><br/>\
+                                <strong>Input Rules:</strong> <code>' + item.rules + '</code></p> \
                             </div> \
                         </div> \
                     </div>';

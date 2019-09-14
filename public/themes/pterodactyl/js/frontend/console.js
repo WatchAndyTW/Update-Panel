@@ -117,7 +117,7 @@ $(document).ready(function () {
 
 $terminal.on('scroll', function () {
     if (isTerminalScrolledDown()) {
-        $scrollNotify.addClass('hidden');
+        $scrollNotify.addClass('d-none');
     }
 });
 
@@ -140,7 +140,7 @@ function pushToTerminal(string) {
 
     $scrollNotify.on('click', function () {
         window.scrollToBottom();
-        $scrollNotify.addClass('hidden');
+        $scrollNotify.addClass('d-none');
     });
 })();
 
@@ -161,8 +161,8 @@ function pushToTerminal(string) {
 
         if (scrolledDown) {
             window.scrollToBottom();
-        } else if ($scrollNotify.hasClass('hidden')) {
-            $scrollNotify.removeClass('hidden');
+        } else if ($scrollNotify.hasClass('d-none')) {
+            $scrollNotify.removeClass('d-none');
         }
 
         var removeElements = window.ConsoleElements - CONSOLE_OUTPUT_LIMIT;
@@ -271,18 +271,18 @@ $(document).ready(function () {
                         label: "Percent Use",
                         fill: false,
                         lineTension: 0.03,
-                        backgroundColor: "#853698",
-                        borderColor: "#853698",
+                        backgroundColor: "#3c8dbc",
+                        borderColor: "#3c8dbc",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "#853698",
-                        pointBackgroundColor: "#853698",
+                        pointBorderColor: "#3c8dbc",
+                        pointBackgroundColor: "#fff",
                         pointBorderWidth: 1,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "#853698",
-                        pointHoverBorderColor: "#853698",
+                        pointHoverBackgroundColor: "#3c8dbc",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
@@ -316,18 +316,18 @@ $(document).ready(function () {
                         label: "Memory Use",
                         fill: false,
                         lineTension: 0.03,
-                        backgroundColor: "#853698",
-                        borderColor: "#853698",
+                        backgroundColor: "#3c8dbc",
+                        borderColor: "#3c8dbc",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "#853698",
+                        pointBorderColor: "#3c8dbc",
                         pointBackgroundColor: "#fff",
                         pointBorderWidth: 1,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "#853698",
-                        pointHoverBorderColor: "#853698",
+                        pointHoverBackgroundColor: "#3c8dbc",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,

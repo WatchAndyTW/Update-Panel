@@ -19,14 +19,18 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-sm-6">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Location Details</h3>
+<div class="row mt--7">
+    <div class="col-lg-6">
+      <form action="{{ route('admin.locations.view', $location->id) }}" method="POST">
+        <div class="card shadow">
+            <div class="card-header border-transparent">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Location Details</h3>
+                  </div>
+               </div>
             </div>
-            <form action="{{ route('admin.locations.view', $location->id) }}" method="POST">
-                <div class="box-body">
+                <div class="card-body">
                     <div class="form-group">
                         <label for="pShort" class="form-label">Short Code</label>
                         <input type="text" id="pShort" name="short" class="form-control" value="{{ $location->short }}" />
@@ -36,28 +40,35 @@
                         <textarea id="pLong" name="long" class="form-control" rows="4">{{ $location->long }}</textarea>
                     </div>
                 </div>
-                <div class="box-footer">
+                <div class="card-footer">
                     {!! csrf_field() !!}
                     {!! method_field('PATCH') !!}
                     <button name="action" value="edit" class="btn btn-sm btn-primary pull-right">Save</button>
-                    <button name="action" value="delete" class="btn btn-sm btn-danger pull-left muted muted-hover"><i class="fa fa-trash-o"></i></button>
+                    <button name="action" value="delete" class="btn btn-sm btn-danger pull-left muted muted-hover"><i class="fas fa-trash"></i></button>
                 </div>
-            </form>
         </div>
+      </form>
     </div>
-    <div class="col-sm-6">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Nodes</h3>
+    <div class="col-lg-6">
+        <div class="card shadow">
+            <div class="card-header border-transparent">
+               <div class="row align-items-center">
+                  <div class="col">
+                     <h3 class="mb-0">Nodes</h3>
+                  </div>
+               </div>
             </div>
-            <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
+            <div class="table-responsive">
+                <table class="table table-hover align-items-center table-flush">
+                  <thead class="thead-light">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>FQDN</th>
                         <th>Servers</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     @foreach($location->nodes as $node)
                         <tr>
                             <td><code>{{ $node->id }}</code></td>
@@ -66,6 +77,7 @@
                             <td>{{ $node->servers->count() }}</td>
                         </tr>
                     @endforeach
+                  </tbody>
                 </table>
             </div>
         </div>
