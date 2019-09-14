@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12" style="width: 100%;">
+        <div class="col-xs-12">
             <form action="{{ route('server.settings.name', $server->uuidShort) }}" method="POST">
                 <div class="box">
                     <div class="box-body">

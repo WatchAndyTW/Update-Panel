@@ -112,7 +112,7 @@
             </div>
         </div>
     </form>
-    {{--<div class="col-xs-12" style="width: 100%;">--}}
+    {{--<div class="col-xs-12">--}}
         {{--<div class="box">--}}
             {{--<div class="box-header with-border">--}}
                 {{--<h3 class="box-title">Associated Servers</h3>--}}
@@ -151,7 +151,7 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
-    <div class="col-xs-12" style="width: 100%;">
+    <div class="col-xs-12">
         <div class="box box-danger">
             <div class="box-header with-border">
                 <h3 class="box-title">Delete User</h3>

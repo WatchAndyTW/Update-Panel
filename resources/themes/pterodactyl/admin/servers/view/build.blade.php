@@ -20,15 +20,14 @@
 @endsection
 
 @section('content')
-
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
+<div class="row">
+    <div class="col-xs-12">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
                 <li><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
                 @if($server->installed === 1)
                     <li><a href="{{ route('admin.servers.view.details', $server->id) }}">Details</a></li>
-                    <li class="active1"><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
+                    <li class="active"><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
                     <li><a href="{{ route('admin.servers.view.startup', $server->id) }}">Startup</a></li>
                     <li><a href="{{ route('admin.servers.view.database', $server->id) }}">Database</a></li>
                     <li><a href="{{ route('admin.servers.view.manage', $server->id) }}">Manage</a></li>
@@ -41,7 +40,7 @@
 </div>
 <div class="row">
     <form action="{{ route('admin.servers.view.build', $server->id) }}" method="POST">
-        <div class="col-xs-12 col-md-5">
+        <div class="col-sm-5">
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">System Resources</h3>
@@ -89,9 +88,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-md-7">
+        <div class="col-sm-7">
             <div class="row">
-                <div class="col-xs-12" style="width:100%">
+                <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Application Feature Limits</h3>
@@ -116,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12" style="width:100%">
+                <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Allocation Management</h3>

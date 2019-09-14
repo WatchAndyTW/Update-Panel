@@ -20,14 +20,14 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
+<div class="row">
+    <div class="col-xs-12">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
                 <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
                 <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
                 <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
-                <li class="active1"><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
+                <li class="active"><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
                 <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
             </ul>
         </div>
@@ -45,7 +45,7 @@
                         <th>
                             <input type="checkbox" class="select-all-files hidden-xs" data-action="selectAll">
                         </th>
-                        <th>IP Address <i class="fa fa-fw fa-minus-square" style="font-weight:normal;color:#d9534f;cursor:pointer;" data-toggle="modal" data-target="#allocationModal"></i></th>
+                        <th>IP Address <i class="fa fa-fw fa-minus-square" style="font-weight:normal;color:#1d1d1d;cursor:pointer;" data-toggle="modal" data-target="#allocationModal"></i></th>
                         <th>IP Alias</th>
                         <th>Port</th>
                         <th>Assigned To</th>
@@ -213,7 +213,7 @@
             allowOutsideClick: true,
             closeOnConfirm: false,
             confirmButtonText: 'Delete',
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#f5365c',
             showLoaderOnConfirm: true
         }, function () {
             $.ajax({
