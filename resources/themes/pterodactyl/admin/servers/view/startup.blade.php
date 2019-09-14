@@ -20,15 +20,15 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
                 <li><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
                 @if($server->installed === 1)
                     <li><a href="{{ route('admin.servers.view.details', $server->id) }}">Details</a></li>
                     <li><a href="{{ route('admin.servers.view.build', $server->id) }}">Build Configuration</a></li>
-                    <li class="active"><a href="{{ route('admin.servers.view.startup', $server->id) }}">Startup</a></li>
+                    <li class="active1"><a href="{{ route('admin.servers.view.startup', $server->id) }}">Startup</a></li>
                     <li><a href="{{ route('admin.servers.view.database', $server->id) }}">Database</a></li>
                     <li><a href="{{ route('admin.servers.view.manage', $server->id) }}">Manage</a></li>
                 @endif
@@ -40,7 +40,7 @@
 </div>
 <form action="{{ route('admin.servers.view.startup', $server->id) }}" method="POST">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12" style="width:100%">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Startup Command Modification</h3>
@@ -68,7 +68,7 @@
                     <h3 class="box-title">Service Configuration</h3>
                 </div>
                 <div class="box-body row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="width:100%">
                         <p class="small text-danger">
                             Changing any of the below values will result in the server processing a re-install command. The server will be stopped and will then proceed.
                             If you are changing the pack, existing data <em>may</em> be overwritten. If you would like the service scripts to not run, ensure the box is checked at the bottom.
@@ -77,7 +77,7 @@
                             <strong>This is a destructive operation in many cases. This server will be stopped immediately in order for this action to proceed.</strong>
                         </p>
                     </div>
-                    <div class="form-group col-xs-12">
+                    <div class="form-group col-xs-12" style="width:100%">
                         <label for="pNestId">Nest</label>
                         <select name="nest_id" id="pNestId" class="form-control">
                             @foreach($nests as $nest)
@@ -90,19 +90,19 @@
                         </select>
                         <p class="small text-muted no-margin">Select the Nest that this server will be grouped into.</p>
                     </div>
-                    <div class="form-group col-xs-12">
+                    <div class="form-group col-xs-12" style="width:100%">
                         <label for="pEggId">Egg</label>
                         <select name="egg_id" id="pEggId" class="form-control"></select>
                         <p class="small text-muted no-margin">Select the Egg that will provide processing data for this server.</p>
                     </div>
-                    <div class="form-group col-xs-12">
+                    <div class="form-group col-xs-12" style="width:100%">
                         <label for="pPackId">Data Pack</label>
                         <select name="pack_id" id="pPackId" class="form-control"></select>
                         <p class="small text-muted no-margin">Select a data pack to be automatically installed on this server when first created.</p>
                     </div>
-                    <div class="form-group col-xs-12">
+                    <div class="form-group col-xs-12" style="width:100%">
                         <div class="checkbox checkbox-primary no-margin-bottom">
-                            <input id="pSkipScripting" name="skip_scripts" type="checkbox" value="1" @if($server->skip_scripts) checked @endif />
+                            <input id="pSkipScripting" name="skip_scripting" type="checkbox" value="1" @if($server->skip_scripts) checked @endif />
                             <label for="pSkipScripting" class="strong">Skip Egg Install Script</label>
                         </div>
                         <p class="small text-muted no-margin">If the selected Egg has an install script attached to it, the script will run during install after the pack is installed. If you would like to skip this step, check this box.</p>
@@ -172,7 +172,7 @@
                 var setValue = _.get(Pterodactyl.server_variables, item.env_variable, item.default_value);
                 var isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
                 var dataAppend = ' \
-                    <div class="col-xs-12"> \
+                    <div class="col-xs-12" style="width:100%"> \
                         <div class="box"> \
                             <div class="box-header with-border"> \
                                 <h3 class="box-title">' + isRequired + item.name + '</h3> \

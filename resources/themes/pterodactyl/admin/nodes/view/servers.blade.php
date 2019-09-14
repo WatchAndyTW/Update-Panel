@@ -20,15 +20,15 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
                 <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
                 <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
                 <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
                 <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
-                <li class="active"><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
+                <li class="active1"><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
             </ul>
         </div>
     </div>
@@ -47,28 +47,23 @@
                         <th>Owner</th>
                         <th>Service</th>
                         <th class="text-center">Memory</th>
-                        <th class="text-center">CPU</th>
                         <th class="text-center">Disk</th>
+                        <th class="text-center">CPU</th>
                         <th class="text-center">Status</th>
                     </tr>
-                    @foreach($servers as $server)
+                    @foreach($node->servers as $server)
                         <tr data-server="{{ $server->uuid }}">
                             <td><code>{{ $server->uuidShort }}</code></td>
                             <td><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></td>
                             <td><a href="{{ route('admin.users.view', $server->owner_id) }}">{{ $server->user->username }}</a></td>
                             <td>{{ $server->nest->name }} ({{ $server->egg->name }})</td>
-                            <td class="text-center"><span data-action="memory">--</span> / {{ $server->memory === 0 ? '∞' : $server->memory }} MB</td>
-                            <td class="text-center"><span data-action="cpu" data-cpumax="{{ $server->cpu }}">--</span> %</td>
-                            <td class="text-center"><span data-action="disk">--</span> / {{ $server->disk === 0 ? '∞' : $server->disk }} MB </td>
-                            <td class="text-center" data-action="status">--</td>
+                            <td class="text-center"><span data-action="memory">NaN</span> / {{ $server->memory === 0 ? '∞' : $server->memory }} MB</td>
+                            <td class="text-center">{{ $server->disk }} MB</td>
+                            <td class="text-center"><span data-action="cpu" data-cpumax="{{ $server->cpu }}">NaN</span> %</td>
+                            <td class="text-center" data-action="status">NaN</td>
                         </tr>
                     @endforeach
                 </table>
-                @if($servers->hasPages())
-                    <div class="box-footer with-border">
-                        <div class="col-md-12 text-center">{!! $servers->render() !!}</div>
-                    </div>
-                @endif
             </div>
         </div>
     </div>

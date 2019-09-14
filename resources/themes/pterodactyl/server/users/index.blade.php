@@ -19,8 +19,8 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="row" style="display: block;">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">@lang('server.users.list')</h3>
@@ -34,8 +34,7 @@
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <th>ID</th>
-                            <th>Avatar</th>
+                            <th></th>
                             <th>@lang('strings.username')</th>
                             <th>@lang('strings.email')</th>
                             <th class="text-center">@lang('strings.2fa')</th>
@@ -44,10 +43,9 @@
                             @can('delete-subuser', $server)<th></th>@endcan
                         </tr>
                         @foreach($subusers as $subuser)
-                            <tr class="align-middle">
-                                <td><code>{{ $subuser->user->id }}</code></td>
-                                <td class="text-left"><img src="https://www.gravatar.com/avatar/{{ md5(strtolower($subuser->user->email)) }}?s=100" style="height:20px;" class="img-circle" /></td>
-                                <td class="middle">{{ $subuser->user->username }}</td>
+                            <tr>
+                                <td class="text-center middle"><img class="img-circle" src="https://www.gravatar.com/avatar/{{ md5($subuser->user->email) }}?s=128" style="height:20px;" alt="User Image"></td>
+                                <td class="middle">{{ $subuser->user->username }}
                                 <td class="middle"><code>{{ $subuser->user->email }}</code></td>
                                 <td class="middle text-center">
                                     @if($subuser->user->use_totp)

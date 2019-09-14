@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="row" style="display: block;">
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">

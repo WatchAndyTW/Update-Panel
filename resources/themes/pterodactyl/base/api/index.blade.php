@@ -18,8 +18,8 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-xs-12">
+    <div class="row" style="display: block;">
+        <div class="col-xs-12" style="width: 100%;">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Credentials List</h3>
@@ -92,7 +92,7 @@
                 allowOutsideClick: true,
                 closeOnConfirm: false,
                 confirmButtonText: 'Revoke',
-                confirmButtonColor: '#1d1d1d',
+                confirmButtonColor: '#d9534f',
                 showLoaderOnConfirm: true
             }, function () {
                 $.ajax({

@@ -20,17 +20,16 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="card">
     <div class="col-xs-12">
         <div class="box box-primary">
-            <div class="overlay file-overlay"><i class="fa fa-refresh fa-spin"></i></div>
             <div id="load_files">
                 <div class="box-body table-responsive no-padding">
                     <div class="callout callout-info" style="margin:10px;">@lang('server.files.loading')</div>
                 </div>
             </div>
             <div class="box-footer with-border">
-                <p class="text-muted small" style="margin: 0 0 2px;">@lang('server.files.path', ['path' => '<code>/home/container</code>', 'size' => '<code>' . $node->upload_size . ' MB</code>'])</p>
+                <p class="text-muted small" style="margin: 0 0 2px;">When configuring any file paths in your server plugins or settings you should use <code1>/home/container</code1> as your base path. The maximum size for web-based file uploads to this node is <code1>100 MB</code1>.</p>
             </div>
         </div>
     </div>
@@ -44,7 +43,7 @@
     {!! Theme::js('vendor/lodash/lodash.js') !!}
     {!! Theme::js('vendor/siofu/client.min.js') !!}
     @if(App::environment('production'))
-        {!! Theme::js('js/frontend/files/filemanager.min.js?hash=cd7ec731dc633e23ec36144929a237d18c07d2f0') !!}
+        {!! Theme::js('js/frontend/files/filemanager.min.js?updated-cancel-buttons') !!}
     @else
         {!! Theme::js('js/frontend/files/src/index.js') !!}
         {!! Theme::js('js/frontend/files/src/contextmenu.js') !!}

@@ -108,7 +108,7 @@
                         </div>
                         <div class="box-footer">
                             {!! csrf_field() !!}
-                            <p class="text-muted small">You are currently using <strong>{{ count($databases) }}</strong> of <strong>{{ $server->database_limit ?? '∞' }}</strong> databases. A username and password for this database will be randomly generated after form submission.</p>
+                            <p class="text-muted small">You are currently using <strong>{{ count($databases) }}</strong> of <strong>{{ $server->database_limit ?? '&infin;' }}</strong> databases. A username and password for this database will be randomly generated after form submission.</p>
                             <input type="submit" class="btn btn-sm btn-success pull-right" value="Create Database" />
                         </div>
                     </form>
@@ -172,7 +172,7 @@
                     text: 'Are you sure that you want to delete this database? There is no going back, all data will immediately be removed.',
                     showCancelButton: true,
                     confirmButtonText: 'Delete',
-                    confirmButtonColor: '#1d1d1d',
+                    confirmButtonColor: '#d9534f',
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true,
                 }, function () {

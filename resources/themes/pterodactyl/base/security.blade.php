@@ -5,6 +5,7 @@
 {{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.master')
 
+
 @section('title')
     @lang('base.security.header')
 @endsection
@@ -17,7 +18,7 @@
         <li class="active">@lang('strings.security')</li>
     </ol>
 @endsection
-
+ 
 @section('content')
 <div class="row">
     <div class="col-md-6">
