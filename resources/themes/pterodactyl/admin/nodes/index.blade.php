@@ -22,49 +22,27 @@
     </ol>
 @endsection
 
-@section('search')
-<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" action="{{ route('admin.nodes') }}" method="GET">
-   <div class="form-group mb-0">
-      <div class="input-group input-group-alternative">
-         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
-         </div>
-         <input class="form-control" name="query" value="{{ request()->input('query') }}" placeholder="Search Nodes" type="text">
-      </div>
-   </div>
-</form>
-@endsection
-
-@section('mobile-search')
-<form class="mt-4 mb-3 d-md-none" action="{{ route('admin.nodes') }}" method="GET">
-   <div class="input-group input-group-rounded input-group-merge">
-      <input type="search" name="query" class="form-control form-control-rounded form-control-prepended" value="{{ request()->input('query') }}" placeholder="Search Nodes" aria-label="Search Nodes">
-      <div class="input-group-prepend">
-         <div class="input-group-text">
-            <span class="fa fa-search"></span>
-         </div>
-      </div>
-   </div>
-</form>
-@endsection
-
 @section('content')
-<div class="row mt--7">
-    <div class="col-lg-12">
-        <div class="card shadow">
-            <div class="card-header border-0">
-               <div class="row align-items-center">
-                  <div class="col">
-                     <h3 class="mb-0">Node List</h3>
-                  </div>
-                  <div class="col text-right">
-                     <a href="{{ route('admin.nodes.new') }}" class="btn btn-sm btn-primary">Create New</a>
-                  </div>
-               </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Node List</h3>
+                <div class="box-tools">
+                    <form action="{{ route('admin.nodes') }}" method="GET">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="query" class="form-control pull-right" style="width:30%;" value="{{ request()->input('query') }}" placeholder="Search Nodes">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                <a href="{{ route('admin.nodes.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Create New</button></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-items-center table-flush">
-                      <thead class="thead-light">
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
                         <tr>
                             <th></th>
                             <th>Name</th>
@@ -75,26 +53,24 @@
                             <th class="text-center">SSL</th>
                             <th class="text-center">Public</th>
                         </tr>
-                      </thead>
-                      <tbody>
                         @foreach ($nodes as $node)
                             <tr>
-                                <td class="text-center text-muted left-icon" data-action="ping" data-secret="{{ $node->daemonSecret }}" data-location="{{ $node->scheme }}://{{ $node->fqdn }}:{{ $node->daemonListen }}/v1"><i class="fas fa-fw fa-sync fa-spin"></i></td>
-                                <td>{!! $node->maintenance_mode ? '<span class="label label-warning"><i class="fas fa-wrench"></i></span> ' : '' !!}<a href="{{ route('admin.nodes.view', $node->id) }}">{{ $node->name }}</a></td>
+                                <td class="text-center text-muted left-icon" data-action="ping" data-secret="{{ $node->daemonSecret }}" data-location="{{ $node->scheme }}://{{ $node->fqdn }}:{{ $node->daemonListen }}/v1"><i class="fa fa-fw fa-refresh fa-spin"></i></td>
+                                <td>{!! $node->maintenance_mode ? '<span class="label label-warning"><i class="fa fa-wrench"></i></span> ' : '' !!}<a href="{{ route('admin.nodes.view', $node->id) }}">{{ $node->name }}</a></td>
                                 <td>{{ $node->location->short }}</td>
                                 <td>{{ $node->memory }} MB</td>
                                 <td>{{ $node->disk }} MB</td>
                                 <td class="text-center">{{ $node->servers_count }}</td>
-                                <td class="text-center" style="color:{{ ($node->scheme === 'https') ? '#50af51' : '#d9534f' }}"><i class="fas fa-{{ ($node->scheme === 'https') ? 'lock' : 'unlock' }}"></i></td>
-                                <td class="text-center"><i class="fas fa-{{ ($node->public) ? 'eye' : 'eye-slash' }}"></i></td>
+                                <td class="text-center" style="color:{{ ($node->scheme === 'https') ? '#50af51' : '#d9534f' }}"><i class="fa fa-{{ ($node->scheme === 'https') ? 'lock' : 'unlock' }}"></i></td>
+                                <td class="text-center"><i class="fa fa-{{ ($node->public) ? 'eye' : 'eye-slash' }}"></i></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
             @if($nodes->hasPages())
-                <div class="card-footer mb--3">
-                    <div class="col-lg-12 text-center">{!! $nodes->appends(['query' => Request::input('query')])->render() !!}</div>
+                <div class="box-footer with-border">
+                    <div class="col-md-12 text-center">{!! $nodes->appends(['query' => Request::input('query')])->render() !!}</div>
                 </div>
             @endif
         </div>
@@ -118,14 +94,14 @@
                 $(element).find('i').tooltip({
                     title: 'v' + data.version,
                 });
-                $(element).removeClass('text-muted').find('i').removeClass().addClass('fas fa-fw fa-heartbeat faa-pulse animated').css('color', '#50af51');
+                $(element).removeClass('text-muted').find('i').removeClass().addClass('fa fa-fw fa-heartbeat faa-pulse animated').css('color', '#50af51');
             }).fail(function (error) {
                 var errorText = 'Error connecting to node! Check browser console for details.';
                 try {
                     errorText = error.responseJSON.errors[0].detail || errorText;
                 } catch (ex) {}
 
-                $(element).removeClass('text-muted').find('i').removeClass().addClass('far fa-fw fa-heart').css('color', '#d9534f');
+                $(element).removeClass('text-muted').find('i').removeClass().addClass('fa fa-fw fa-heart-o').css('color', '#d9534f');
                 $(element).find('i').tooltip({ title: errorText });
             });
         }).promise().done(function () {

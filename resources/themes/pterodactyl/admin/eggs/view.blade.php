@@ -20,37 +20,29 @@
 @endsection
 
 @section('content')
-<div class="row mt--7">
-    <div class="col-md-12">
-       <div class="card shadow bg-secondary mb-cs">
-         <div class="card-body bg-secondary" style="padding: 0.75rem">
-           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nests.egg.view', $egg->id) }}" role="tab">Configuration</a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nests.egg.variables', $egg->id) }}" role="tab">Variables</a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nests.egg.scripts', $egg->id) }}" role="tab">Scripts</a>
-              </li>
-           </ul>
-         </div>
-       </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom nav-tabs-floating">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="{{ route('admin.nests.egg.view', $egg->id) }}">Configuration</a></li>
+                <li><a href="{{ route('admin.nests.egg.variables', $egg->id) }}">Variables</a></li>
+                <li><a href="{{ route('admin.nests.egg.scripts', $egg->id) }}">Scripts</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-xs-12">
         <div class="alert alert-info">
             <strong>Notice:</strong> Editing an Egg or any of the Process Management fields <em>requires</em> that each Daemon be rebooted in order to apply the changes.
         </div>
     </div>
 </div>
 <form action="{{ route('admin.nests.egg.view', $egg->id) }}" enctype="multipart/form-data" method="POST">
-    <div class="row mb-cs">
-        <div class="col-md-12">
-            <div class="card shadow">
-                <div class="card-body">
-                    <div class="row mb--4">
-                        <div class="col-md-8">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-danger">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-8">
                             <div class="form-group no-margin-bottom">
                                 <label for="pName" class="control-label">Egg File</label>
                                 <div>
@@ -59,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-xs-4">
                             {!! csrf_field() !!}
                             <button type="submit" name="_method" value="PUT" class="btn btn-sm btn-danger pull-right">Update Egg</button>
                         </div>
@@ -71,16 +63,12 @@
 </form>
 <form action="{{ route('admin.nests.egg.view', $egg->id) }}" method="POST">
     <div class="row">
-        <div class="col-md-12">
-            <div class="card shadow mb-cs">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Configuration</h3>
-                      </div>
-                   </div>
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Configuration</h3>
                 </div>
-                <div class="card-body">
+                <div class="box-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -120,21 +108,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="card shadow mb-cs">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Process Management</h3>
-                      </div>
-                   </div>
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Process Management</h3>
                 </div>
-                <div class="card-body">
+                <div class="box-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                             <div class="alert alert-warning">
-                                The following configuration options should not be edited unless you understand how this system works. If wrongly modified it is possible for the daemon to break.</br>
-                                All fields are required unless you select a separate option from the 'Copy Settings From' dropdown, in which case fields may be left blank to use the values from that Egg.
+                                <p>The following configuration options should not be edited unless you understand how this system works. If wrongly modified it is possible for the daemon to break.</p>
+                                <p>All fields are required unless you select a separate option from the 'Copy Settings From' dropdown, in which case fields may be left blank to use the values from that Egg.</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -173,17 +157,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="box-footer">
                     {!! csrf_field() !!}
                     <button type="submit" name="_method" value="PATCH" class="btn btn-primary btn-sm pull-right">Save</button>
                     <a href="{{ route('admin.nests.egg.export', ['option' => $egg->id]) }}" class="btn btn-sm btn-info pull-right" style="margin-right:10px;">Export</a>
-                    <button id="deleteButton" type="submit" name="_method" value="DELETE" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i>
+                    <button id="deleteButton" type="submit" name="_method" value="DELETE" class="btn btn-danger btn-sm muted muted-hover">
+                        <i class="fa fa-trash-o"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-xs-12">
             <div class="alert alert-info">
                 <strong>Notice:</strong> Editing an Egg or any of the Process Management fields <em>requires</em> that each Daemon be rebooted in order to apply the changes.
             </div>
@@ -197,9 +181,9 @@
     <script>
     $('#pConfigFrom').select2();
     $('#deleteButton').on('mouseenter', function (event) {
-        $(this).html('<i class="fas fa-trash"></i> Delete Egg');
+        $(this).find('i').html(' Delete Egg');
     }).on('mouseleave', function (event) {
-        $(this).html('<i class="fas fa-trash"></i>');
+        $(this).find('i').html('');
     });
     $('textarea[data-action="handle-tabs"]').on('keydown', function(event) {
         if (event.keyCode === 9) {

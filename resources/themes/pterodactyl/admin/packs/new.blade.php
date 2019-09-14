@@ -19,34 +19,24 @@
 @endsection
 
 @section('content')
-<div class="row mt--7">
-    <div class="col-md-12">
-       <div class="card shadow bg-secondary mb-cs">
-         <div class="card-body bg-secondary" style="padding: 0.75rem">
-           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.packs.new') }}" role="tab">Configure Manually</a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0" href="#modal" id="toggleModal" role="tab">Install From Template</a>
-              </li>
-           </ul>
-         </div>
-       </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom nav-tabs-floating">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="{{ route('admin.packs.new') }}">Configure Manually</a></li>
+                <li><a href="#modal" id="toggleModal">Install From Template</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 <form action="{{ route('admin.packs.new') }}" method="POST" enctype="multipart/form-data">
     <div class="row">
-        <div class="col-md-6 mb-cs">
-            <div class="card shadow">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Pack Details</h3>
-                      </div>
-                   </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Pack Details</h3>
                 </div>
-                <div class="card-body">
+                <div class="box-body">
                     <div class="form-group">
                         <label for="pName" class="form-label">Name</label>
                         <input name="name" type="text" id="pName" class="form-control" value="{{ old('name') }}" />
@@ -77,38 +67,34 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-cs">
-            <div class="card shadow">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Pack Configuration</h3>
-                      </div>
-                   </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Pack Configuration</h3>
                 </div>
-                <div class="card-body">
-                    <div class="form-group mb-0">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" id="pSelectable" name="selectable" type="checkbox" value="1" checked/>
-                            <label class="custom-control-label" for="pSelectable">
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="checkbox checkbox-primary no-margin-bottom">
+                            <input id="pSelectable" name="selectable" type="checkbox" value="1" checked/>
+                            <label for="pSelectable">
                                 Selectable
                             </label>
                         </div>
                         <p class="text-muted small">Check this box if user should be able to select this pack to install on their servers.</p>
                     </div>
-                    <div class="form-group mb-0">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" id="pVisible" name="visible" type="checkbox" value="1" checked/>
-                            <label class="custom-control-label" for="pVisible">
+                    <div class="form-group">
+                        <div class="checkbox checkbox-primary no-margin-bottom">
+                            <input id="pVisible" name="visible" type="checkbox" value="1" checked/>
+                            <label for="pVisible">
                                 Visible
                             </label>
                         </div>
                         <p class="text-muted small">Check this box if this pack is visible in the dropdown menu. If this pack is assigned to a server it will be visible regardless of this setting.</p>
                     </div>
-                    <div class="form-group mb-0">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" id="pLocked" name="locked" type="checkbox" value="1"/>
-                            <label class="custom-control-label" for="pLocked">
+                    <div class="form-group">
+                        <div class="checkbox checkbox-warning no-margin-bottom">
+                            <input id="pLocked" name="locked" type="checkbox" value="1"/>
+                            <label for="pLocked">
                                 Locked
                             </label>
                         </div>
@@ -117,15 +103,15 @@
                     <hr />
                     <div class="form-group no-margin-bottom">
                         <label for="pFileUpload" class="form-label">Pack Archive</label>
-                        <input type="file" accept=".tar.gz, application/gzip" name="file_upload" class="form-control" style="width:100%"/>
+                        <input type="file" accept=".tar.gz, application/gzip" name="file_upload" class="well well-sm" style="width:100%"/>
                         <p class="text-muted small">This package file must be a <code>.tar.gz</code> archive of pack files to be decompressed into the server folder.</p>
                         <p class="text-muted small">If your file is larger than <code>50MB</code> it is recommended to upload it using SFTP. Once you have added this pack to the system, a path will be provided where you should upload the file.</p>
-                        <div class="alert alert-info mb-0">
-                            <strong>This server is currently configured with the following limits:</strong><br /><code>upload_max_filesize={{ ini_get('upload_max_filesize') }}</code><br /><code>post_max_size={{ ini_get('post_max_size') }}</code><br /><br />If your file is larger than either of those values this request will fail.
+                        <div class="callout callout-info callout-slim no-margin-bottom">
+                            <p class="text-muted small"><strong>This server is currently configured with the following limits:</strong><br /><code>upload_max_filesize={{ ini_get('upload_max_filesize') }}</code><br /><code>post_max_size={{ ini_get('post_max_size') }}</code><br /><br />If your file is larger than either of those values this request will fail.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer with-border">
+                <div class="box-footer with-border">
                     {!! csrf_field() !!}
                     <button class="btn btn-sm btn-success pull-right" type="submit">Create Pack</button>
                 </div>

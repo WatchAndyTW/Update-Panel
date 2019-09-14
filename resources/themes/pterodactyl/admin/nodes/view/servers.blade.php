@@ -20,44 +20,27 @@
 @endsection
 
 @section('content')
-<div class="row mt--7 mb-cs">
-   <div class="col-lg-12">
-      <div class="card shadow bg-secondary">
-        <div class="card-body bg-secondary" style="padding: 0.75rem">
-          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view', $node->id) }}" role="tab">About</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.settings', $node->id) }}" role="tab">Settings</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.configuration', $node->id) }}" role="tab">Configuration</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.allocation', $node->id) }}" role="tab">Allocation</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nodes.view.servers', $node->id) }}" role="tab">Servers</a>
-             </li>
-          </ul>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom nav-tabs-floating">
+            <ul class="nav nav-tabs">
+                <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
+                <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
+                <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
+                <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
+                <li class="active"><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
+            </ul>
         </div>
-      </div>
-   </div>
+    </div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
-        <div class="card shadow">
-            <div class="card-header border-0">
-               <div class="row align-items-center">
-                  <div class="col">
-                     <h3 class="mb-0">Process Manager</h3>
-                  </div>
-               </div>
+    <div class="col-sm-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Process Manager</h3>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-items-center table-flush">
-                  <thead class="thead-light">
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
                     <tr>
                         <th>ID</th>
                         <th>Server Name</th>
@@ -68,9 +51,7 @@
                         <th class="text-center">CPU</th>
                         <th class="text-center">Status</th>
                     </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($servers as $server)
+                    @foreach($node->servers as $server)
                         <tr data-server="{{ $server->uuid }}">
                             <td><code>{{ $server->uuidShort }}</code></td>
                             <td><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></td>
@@ -79,17 +60,11 @@
                             <td class="text-center"><span data-action="memory">NaN</span> / {{ $server->memory === 0 ? '∞' : $server->memory }} MB</td>
                             <td class="text-center">{{ $server->disk }} MB</td>
                             <td class="text-center"><span data-action="cpu" data-cpumax="{{ $server->cpu }}">NaN</span> %</td>
-                            <td class="text-center" data-action="status"><span class="badge badge-dot"> <i class="bg-default"></i> Retrieving </span></td>
+                            <td class="text-center" data-action="status">NaN</td>
                         </tr>
                     @endforeach
-                  </tbody>
                 </table>
             </div>
-            @if($servers->hasPages())
-                <div class="card-footer mb--3">
-                    <div class="col-lg-12 text-center">{!! $servers->appends(['query' => Request::input('query')])->render() !!}</div>
-                </div>
-            @endif
         </div>
     </div>
 </div>

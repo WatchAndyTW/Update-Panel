@@ -19,46 +19,29 @@
 @endsection
 
 @section('content')
-<div class="row mt--7 mb-cs">
-   <div class="col-lg-12">
-      <div class="card shadow bg-secondary">
-        <div class="card-body bg-secondary" style="padding: 0.75rem">
-          <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nodes.view', $node->id) }}" role="tab">About</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.settings', $node->id) }}" role="tab">Settings</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.configuration', $node->id) }}" role="tab">Configuration</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.allocation', $node->id) }}" role="tab">Allocation</a>
-             </li>
-             <li class="nav-item">
-                <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nodes.view.servers', $node->id) }}" role="tab">Servers</a>
-             </li>
-          </ul>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom nav-tabs-floating">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
+                <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
+                <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
+                <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
+                <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
+            </ul>
         </div>
-      </div>
-   </div>
+    </div>
 </div>
 <div class="row">
-    <div class="col-lg-8 mb-cs">
+    <div class="col-sm-8">
         <div class="row">
-            <div class="col-lg-12 mb-cs">
-                <div class="card shadow">
-                  <div class="card-header border-transparent">
-                     <div class="row align-items-center">
-                        <div class="col">
-                           <h3 class="mb-0">Information</h3>
-                        </div>
-                     </div>
-                  </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover align-items-center table-flush">
-                          <tbody>
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Information</h3>
+                    </div>
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
                             <tr>
                                 <td>Daemon Version</td>
                                 <td><code data-attr="info-version"><i class="fa fa-refresh fa-fw fa-spin"></i></code> (Latest: <code>{{ $version->getDaemon() }}</code>)</td>
@@ -71,40 +54,31 @@
                                 <td>Total CPU Cores</td>
                                 <td data-attr="info-cpus"><i class="fa fa-refresh fa-fw fa-spin"></i></td>
                             </tr>
-                          <tbody>
                         </table>
                     </div>
                 </div>
             </div>
             @if ($node->description)
-                <div class="col-lg-12 mb-cs">
-                    <div class="card shadow">
-                      <div class="card-header border-transparent">
-                         <div class="row align-items-center">
-                            <div class="col">
-                               <h3 class="mb-0">Description</h3>
-                            </div>
-                         </div>
-                      </div>
-                        <div class="card-body table-responsive">
-                            <pre class="pre-alt">{{ $node->description }}</pre>
+                <div class="col-xs-12">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            Description
+                        </div>
+                        <div class="box-body table-responsive">
+                            <pre>{{ $node->description }}</pre>
                         </div>
                     </div>
                 </div>
             @endif
-            <div class="col-lg-12">
-                <div class="card shadow">
-                  <div class="card-header border-transparent">
-                     <div class="row align-items-center">
-                        <div class="col">
-                           <h3 class="mb-0">Delete Node</h3>
-                        </div>
-                     </div>
-                  </div>
-                    <div class="card-body">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Delete Node</h3>
+                    </div>
+                    <div class="box-body">
                         <p class="no-margin">Deleting a node is a irreversible action and will immediately remove this node from the panel. There must be no servers associated with this node in order to continue.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="box-footer">
                         <form action="{{ route('admin.nodes.view.delete', $node->id) }}" method="POST">
                             {!! csrf_field() !!}
                             {!! method_field('DELETE') !!}
@@ -115,81 +89,60 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
-      @if($node->maintenance_mode)
-      <div class="card card-stats shadow mb-4">
-         <div class="card-body">
-            <div class="row">
-               <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Maintenance Mode</h5>
-                  <span class="h2 font-weight-bold mb-0">Enabled</span>
-               </div>
-               <div class="col-auto">
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                     <i class="fas fa-wrench"></i>
-                  </div>
-               </div>
+    <div class="col-sm-4">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">At-a-Glance</h3>
             </div>
-            <p class="mt-0 mb-0 text-muted text-sm">
-               <span>&nbsp;</span>
-            </p>
-         </div>
-      </div>
-      @endif
-      <div class="card card-stats shadow mb-4">
-         <div class="card-body">
-            <div class="row">
-               <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Disk Space Allocated</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $stats['disk']['value'] }} / {{ $stats['disk']['max'] }} MB</span>
-               </div>
-               <div class="col-auto">
-                  <div class="icon icon-shape bg-{{ $stats['disk']['css'] }} text-white rounded-circle shadow">
-                     <i class="fas fa-hdd"></i>
-                  </div>
-               </div>
+            <div class="box-body">
+                <div class="row">
+                    @if($node->maintenance_mode)
+                    <div class="col-sm-12">
+                        <div class="info-box bg-orange">
+                            <span class="info-box-icon"><i class="ion ion-wrench"></i></span>
+                            <div class="info-box-content" style="padding: 23px 10px 0;">
+                                <span class="info-box-text">This node is under</span>
+                                <span class="info-box-number">Maintenance</span>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="col-sm-12">
+                        <div class="info-box bg-{{ $stats['disk']['css'] }}">
+                            <span class="info-box-icon"><i class="ion ion-ios-folder-outline"></i></span>
+                            <div class="info-box-content" style="padding: 15px 10px 0;">
+                                <span class="info-box-text">Disk Space Allocated</span>
+                                <span class="info-box-number">{{ $stats['disk']['value'] }} / {{ $stats['disk']['max'] }} Mb</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: {{ $stats['disk']['percent'] }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="info-box bg-{{ $stats['memory']['css'] }}">
+                            <span class="info-box-icon"><i class="ion ion-ios-barcode-outline"></i></span>
+                            <div class="info-box-content" style="padding: 15px 10px 0;">
+                                <span class="info-box-text">Memory Allocated</span>
+                                <span class="info-box-number">{{ $stats['memory']['value'] }} / {{ $stats['memory']['max'] }} Mb</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: {{ $stats['memory']['percent'] }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="info-box bg-gray">
+                            <span class="info-box-icon"><i class="ion ion-social-buffer-outline"></i></span>
+                            <div class="info-box-content" style="padding: 23px 10px 0;">
+                                <span class="info-box-text">Total Servers</span>
+                                <span class="info-box-number">{{ $node->servers_count }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="mt-0 mb-0 text-muted text-sm">
-               <span>Measured in Megabytes</span>
-            </p>
-         </div>
-      </div>
-      <div class="card card-stats shadow mb-4">
-         <div class="card-body">
-            <div class="row">
-               <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Memory Allocated</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $stats['memory']['value'] }} / {{ $stats['memory']['max'] }} MB</span>
-               </div>
-               <div class="col-auto">
-                  <div class="icon icon-shape bg-{{ $stats['memory']['css'] }} text-white rounded-circle shadow">
-                     <i class="fas fa-memory"></i>
-                  </div>
-               </div>
-            </div>
-            <p class="mt-0 mb-0 text-muted text-sm">
-               <span>Measured in Megabytes</span>
-            </p>
-         </div>
-      </div>
-      <div class="card card-stats shadow mb-4">
-         <div class="card-body">
-            <div class="row">
-               <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Servers</h5>
-                  <span class="h2 font-weight-bold mb-0">{{ $node->servers_count }}</span>
-               </div>
-               <div class="col-auto">
-                  <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
-                     <i class="fas fa-memory"></i>
-                  </div>
-               </div>
-            </div>
-            <p class="mt-0 mb-0 text-muted text-sm">
-               <span>&nbsp;</span>
-            </p>
-         </div>
-      </div>
+        </div>
     </div>
 </div>
 @endsection

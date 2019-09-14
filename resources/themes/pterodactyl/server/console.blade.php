@@ -8,28 +8,26 @@
     <head>
         <title>{{ config('app.name', 'Pterodactyl') }} - Console &rarr; {{ $server->name }}</title>
         @include('layouts.scripts')
-        {!! Theme::css('vendor/fontawesome/v5/css/all.min.css?t={cache-version}') !!}
-        {!! Theme::css('vendor/argon/css/argon.min.css?t={cache-version}') !!}
+        {!! Theme::css('vendor/bootstrap/bootstrap.min.css') !!}
         {!! Theme::css('css/terminal.css') !!}
-        {!! Theme::css('css/style.css?t={cache-version}') !!}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body id="terminal-body">
         <div id="terminal" style="width:100%;max-height: none !important;"></div>
         <div id="terminal_input" class="form-group no-margin">
-            <div class="input-group pb-1">
-                <div class="input-group-addon terminal_input--prompt">{{ $server->name }}:~/$</div>
-                <input type="text" class="form-control terminal_input--input h-100">
+            <div class="input-group">
+                <div class="input-group-addon terminal_input--prompt">container:~/$</div>
+                <input type="text" class="form-control terminal_input--input">
             </div>
         </div>
-        <div id="terminalNotify" class="terminal-notify hidden" data-toggle="tooltip" data-placement="left" title="Auto-scroll Console">
-           <i class="fas fa-arrow-down"></i>
+        <div id="terminalNotify" class="terminal-notify hidden">
+            <i class="fa fa-bell"></i>
         </div>
     </body>
     <script>window.SkipConsoleCharts = true</script>
     {!! Theme::js('js/laroute.js') !!}
     {!! Theme::js('vendor/ansi/ansi_up.js') !!}
     {!! Theme::js('vendor/jquery/jquery.min.js') !!}
-    {!! Theme::js('vendor/bootstrap/v4/dist/js/bootstrap.bundle.min.js?t={cache-version}') !!}
     {!! Theme::js('vendor/socketio/socket.io.v203.min.js') !!}
     {!! Theme::js('vendor/bootstrap-notify/bootstrap-notify.min.js') !!}
     {!! Theme::js('js/frontend/server.socket.js') !!}
@@ -43,10 +41,5 @@
             $terminal.height($(window).innerHeight() - 40);
             $terminal.width($(window).innerWidth());
         });
-    </script>
-    <script>
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
     </script>
 </html>

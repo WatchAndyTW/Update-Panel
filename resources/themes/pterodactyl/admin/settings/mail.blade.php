@@ -16,22 +16,15 @@
 @section('content')
     @yield('settings::nav')
     <div class="row">
-        <div class="col-lg-12">
-          @if(!$disabled)
-          <form>
-          @endif
-            <div class="card shadow">
-              <div class="card-header border-transparent">
-                 <div class="row align-items-center">
-                    <div class="col">
-                       <h3 class="mb-0">Email Settings</h3>
-                    </div>
-                 </div>
-              </div>
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Email Settings</h3>
+                </div>
                 @if($disabled)
-                    <div class="card-body">
+                    <div class="box-body">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-xs-12">
                                 <div class="alert alert-info no-margin-bottom">
                                     This interface is limited to instances using SMTP as the mail driver. Please either use <code>php artisan p:environment:mail</code> command to update your email settings, or set <code>MAIL_DRIVER=smtp</code> in your environment file.
                                 </div>
@@ -39,7 +32,8 @@
                         </div>
                     </div>
                 @else
-                        <div class="card-body">
+                    <form action="{{ route('admin.settings.mail') }}" method="POST">
+                        <div class="box-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">SMTP Host</label>
@@ -84,8 +78,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr />
                             <div class="row">
+                                <hr />
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Mail From</label>
                                     <div>
@@ -102,111 +96,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="box-footer">
                             {{ csrf_field() }}
-                            <div class="pull-right">
-                                <button type="button" id="testButton" class="btn btn-sm btn-success">Test</button>
-                                <button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>
-                            </div>
+                            <button type="submit" name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>
                         </div>
+                    </form>
                 @endif
             </div>
-            @if(!$disabled)
-          </form>
-            @endif
         </div>
     </div>
-@endsection
-
-@section('footer-scripts')
-    {!! Theme::js('js/laroute.js?t={cache-version}') !!}
-    {!! Theme::js('vendor/jquery/jquery.min.js?t={cache-version}') !!}
-    {!! Theme::js('vendor/sweetalert/sweetalert.min.js?t={cache-version}') !!}
-
-    <script>
-        function saveSettings() {
-            return $.ajax({
-                method: 'PATCH',
-                url: Router.route('admin.settings.mail'),
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    'mail:host': $('input[name="mail:host"]').val(),
-                    'mail:port': $('input[name="mail:port"]').val(),
-                    'mail:encryption': $('select[name="mail:encryption"]').val(),
-                    'mail:username': $('input[name="mail:username"]').val(),
-                    'mail:password': $('input[name="mail:password"]').val(),
-                    'mail:from:address': $('input[name="mail:from:address"]').val(),
-                    'mail:from:name': $('input[name="mail:from:name"]').val()
-                }),
-                headers: { 'X-CSRF-Token': $('input[name="_token"]').val() }
-            }).fail(function (jqXHR) {
-                showErrorDialog(jqXHR, 'save');
-            });
-        }
-
-        function testSettings() {
-            swal({
-                type: 'info',
-                title: 'Test Mail Settings',
-                text: 'Click "Test" to begin the test.',
-                showCancelButton: true,
-                confirmButtonText: 'Test',
-                closeOnConfirm: false,
-                showLoaderOnConfirm: true
-            }, function () {
-                $.ajax({
-                    method: 'GET',
-                    url: Router.route('admin.settings.mail.test'),
-                    headers: { 'X-CSRF-Token': $('input[name="_token"]').val() }
-                }).fail(function (jqXHR) {
-                    showErrorDialog(jqXHR, 'test');
-                }).done(function () {
-                    swal({
-                        title: 'Success',
-                        text: 'The test message was sent successfully.',
-                        type: 'success'
-                    });
-                });
-            });
-        }
-
-        function saveAndTestSettings() {
-            saveSettings().done(testSettings);
-        }
-
-        function showErrorDialog(jqXHR, verb) {
-            console.error(jqXHR);
-            var errorText = '';
-            if (!jqXHR.responseJSON) {
-                errorText = jqXHR.responseText;
-            } else if (jqXHR.responseJSON.error) {
-                errorText = jqXHR.responseJSON.error;
-            } else if (jqXHR.responseJSON.errors) {
-                $.each(jqXHR.responseJSON.errors, function (i, v) {
-                    if (v.detail) {
-                        errorText += v.detail + ' ';
-                    }
-                });
-            }
-
-            swal({
-                title: 'Whoops!',
-                text: 'An error occurred while attempting to ' + verb + ' mail settings: ' + errorText,
-                type: 'error'
-            });
-        }
-
-        $(document).ready(function () {
-            $('#testButton').on('click', saveAndTestSettings);
-            $('#saveButton').on('click', function () {
-                saveSettings().done(function () {
-                    swal({
-                        title: 'Success',
-                        text: 'Mail settings have been updated successfully and the queue worker was restarted to apply these changes.',
-                        type: 'success'
-                    });
-                });
-            });
-        });
-    </script>
 @endsection

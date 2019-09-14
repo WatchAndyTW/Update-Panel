@@ -18,23 +18,18 @@
 @endsection
 
 @section('content')
-<div class="row mt--7">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header border-0">
-               <div class="row align-items-center">
-                  <div class="col">
-                     <h3 class="mb-0">Host List</h3>
-                  </div>
-                  <div class="col text-right">
-                     <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#newHostModal">Create New</button>
-                  </div>
-               </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Host List</h3>
+                <div class="box-tools">
+                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#newHostModal">Create New</button>
+                </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-items-center table-flush">
-
-                      <thead class="thead-light">
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
@@ -44,8 +39,6 @@
                             <th class="text-center">Databases</th>
                             <th class="text-center">Node</th>
                         </tr>
-                      </thead>
-                      <tbody>
                         @foreach ($hosts as $host)
                             <tr>
                                 <td><code>{{ $host->id }}</code></td>
@@ -70,12 +63,12 @@
     </div>
 </div>
 <div class="modal fade" id="newHostModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form action="{{ route('admin.databases') }}" method="POST">
                 <div class="modal-header">
-                    <h4 class="modal-title">Create New Database Host</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create New Database Host</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -121,13 +114,12 @@
                         </select>
                         <p class="text-muted small">This setting does nothing other than default to this database host when adding a database to a server on the selected node.</p>
                     </div>
-                    <hr />
-                    <p class="text-danger small text-left">The account defined for this database host <strong>must</strong> have the <code>WITH GRANT OPTION</code> permission. If the defined account does not have this permission requests to create databases <em>will</em> fail. <strong>Do not use the same account details for MySQL that you have defined for this panel.</strong></p>
                 </div>
                 <div class="modal-footer">
+                    <p class="text-danger small text-left">The account defined for this database host <strong>must</strong> have the <code>WITH GRANT OPTION</code> permission. If the defined account does not have this permission requests to create databases <em>will</em> fail. <strong>Do not use the same account details for MySQL that you have defined for this panel.</strong></p>
                     {!! csrf_field() !!}
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success btn-sm ml-auto">Create</button>
+                    <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success btn-sm">Create</button>
                 </div>
             </form>
         </div>

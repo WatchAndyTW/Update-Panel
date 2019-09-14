@@ -17,49 +17,27 @@
     </ol>
 @endsection
 
-@section('search')
-<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" action="{{ route('admin.packs') }}" method="GET">
-   <div class="form-group mb-0">
-      <div class="input-group input-group-alternative">
-         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
-         </div>
-         <input class="form-control" name="query" value="{{ request()->input('query') }}" placeholder="Search Packs" type="text">
-      </div>
-   </div>
-</form>
-@endsection
-
-@section('mobile-search')
-<form class="mt-4 mb-3 d-md-none" action="{{ route('admin.packs') }}" method="GET">
-   <div class="input-group input-group-rounded input-group-merge">
-      <input type="search" name="query" class="form-control form-control-rounded form-control-prepended" value="{{ request()->input('query') }}" placeholder="Search Packs" aria-label="Search Packs">
-      <div class="input-group-prepend">
-         <div class="input-group-text">
-            <span class="fa fa-search"></span>
-         </div>
-      </div>
-   </div>
-</form>
-@endsection
-
 @section('content')
-<div class="row mt--7">
-    <div class="col-md-12">
-        <div class="card shadow">
-          <div class="card-header border-0">
-             <div class="row align-items-center">
-                <div class="col">
-                   <h3 class="mb-0">Pack List</h3>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Pack List</h3>
+                <div class="box-tools">
+                    <form action="{{ route('admin.packs') }}" method="GET">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="query" class="form-control pull-right" style="width:30%;" value="{{ request()->input('query') }}" placeholder="Search Packs">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                <a href="{{ route('admin.packs.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Create New</button></a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="col text-right">
-                   <a href="{{ route('admin.packs.new') }}" class="btn btn-sm btn-primary">Create New</a>
-                </div>
-             </div>
-          </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-items-center table-flush">
-                      <thead class="thead-light">
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
                         <tr>
                             <th>ID</th>
                             <th>Pack Name</th>
@@ -68,8 +46,6 @@
                             <th>Egg</th>
                             <th class="text-center">Servers</th>
                         </tr>
-                      </thead>
-                      <tbody>
                         @foreach ($packs as $pack)
                             <tr>
                                 <td class="middle" data-toggle="tooltip" data-placement="right" title="{{ $pack->uuid }}"><code>{{ $pack->id }}</code></td>
@@ -84,8 +60,8 @@
                 </table>
             </div>
             @if ($packs->hasPages())
-                <div class="card-footer mb--3">
-                    <div class="col-lg-12 text-center">{!! $packs->appends(['query' => Request::input('query')])->render() !!}</div>
+                <div class="box-footer with-border">
+                    <div class="col-md-12 text-center">{!! $packs->appends(['query' => Request::input('query')])->render() !!}</div>
                 </div>
             @endif
         </div>

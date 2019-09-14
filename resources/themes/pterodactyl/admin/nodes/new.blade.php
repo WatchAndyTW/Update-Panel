@@ -20,17 +20,13 @@
 
 @section('content')
 <form action="{{ route('admin.nodes.new') }}" method="POST">
-    <div class="row mt--7">
-        <div class="col-lg-6">
-            <div class="card shadow">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Basic Details</h3>
-                      </div>
-                   </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Basic Details</h3>
                 </div>
-                <div class="card-body">
+                <div class="box-body">
                     <div class="form-group">
                         <label for="pName" class="form-label">Name</label>
                         <input type="text" name="name" id="pName" class="form-control" value="{{ old('name') }}"/>
@@ -50,14 +46,15 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Node Visibility</label>
-                        <div class="mb-1">
-                            <div class="custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="pPublicTrue" value="1" name="public" checked>
-                                <label class="custom-control-label" for="pPublicTrue"> Public </label>
+                        <div>
+                            <div class="radio radio-success radio-inline">
+
+                                <input type="radio" id="pPublicTrue" value="1" name="public" checked>
+                                <label for="pPublicTrue"> Public </label>
                             </div>
-                            <div class="custom-control custom-radio" style="padding-left: 2.75rem;">
-                                <input class="custom-control-input" type="radio" id="pPublicFalse" value="0" name="public">
-                                <label class="custom-control-label" for="pPublicFalse"> Private </label>
+                            <div class="radio radio-danger radio-inline">
+                                <input type="radio" id="pPublicFalse" value="0" name="public">
+                                <label for="pPublicFalse"> Private </label>
                             </div>
                         </div>
                         <p class="text-muted small">By setting a node to <code>private</code> you will be denying the ability to auto-deploy to this node.
@@ -69,14 +66,14 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Communicate Over SSL</label>
-                        <div class="mb-1">
-                            <div class="custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="pSSLTrue" value="https" name="scheme" checked>
-                                <label class="custom-control-label" for="pSSLTrue"> Use SSL Connection</label>
+                        <div>
+                            <div class="radio radio-success radio-inline">
+                                <input type="radio" id="pSSLTrue" value="https" name="scheme" checked>
+                                <label for="pSSLTrue"> Use SSL Connection</label>
                             </div>
-                            <div class="custom-control custom-radio" style="padding-left: 2.75rem;">
-                                <input class="custom-control-input" type="radio" id="pSSLFalse" value="http" name="scheme" @if(request()->isSecure()) disabled @endif>
-                                <label class="custom-control-label" for="pSSLFalse"> Use HTTP Connection</label>
+                            <div class="radio radio-danger radio-inline">
+                                <input type="radio" id="pSSLFalse" value="http" name="scheme" @if(request()->isSecure()) disabled @endif>
+                                <label for="pSSLFalse"> Use HTTP Connection</label>
                             </div>
                         </div>
                         @if(request()->isSecure())
@@ -87,14 +84,14 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Behind Proxy</label>
-                        <div class="mb-1">
-                            <div class="custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="pProxyFalse" value="0" name="behind_proxy" checked>
-                                <label class="custom-control-label" for="pProxyFalse"> Not Behind Proxy </label>
+                        <div>
+                            <div class="radio radio-success radio-inline">
+                                <input type="radio" id="pProxyFalse" value="0" name="behind_proxy" checked>
+                                <label for="pProxyFalse"> Not Behind Proxy </label>
                             </div>
-                            <div class="custom-control custom-radio" style="padding-left: 2.75rem;">
-                                <input class="custom-control-input" type="radio" id="pProxyTrue" value="1" name="behind_proxy">
-                                <label class="custom-control-label" for="pProxyTrue"> Behind Proxy </label>
+                            <div class="radio radio-info radio-inline">
+                                <input type="radio" id="pProxyTrue" value="1" name="behind_proxy">
+                                <label for="pProxyTrue"> Behind Proxy </label>
                             </div>
                         </div>
                         <p class="text-muted small">If you are running the daemon behind a proxy such as Cloudflare, select this to have the daemon skip looking for certificates on boot.</p>
@@ -102,18 +99,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card shadow">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Configuration</h3>
-                      </div>
-                   </div>
+        <div class="col-sm-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Configuration</h3>
                 </div>
-                <div class="card-body">
+                <div class="box-body">
                     <div class="row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-xs-12">
                             <label for="pDaemonBase" class="form-label">Daemon Server File Directory</label>
                             <input type="text" name="daemonBase" id="pDaemonBase" class="form-control" value="/srv/daemon-data" />
                             <p class="text-muted small">Enter the directory where server files should be stored. <strong>If you use OVH you should check your partition scheme. You may need to use <code>/home/daemon-data</code> to have enough space.</strong></p>
@@ -122,18 +115,14 @@
                             <label for="pMemory" class="form-label">Total Memory</label>
                             <div class="input-group">
                                 <input type="text" name="memory" data-multiplicator="true" class="form-control" id="pMemory" value="{{ old('memory') }}"/>
-                                <div class="input-group-append">
-                                   <span class="input-group-text">MB</span>
-                                </div>
+                                <span class="input-group-addon">MB</span>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="pMemoryOverallocate" class="form-label">Memory Over-Allocation</label>
                             <div class="input-group">
                                 <input type="text" name="memory_overallocate" class="form-control" id="pMemoryOverallocate" value="{{ old('memory_overallocate') }}"/>
-                                <div class="input-group-append">
-                                   <span class="input-group-text">%</span>
-                                </div>
+                                <span class="input-group-addon">%</span>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -145,18 +134,14 @@
                             <label for="pDisk" class="form-label">Total Disk Space</label>
                             <div class="input-group">
                                 <input type="text" name="disk" data-multiplicator="true" class="form-control" id="pDisk" value="{{ old('disk') }}"/>
-                                <div class="input-group-append">
-                                   <span class="input-group-text">MB</span>
-                                </div>
+                                <span class="input-group-addon">MB</span>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="pDiskOverallocate" class="form-label">Disk Over-Allocation</label>
                             <div class="input-group">
                                 <input type="text" name="disk_overallocate" class="form-control" id="pDiskOverallocate" value="{{ old('disk_overallocate') }}"/>
-                                <div class="input-group-append">
-                                   <span class="input-group-text">%</span>
-                                </div>
+                                <span class="input-group-addon">%</span>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -177,9 +162,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-success btn-sm pull-right">Create Node</button>
+                    <button type="submit" class="btn btn-success pull-right">Create Node</button>
                 </div>
             </div>
         </div>

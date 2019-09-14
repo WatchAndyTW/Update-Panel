@@ -109,13 +109,13 @@
         event.file.meta.identifier = Math.random().toString(36).slice(2);
 
         $('#append_files_to').append('<tr id="file-upload-' + event.file.meta.identifier +'"> \
-            <td class="file-manager-padding-right"><i class="far fa-file-alt" style="margin-left: 2px;"></i></td> \
-            <td class="file-manager-padding-left">' + event.file.name + '</td> \
-            <td colspan=3">&nbsp;</td> \
+            <td><i class="fa fa-file-text-o" style="margin-left: 2px;"></i></td> \
+            <td>' + event.file.name + '</td> \
+            <td colspan=2">&nbsp;</td> \
         </tr><tr> \
             <td colspan="5" class="has-progress"> \
-                <div class="progress progress-table-bottom active" style="width: 100%; border-radius: 0px;"> \
-                    <div class="progress-bar bg-info prog-bar-' + event.file.meta.identifier +'" style="width: 0%"></div> \
+                <div class="progress progress-table-bottom active"> \
+                    <div class="progress-bar progress-bar-info prog-bar-' + event.file.meta.identifier +'" style="width: 0%"></div> \
                 </div> \
             </td> \
         </tr>\
@@ -128,7 +128,7 @@
         };
         var percent = event.bytesLoaded / event.file.size * 100;
         if (percent >= 100) {
-            $('.prog-bar-' + event.file.meta.identifier).css('width', '100%').removeClass('bg-info').addClass('bg-success').parent().removeClass('active');
+            $('.prog-bar-' + event.file.meta.identifier).css('width', '100%').removeClass('progress-bar-info').addClass('progress-bar-success').parent().removeClass('active');
         } else {
             $('.prog-bar-' + event.file.meta.identifier).css('width', percent + '%');
         }
@@ -138,7 +138,7 @@
     Siofu.addEventListener('complete', function(event) {
         window.onbeforeunload = function () {};
         if (!event.success) {
-            $('.prog-bar-' + event.file.meta.identifier).css('width', '100%').removeClass('bg-info').addClass('bg-danger');
+            $('.prog-bar-' + event.file.meta.identifier).css('width', '100%').removeClass('progress-bar-info').addClass('progress-bar-danger');
             $.notify({
                 message: 'An error was encountered while attempting to upload this file.'
             }, {
@@ -151,7 +151,7 @@
     Siofu.addEventListener('error', function(event) {
         window.onbeforeunload = function () {};
         console.error(event);
-        $('.prog-bar-' + event.file.meta.identifier).css('width', '100%').removeClass('bg-info').addClass('bg-danger');
+        $('.prog-bar-' + event.file.meta.identifier).css('width', '100%').removeClass('progress-bar-info').addClass('progress-bar-danger');
         $.notify({
             message: 'An error was encountered while attempting to upload this file: <strong>' + event.message + '.</strong>',
         }, {

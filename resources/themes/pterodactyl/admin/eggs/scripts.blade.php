@@ -20,35 +20,23 @@
 @endsection
 
 @section('content')
-<div class="row mt--7">
-    <div class="col-md-12">
-       <div class="card shadow bg-secondary mb-cs">
-         <div class="card-body bg-secondary" style="padding: 0.75rem">
-           <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nests.egg.view', $egg->id) }}" role="tab">Configuration</a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0" href="{{ route('admin.nests.egg.variables', $egg->id) }}" role="tab">Variables</a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link mb-sm-3 mb-md-0 active" href="{{ route('admin.nests.egg.scripts', $egg->id) }}" role="tab">Scripts</a>
-              </li>
-           </ul>
-         </div>
-       </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom nav-tabs-floating">
+            <ul class="nav nav-tabs">
+                <li><a href="{{ route('admin.nests.egg.view', $egg->id) }}">Configuration</a></li>
+                <li><a href="{{ route('admin.nests.egg.variables', $egg->id) }}">Variables</a></li>
+                <li class="active"><a href="{{ route('admin.nests.egg.scripts', $egg->id) }}">Scripts</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 <form action="{{ route('admin.nests.egg.scripts', $egg->id) }}" method="POST">
     <div class="row">
-        <div class="col-md-12">
-            <div class="card shadow mb-cs">
-                <div class="card-header border-transparent">
-                   <div class="row align-items-center">
-                      <div class="col">
-                         <h3 class="mb-0">Install Script</h3>
-                      </div>
-                   </div>
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Install Script</h3>
                 </div>
                 @if(! is_null($egg->copyFrom))
                     <div class="box-body">
@@ -57,8 +45,10 @@
                         </div>
                     </div>
                 @endif
-                <div class="card-body" id="editor_install" style="height:300px">{{ $egg->script_install }}</div>
-                <div class="card-body">
+                <div class="box-body no-padding">
+                    <div id="editor_install"style="height:300px">{{ $egg->script_install }}</div>
+                </div>
+                <div class="box-body">
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label class="control-label">Copy Script From</label>
@@ -82,7 +72,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 text-muted">
+                        <div class="col-xs-12 text-muted">
                             The following service options rely on this script:
                             @if(count($relyOnScript) > 0)
                                 @foreach($relyOnScript as $rely)
@@ -96,9 +86,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="box-footer">
                     {!! csrf_field() !!}
-                    <textarea name="script_install" class="d-none"></textarea>
+                    <textarea name="script_install" class="hidden"></textarea>
                     <button type="submit" name="_method" value="PATCH" class="btn btn-primary btn-sm pull-right">Save</button>
                 </div>
             </div>

@@ -13,18 +13,18 @@
 @endsection
 
 @section('content')
-<div class="row mt--7">
-    <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
-        <div class="card">
-            <div class="progress">
-                <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="box box-info">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-info" style="width: 75%"></div>
             </div>
-            <div class="card-body text-center">
+            <div class="box-body text-center">
                 <p class="text-muted">@lang('base.errors.installing.desc')</p>
             </div>
-            <div class="card-footer">
-                <a href="{{ URL::previous() }}"><button class="btn btn-sm btn-info">&larr; @lang('base.errors.return')</button></a>
-                <a href="/"><button class="btn btn-sm btn-primary">@lang('base.errors.home')</button></a>
+            <div class="box-footer with-border">
+                <a href="{{ URL::previous() }}"><button class="btn btn-info">&larr; @lang('base.errors.return')</button></a>
+                <a href="/"><button class="btn btn-default">@lang('base.errors.home')</button></a>
             </div>
         </div>
     </div>

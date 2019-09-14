@@ -117,7 +117,7 @@ $(document).ready(function () {
 
 $terminal.on('scroll', function () {
     if (isTerminalScrolledDown()) {
-        $scrollNotify.addClass('d-none');
+        $scrollNotify.addClass('hidden');
     }
 });
 
@@ -140,7 +140,7 @@ function pushToTerminal(string) {
 
     $scrollNotify.on('click', function () {
         window.scrollToBottom();
-        $scrollNotify.addClass('d-none');
+        $scrollNotify.addClass('hidden');
     });
 })();
 
@@ -161,8 +161,8 @@ function pushToTerminal(string) {
 
         if (scrolledDown) {
             window.scrollToBottom();
-        } else if ($scrollNotify.hasClass('d-none')) {
-            $scrollNotify.removeClass('d-none');
+        } else if ($scrollNotify.hasClass('hidden')) {
+            $scrollNotify.removeClass('hidden');
         }
 
         var removeElements = window.ConsoleElements - CONSOLE_OUTPUT_LIMIT;

@@ -25,7 +25,7 @@ $(document).ready(function () {
         $('select[name="tasks[action][]"]').select2();
     }
 
-    //setupSelect2();
+    setupSelect2();
 
     $('[data-action="update-field"]').on('change', function (event) {
         event.preventDefault();
@@ -51,11 +51,11 @@ $(document).ready(function () {
         clone.find('select:first').attr('selected');
         clone.find('input').val('');
         clone.find('span.select2-container').remove();
-        clone.find('div[data-attribute="remove-task-element"]').find('.remove-task').removeClass('disabled');
+        clone.find('div[data-attribute="remove-task-element"]').addClass('input-group').find('div.input-group-btn').removeClass('hidden');
         clone.find('button[data-action="remove-task"]').on('click', function () {
             clone.remove();
         });
-        //setupSelect2();
+        setupSelect2();
         $(this).data('element', clone);
     });
 });

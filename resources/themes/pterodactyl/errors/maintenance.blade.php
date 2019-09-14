@@ -13,16 +13,16 @@
 @endsection
 
 @section('content')
-    <div class="row mt--7">
-        <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
-            <div class="card">
-                <div class="card-body text-center">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            <div class="box box-danger">
+                <div class="box-body text-center">
                     <h1 class="text-red" style="font-size: 3em !important;font-weight: 100 !important;">@lang('base.errors.maintenance.title')</h1>
                     <p class="text-muted">@lang('base.errors.maintenance.desc')</p>
                 </div>
-                <div class="card-footer">
-                    <a href="{{ URL::previous() }}"><button class="btn btn-sm btn-danger">&larr; @lang('base.errors.return')</button></a>
-                    <a href="/"><button class="btn btn-sm btn-primary">@lang('base.errors.home')</button></a>
+                <div class="box-footer with-border">
+                    <a href="{{ URL::previous() }}"><button class="btn btn-danger">&larr; @lang('base.errors.return')</button></a>
+                    <a href="/"><button class="btn btn-default">@lang('base.errors.home')</button></a>
                 </div>
             </div>
         </div>
