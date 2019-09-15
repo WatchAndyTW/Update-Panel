@@ -20,11 +20,16 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Start command</h5>
+								</div>
+								<div class="card-body py-3">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">@lang('server.config.startup.command')</h3>
+                <h3 class="box-title">Start command</h3>
             </div>
             <div class="box-body">
                 <div class="form-group no-margin-bottom">
@@ -49,23 +54,9 @@
                                     readonly
                                 @endif
                             class="form-control" type="text" value="{{ old('environment.' . $v->env_variable, $server_values[$v->env_variable]) }}" />
-                            <p class="small text-muted">{{ $v->description }}</p>
-                            <p class="no-margin">
-                                @if($v->required && $v->user_editable )
-                                    <span class="label label-danger">@lang('strings.required')</span>
-                                @elseif(! $v->required && $v->user_editable)
-                                    <span class="label label-default">@lang('strings.optional')</span>
-                                @endif
-                                @if(! $v->user_editable)
-                                    <span class="label label-warning">@lang('strings.read_only')</span>
-                                @endif
-                            </p>
-                        </div>
-                        <div class="box-footer">
-                            <p class="no-margin text-muted small"><strong>@lang('server.config.startup.startup_regex'):</strong> <code>{{ $v->rules }}</code></p>
                         </div>
                     </div>
-                </div>
+                </div><br>
             @endforeach
             <div class="col-xs-12">
                 <div class="box box-primary">

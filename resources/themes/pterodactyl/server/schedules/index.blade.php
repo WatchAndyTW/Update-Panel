@@ -19,14 +19,21 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Servers</h5>
+								</div>
+								<div class="card-body py-3">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">@lang('server.schedule.current')</h3>
                 <div class="box-tools">
                     <a href="{{ route('server.schedules.new', $server->uuidShort) }}"><button class="btn btn-primary btn-sm">Create New</button></a>
                 </div>
+		<br>
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
@@ -74,11 +81,11 @@
                                 </td>
                                 <td class="middle">
                                     @can('delete-schedule', $server)
-                                        <a class="btn btn-xs btn-danger" href="#" data-action="delete-schedule" data-schedule-id="{{ $schedule->hashid }}" data-toggle="tooltip" data-placement="top" title="@lang('strings.delete')"><i class="fa fa-fw fa-trash-o"></i></a>
+                                        <a class="btn btn-xs btn-danger" href="#" data-action="delete-schedule" data-schedule-id="{{ $schedule->hashid }}" data-toggle="tooltip" data-placement="top" title="@lang('strings.delete')"><i class="fas fa-trash-alt"></i></a>
                                     @endcan
                                     @can('toggle-schedule', $server)
                                         <a class="btn btn-xs btn-default" href="#" data-action="toggle-schedule" data-active="{{ $schedule->active }}" data-schedule-id="{{ $schedule->hashid }}" data-toggle="tooltip" data-placement="top" title="@lang('server.schedule.toggle')"><i class="fa fa-fw fa-eye-slash"></i></a>
-                                        <a class="btn btn-xs btn-default" href="#" data-action="trigger-schedule" data-schedule-id="{{ $schedule->hashid }}" data-toggle="tooltip" data-placement="top" title="@lang('server.schedule.run_now')"><i class="fa fa-fw fa-refresh"></i></a>
+                                        <a class="btn btn-xs btn-default" href="#" data-action="trigger-schedule" data-schedule-id="{{ $schedule->hashid }}" data-toggle="tooltip" data-placement="top" title="@lang('server.schedule.run_now')"><i class="fas fa-sync-alt"></i></a>
                                     @endcan
                                 </td>
                             </tr>

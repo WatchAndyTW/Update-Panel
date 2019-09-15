@@ -9,26 +9,21 @@
     @lang('server.users.new.header')
 @endsection
 
-@section('content-header')
-    <h1>@lang('server.users.edit.header')<small>@lang('server.users.edit.header_sub')</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
-        <li><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-        <li><a href="{{ route('server.subusers', $server->uuidShort) }}">@lang('navigation.server.subusers')</a></li>
-        <li class="active">@lang('server.users.update')</li>
-    </ol>
-@endsection
-
 @section('content')
 @can('edit-subuser', $server)
 <form action="{{ route('server.subusers.view', [ 'uuid' => $server->uuidShort, 'subuser' => $subuser->hashid ]) }}" method="POST">
 @endcan
-    <div class="row">
-        <div class="col-sm-12">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Edit user</h5>
+								</div>
+								<div class="card-body py-3">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="form-group">
-                        <label class="control-label">@lang('server.users.new.email')</label>
+                        <label class="control-label">Email</label>
                         <div>
                             {!! csrf_field() !!}
                             <input type="email" class="form-control" disabled value="{{ $subuser->user->email }}" />
@@ -38,11 +33,11 @@
                 @can('edit-subuser', $server)
                     <div class="box-body">
                         <div class="btn-group pull-left">
-                            <a id="selectAllCheckboxes" class="btn btn-sm btn-default">@lang('strings.select_all')</a>
-                            <a id="unselectAllCheckboxes" class="btn btn-sm btn-default">@lang('strings.select_none')</a>
+                            <a id="selectAllCheckboxes" style="color:#FFFFFF;" class="btn btn-sm btn-primary">Select all</a>
+                            <a id="unselectAllCheckboxes" style="color:#FFFFFF;" class="btn btn-sm btn-primary">Select none</a>
                         </div>
                         {!! method_field('PATCH') !!}
-                        <input type="submit" name="submit" value="@lang('server.users.update')" class="pull-right btn btn-sm btn-primary" />
+                        <input type="submit" name="submit" value="Update" class="pull-right btn btn-sm btn-primary" />
                     </div>
                 @endcan
             </div>
@@ -51,10 +46,11 @@
     <div class="row">
         @foreach($permlist as $block => $perms)
             <div class="col-sm-6">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">@lang('server.users.new.' . $block . '_header')</h3>
-                    </div>
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">@lang('server.users.new.' . $block . '_header')</h5>
+								</div>
+								<div class="card-body py-3">
                     <div class="box-body">
                         @foreach($perms as $permission => $daemon)
                             <div class="form-group">
@@ -68,6 +64,7 @@
                             </div>
                         @endforeach
                     </div>
+</div>
                 </div>
             </div>
             @if ($loop->iteration % 2 === 0)

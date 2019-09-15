@@ -20,20 +20,21 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-sm-8">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Allocation</h5>
+								</div>
+								<div class="card-body py-3">
         <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">@lang('server.config.allocation.available')</h3>
-            </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tbody>
                         <tr>
                             <th>@lang('strings.ip')</th>
-                            <th>@lang('strings.alias')</th>
-                            <th>@lang('strings.port')</th>
-                            <th></th>
+                            <th>Domain</th>
+                            <th>Port</th>
                         </tr>
                         @foreach ($allocations as $allocation)
                             <tr>
@@ -48,30 +49,10 @@
                                     @endif
                                 </td>
                                 <td><code>{{ $allocation->port }}</code></td>
-                                <td class="col-xs-2 middle">
-                                    @if($allocation->id === $server->allocation_id)
-                                        <a class="btn btn-xs btn-success disabled" data-action="set-default" data-allocation="{{ $allocation->hashid }}" role="button">@lang('strings.primary')</a>
-                                    @else
-                                        <a class="btn btn-xs btn-default" data-action="set-default" data-allocation="{{ $allocation->hashid }}" role="button">@lang('strings.make_primary')</a>
-                                    @endif
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-            <div id="toggleActivityOverlay" class="overlay hidden">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">@lang('server.config.allocation.help')</h3>
-            </div>
-            <div class="box-body">
-                <p>@lang('server.config.allocation.help_text')</p>
             </div>
         </div>
     </div>

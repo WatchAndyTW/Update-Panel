@@ -15,28 +15,21 @@
     @parent
 @endsection
 
-@section('content-header')
-    <h1>@lang('server.schedule.manage.header')<small>{{ $schedule->name }}</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
-        <li><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-        <li><a href="{{ route('server.schedules', $server->uuidShort) }}">@lang('navigation.server.schedules')</a></li>
-        <li class="active">@lang('server.schedule.manage.header')</li>
-    </ol>
-@endsection
-
 @section('content')
 <form action="{{ route('server.schedules.view', ['server' => $server->uuidShort, 'schedule' => $schedule->hashid]) }}" method="POST">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-body">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Taken</h5>
+								</div>
+								<div class="card-body py-3">
                     <div class="row">
-                        <div class="form-group col-xs-12">
+                        <div class="col-xs-6 col-md-3">
                             <label class="control-label" for="scheduleName">@lang('strings.name') <span class="field-optional"></span></label>
                             <div>
                                 <input type="text" name="name" class="form-control" id="scheduleName" value="{{ old('name', $schedule->name) }}" />
-                            </div>
+                            </div><br>
                         </div>
                     </div>
                     <div class="row">
@@ -45,13 +38,13 @@
                                 <label for="scheduleDayOfWeek" class="control-label">@lang('server.schedule.day_of_week')</label>
                                 <div>
                                     <select data-action="update-field" data-field="cron_day_of_week" class="form-control" multiple>
-                                        <option value="0">@lang('strings.days.sun')</option>
-                                        <option value="1">@lang('strings.days.mon')</option>
-                                        <option value="2">@lang('strings.days.tues')</option>
-                                        <option value="3">@lang('strings.days.wed')</option>
-                                        <option value="4">@lang('strings.days.thurs')</option>
-                                        <option value="5">@lang('strings.days.fri')</option>
-                                        <option value="6">@lang('strings.days.sat')</option>
+                                        <option value="0">Zondag</option>
+                                        <option value="1">Maandag</option>
+                                        <option value="2">Dinsdag</option>
+                                        <option value="3">Woensdag</option>
+                                        <option value="4">Donderdag</option>
+                                        <option value="5">Vrijdag</option>
+                                        <option value="6">Zaterdag</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,31 +101,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="box-footer with-border">
-                    <p class="small text-muted no-margin-bottom">@lang('server.schedule.time_help')</p>
-                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-primary" id="containsTaskList">
+
                 @include('partials.schedules.task-template')
-                <div class="box-footer with-border" id="taskAppendBefore">
-                    <div>
-                        <p class="text-muted small">@lang('server.schedule.task_help')</p>
-                    </div>
                     <div class="pull-right">
                         {!! csrf_field() !!}
-                        <button type="button" class="btn btn-sm btn-default" data-action="add-new-task"><i class="fa fa-plus"></i> @lang('server.schedule.task.add_more')</button>
-                        <button type="submit" class="btn btn-sm btn-success" name="_method" value="PATCH">@lang('server.schedule.manage.submit')</button>
+                        <button type="submit" class="btn btn-sm btn-success" name="_method" value="PATCH">Taak opslaan</button>
                     </div>
-                    <div class="pull-left">
-                        <button type="submit" class="btn btn-sm btn-danger muted muted-hover" id="deleteButton" name="_method" value="DELETE"><i class="fa fa-trash-o"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </form>
 @endsection

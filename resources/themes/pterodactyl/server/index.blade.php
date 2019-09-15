@@ -14,17 +14,16 @@
     {!! Theme::css('css/terminal.css') !!}
 @endsection
 
-@section('content-header')
-    <h1>@lang('server.index.header')<small>@lang('server.index.header_sub')</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('index') }}">@lang('strings.servers')</a></li>
-        <li class="active">{{ $server->name }}</li>
-    </ol>
-@endsection
-
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Servers</h5>
+								</div>
+								<div class="card-body py-3">
+
         <div class="box">
             <div class="box-body position-relative">
                 <div id="terminal" style="width:100%;"></div>
@@ -47,28 +46,28 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Memory Usage</h3>
-            </div>
-            <div class="box-body">
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Memory</h5>
+								</div>
+								<div class="card-body py-3">
                 <canvas id="chart_memory" style="max-height:300px;"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">CPU Usage</h3>
-            </div>
-            <div class="box-body">
+           							 </div>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">CPU</h5>
+								</div>
+								<div class="card-body py-3">
                 <canvas id="chart_cpu" style="max-height:300px;"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+           							 </div>
+							</div>
+						</div>
+						</div>
 @endsection
 
 @section('footer-scripts')

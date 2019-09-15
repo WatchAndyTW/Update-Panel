@@ -10,8 +10,19 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-sm-offset-3 col-xs-offset-1 col-sm-6 col-xs-10">
+	<main class="main h-100 w-100">
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
+
+						<div class="text-center mt-4">
+							<h1 class="h2">Forgot Password</h1>
+							<p class="lead">
+								Enter your email to reset a password.
+							</p>
+						</div>
+
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -28,34 +39,34 @@
                 @lang('auth.email_sent')
             </div>
         @endif
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-offset-3 col-xs-offset-1 col-sm-6 col-xs-10 pterodactyl-login-box">
-        <form id="resetForm" action="{{ route('auth.password') }}" method="POST">
-            <div class="form-group has-feedback">
-                <div class="pterodactyl-login-input">
-                    <input type="email" name="email" class="form-control input-lg" value="{{ old('email') }}" required placeholder="@lang('strings.email')" autofocus>
-                    <span class="fa fa-envelope form-control-feedback fa-lg"></span>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-4">
+									<form action="{{ route('auth.password') }}" method="POST">
+										<div class="form-group">
+											<label>Email</label>
+											<input type="email" name="email" class="form-control input-lg" value="{{ old('email') }}" required placeholder="@lang('strings.email')" autofocus>
+										</div>
                     @if ($errors->has('email'))
                         <span class="help-block text-red small">
                             {{ $errors->first('email') }}
                         </span>
                     @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">
-                    <a href="{{ route('auth.login') }}"><button type="button" class="btn pterodactyl-login-button--left"><i class="fa fa-user-circle"></i></button></a>
-                </div>
-                <div class="col-xs-offset-4 col-xs-4">
+										<div class="text-center mt-3">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-block g-recaptcha pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('auth.request_reset')</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+                    <button type="submit" class="btn btn-primary g-recaptcha pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>Wachtwoord opvragen</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 @endsection
 
 @section('scripts')

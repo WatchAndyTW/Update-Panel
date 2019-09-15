@@ -19,12 +19,14 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-md-6">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Security</h5>
+								</div>
+								<div class="card-body py-3">
         <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">@lang('base.security.sessions')</h3>
-            </div>
             @if(!is_null($sessions))
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
@@ -42,7 +44,7 @@
                                     <td>{{ Carbon::createFromTimestamp($session->last_activity)->diffForHumans() }}</td>
                                     <td>
                                         <a href="{{ route('account.security.revoke', $session->id) }}">
-                                            <button class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i> @lang('strings.revoke')</button>
+                                            <button class="btn btn-xs btn-danger"><i class="fas fa-power-off"></i> Stop session</button>
                                         </a>
                                     </td>
                                 </tr>
@@ -54,42 +56,6 @@
                 <div class="box-body">
                     <p class="text-muted">@lang('base.security.session_mgmt_disabled')</p>
                 </div>
-            @endif
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="box {{ (Auth::user()->use_totp) ? 'box-success' : 'box-danger' }}">
-            <div class="box-header with-border">
-                <h3 class="box-title">@lang('base.security.2fa_header')</h3>
-            </div>
-            @if(Auth::user()->use_totp)
-            <form action="{{ route('account.security.totp') }}" method="post">
-                <div class="box-body">
-                    <p>@lang('base.security.2fa_enabled')</p>
-                    <div class="form-group">
-                        <label for="new_password_again" class="control-label">@lang('strings.2fa_token')</label>
-                        <div>
-                            <input type="text" class="form-control" name="token" />
-                            <p class="text-muted small">@lang('base.security.2fa_token_help')</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-footer">
-                    {!! csrf_field() !!}
-                    {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-danger btn-sm">@lang('base.security.disable_2fa')</button>
-                </div>
-            </form>
-            @else
-            <form action="#" method="post" id="do_2fa">
-                <div class="box-body">
-                    @lang('base.security.2fa_disabled')
-                </div>
-                <div class="box-footer">
-                    {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-success btn-sm">@lang('base.security.enable_2fa')</button>
-                </div>
-            </form>
             @endif
         </div>
     </div>

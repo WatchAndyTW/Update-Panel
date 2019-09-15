@@ -5,35 +5,36 @@
 {{-- https://opensource.org/licenses/MIT --}}
 
 <div class="box-header with-border">
-    <h3 class="box-title">/home/container{{ $directory['header'] }}</h3>
-    <div class="box-tools">
+    <h3 class="box-title">server{{ $directory['header'] }}</h3>
+    <div class="box-tools right">
         <a href="/server/{{ $server->uuidShort }}/files/add/@if($directory['header'] !== '')?dir={{ $directory['header'] }}@endif">
             <button class="btn btn-success btn-sm btn-icon">
-                New File <i class="fa fa-fw fa-file-text-o"></i>
+                New file <i class="fas fa-file"></i>
             </button>
         </a>
         <button class="btn btn-sm btn-success btn-icon" data-action="add-folder">
-            New Folder <i class="fa fa-fw fa-folder-open-o"></i>
+            New folder <i class="fas fa-folder"></i>
         </button>
-        <label class="btn btn-primary btn-sm btn-icon">
+		<label class="btn btn-primary btn-sm btn-icon">
             Upload <i class="fa fa-fw fa-upload"></i><input type="file" id="files_touch_target" class="hidden">
         </label>
         <div class="btn-group hidden-xs">
-            <button type="button" id="mass_actions" class="btn btn-sm btn-default dropdown-toggle disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @lang('server.files.mass_actions') <span class="caret"></span>
+            <button type="button" id="mass_actions" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Mass actions <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-massactions">
-                <li><a href="#" id="selective-deletion" data-action="selective-deletion">@lang('server.files.delete') <i class="fa fa-fw fa-trash-o"></i></a></li>
+                <li class="dropdown-item"><a href="#" id="selective-deletion" data-action="selective-deletion"> <i class="fas fa-trash-alt"></i> Delete</a></li>
             </ul>
         </div>
     </div>
+	<br>
 </div>
 <div class="box-body table-responsive no-padding">
     <table class="table table-hover" id="file_listing" data-current-dir="{{ rtrim($directory['header'], '/') . '/' }}">
         <thead>
             <tr>
                 <th class="middle min-size">
-                    <input type="checkbox" class="select-all-files hidden-xs" data-action="selectAll"><i class="fa fa-refresh muted muted-hover use-pointer" data-action="reload-files" style="font-size:14px;"></i>
+                    <input type="checkbox" class="select-all-files hidden-xs" data-action="selectAll">
                 </th>
                 <th>@lang('server.files.file_name')</th>
                 <th class="hidden-xs">@lang('server.files.size')</th>
@@ -100,7 +101,7 @@
                             'application/x-bzip2',
                             'application/java-archive'
                         ]))
-                            <i class="fa fa-file-archive-o" style="margin-left: 2px;"></i>
+                            <i class="fas fa-file-archive" style="margin-left: 2px;"></i>
                         @elseif(in_array($file['mime'], [
                             'application/json',
                             'application/javascript',
@@ -135,13 +136,13 @@
                         @elseif($file['mime'] === 'application/pdf')
                             <i class="fa fa-file-pdf-o" style="margin-left: 2px;"></i>
                         @else
-                            <i class="fa fa-file-text-o" style="margin-left: 2px;"></i>
+                            <i class="fas fa-file" style="margin-left: 2px;"></i>
                         @endif
                     </td>
                     <td data-identifier="name" data-name="{{ rawurlencode($file['entry']) }}" data-path="@if($file['directory'] !== ''){{ rawurlencode($file['directory']) }}@endif/">
                         @if(in_array($file['mime'], $editableMime))
                             @can('edit-files', $server)
-                                <a href="/server/{{ $server->uuidShort }}/files/edit/@if($file['directory'] !== ''){{ $file['directory'] }}/@endif{{ $file['entry'] }}" class="edit_file">{{ $file['entry'] }}</a>
+                                <a href="/server/{{ $server->uuidShort }}/files/edit/@if($file['directory'] !== ''){{ rawurlencode($file['directory']) }}/@endif{{ rawurlencode($file['entry']) }}" class="edit_file">{{ $file['entry'] }}</a>
                             @else
                                 {{ $file['entry'] }}
                             @endcan

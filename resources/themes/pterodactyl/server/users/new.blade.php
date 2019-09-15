@@ -9,17 +9,14 @@
     @lang('server.users.new.header')
 @endsection
 
-@section('content-header')
-    <h1>@lang('server.users.new.header')<small>@lang('server.users.new.header_sub')</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
-        <li><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-        <li><a href="{{ route('server.subusers', $server->uuidShort) }}">@lang('navigation.server.subusers')</a></li>
-        <li class="active">@lang('server.users.add')</li>
-    </ol>
-@endsection
-
 @section('content')
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Add user</h5>
+								</div>
+								<div class="card-body py-3">
 <?php $oldInput = array_flip(is_array(old('permissions')) ? old('permissions') : []) ?>
 <form action="{{ route('server.subusers.new', $server->uuidShort) }}" method="POST">
     <div class="row">
@@ -27,24 +24,25 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="form-group">
-                        <label class="control-label">@lang('server.users.new.email')</label>
+                        <label class="control-label">Email</label>
                         <div>
                             {!! csrf_field() !!}
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}" />
-                            <p class="text-muted small">@lang('server.users.new.email_help')</p>
+                            <p class="text-muted small">Enter the email address of the person you want to add.</p>
                         </div>
                     </div>
                 </div>
                 <div class="box-body">
                     <div class="btn-group pull-left">
-                        <a id="selectAllCheckboxes" class="btn btn-sm btn-default">@lang('strings.select_all')</a>
-                        <a id="unselectAllCheckboxes" class="btn btn-sm btn-default">@lang('strings.select_none')</a>
+                        <a style="color:#FFFFFF;" id="selectAllCheckboxes" class="btn btn-sm btn-primary">Select all</a>
+			<a style="color:#FFFFFF;" id="unselectAllCheckboxes" class="btn btn-sm btn-primary">Select none</a>
                     </div>
-                    <input type="submit" name="submit" value="@lang('server.users.add')" class="pull-right btn btn-sm btn-primary" />
+                    <input type="submit" name="submit" value="Add" class="pull-right btn btn-sm btn-primary" />
                 </div>
             </div>
         </div>
     </div>
+<br>
     <div class="row">
         @foreach($permissions as $block => $perms)
             <div class="col-sm-6">

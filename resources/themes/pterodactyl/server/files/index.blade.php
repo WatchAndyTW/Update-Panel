@@ -20,8 +20,13 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Files</h5>
+								</div>
+								<div class="card-body py-3">
         <div class="box box-primary">
             <div class="overlay file-overlay"><i class="fa fa-refresh fa-spin"></i></div>
             <div id="load_files">

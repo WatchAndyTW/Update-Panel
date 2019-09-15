@@ -9,36 +9,33 @@
     @lang('server.users.header')
 @endsection
 
-@section('content-header')
-    <h1>@lang('server.users.header')<small>@lang('server.users.header_sub')</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
-        <li><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-        <li class="active">@lang('navigation.server.subusers')</li>
-    </ol>
-@endsection
-
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Users</h5>
+								</div>
+								<div class="card-body py-3">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">@lang('server.users.list')</h3>
+                <h3 class="box-title">Users with access</h3>
                 @can('create-subuser', $server)
                     <div class="box-tools">
-                        <a href="{{ route('server.subusers.new', $server->uuidShort) }}"><button class="btn btn-primary btn-sm">Create New</button></a>
+                        <a href="{{ route('server.subusers.new', $server->uuidShort) }}"><button class="btn btn-primary btn-sm">Add</button></a>
                     </div>
                 @endcan
+		<br>
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tbody>
                         <tr>
                             <th></th>
-                            <th>@lang('strings.username')</th>
-                            <th>@lang('strings.email')</th>
-                            <th class="text-center">@lang('strings.2fa')</th>
-                            <th class="hidden-xs">@lang('strings.created_at')</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th class="text-center">2FA</th>
+                            <th class="hidden-xs">Created at</th>
                             @can('view-subuser', $server)<th></th>@endcan
                             @can('delete-subuser', $server)<th></th>@endcan
                         </tr>
@@ -58,14 +55,14 @@
                                 @can('view-subuser', $server)
                                     <td class="text-center middle">
                                         <a href="{{ route('server.subusers.view', ['server' => $server->uuidShort, 'subuser' => $subuser->hashid]) }}">
-                                            <button class="btn btn-xs btn-primary">@lang('server.users.configure')</button>
+                                            <button class="btn btn-xs btn-primary">Edit</button>
                                         </a>
                                     </td>
                                 @endcan
                                 @can('delete-subuser', $server)
                                     <td class="text-center middle">
                                         <a href="#/delete/{{ $subuser->hashid }}" data-action="delete" data-id="{{ $subuser->hashid }}">
-                                            <button class="btn btn-xs btn-danger">@lang('strings.revoke')</button>
+                                            <button class="btn btn-xs btn-danger">Delete</button>
                                         </a>
                                     </td>
                                 @endcan
