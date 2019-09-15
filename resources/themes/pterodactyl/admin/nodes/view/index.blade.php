@@ -19,11 +19,11 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
+                <li class="active1"><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
                 <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
                 <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
                 <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
@@ -35,7 +35,7 @@
 <div class="row">
     <div class="col-sm-8">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="width: 100%;">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Information</h3>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             @if ($node->description)
-                <div class="col-xs-12">
+                <div class="col-xs-12" style="width: 100%;">
                     <div class="box box-default">
                         <div class="box-header with-border">
                             Description
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             @endif
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="width: 100%;">
                 <div class="box box-danger">
                     <div class="box-header with-border">
                         <h3 class="box-title">Delete Node</h3>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     @endif
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="width: 100%;">
                         <div class="info-box bg-{{ $stats['disk']['css'] }}">
                             <span class="info-box-icon"><i class="ion ion-ios-folder-outline"></i></span>
                             <div class="info-box-content" style="padding: 15px 10px 0;">
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="width: 100%;">
                         <div class="info-box bg-{{ $stats['memory']['css'] }}">
                             <span class="info-box-icon"><i class="ion ion-ios-barcode-outline"></i></span>
                             <div class="info-box-content" style="padding: 15px 10px 0;">
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="width: 100%;">
                         <div class="info-box bg-gray">
                             <span class="info-box-icon"><i class="ion ion-social-buffer-outline"></i></span>
                             <div class="info-box-content" style="padding: 23px 10px 0;">

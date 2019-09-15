@@ -18,66 +18,55 @@
 @endsection
 
 @section('content')
-					<div class="row">
-						<div class="col-xl-6">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Password</h5>
-								</div>
-								<div class="card-body py-3">
+<div class="row" style="display: block;">
+    <div class="col-sm-6">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title">@lang('base.account.update_pass')</h3>
+                    </div>
                     <form action="{{ route('account') }}" method="post">
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="form-group">
-                                <div class="form-group col-sm-12">
                                 <label for="current_password" class="control-label">@lang('base.account.current_password')</label>
                                 <div>
                                     <input type="password" class="form-control" name="current_password" />
                                 </div>
-				</div>
                             </div>
                             <div class="form-group">
-				                                <div class="form-group col-sm-12">
                                 <label for="new_password" class="control-label">@lang('base.account.new_password')</label>
                                 <div>
                                     <input type="password" class="form-control" name="new_password" />
                                     <p class="text-muted small no-margin">@lang('auth.password_requirements')</p>
                                 </div>
-				</div>
                             </div>
                             <div class="form-group">
-                                <div class="form-group col-sm-12">
                                 <label for="new_password_again" class="control-label">@lang('base.account.new_password_again')</label>
                                 <div>
                                     <input type="password" class="form-control" name="new_password_confirmation" />
                                 </div>
-			</div>
                             </div>
                         </div>
                         <div class="box-footer">
                             {!! csrf_field() !!}
                             <input type="hidden" name="do_action" value="password" />
-                            <input type="submit" class="btn btn-primary btn-sm" value="Save" />
+                            <input type="submit" class="btn btn-primaryc pull-right" value="@lang('base.account.update_pass')" /><div class="ripple-container"></div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-						<div class="col-xl-6">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Details</h5>
-								</div>
-								<div class="card-body py-3">
+    <div class="col-sm-6">
+        <div class="row" style="display: block;">
             <div class="col-xs-12">
-                <div class="box box-primary">
+                <div class="card">
                     <form action="{{ route('account') }}" method="POST">
-                        <div class="box-body">
+                        <div class="card-header card-header-primary">
+                            <h3 class="card-title">@lang('base.account.update_identity')</h3>
+                        </div>
+                        <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <label for="first_name" class="control-label">@lang('base.account.first_name')</label>
@@ -93,14 +82,16 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-xs-12">
                                     <label for="password" class="control-label">@lang('strings.username')</label>
                                     <div>
                                         <input type="text" class="form-control" name="username" value="{{ Auth::user()->username }}" />
                                         <p class="text-muted small no-margin">@lang('base.account.username_help', [ 'requirements' => '<code>a-z A-Z 0-9 _ - .</code>'])</p>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-6">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-12">
                                     <label for="language" class="control-label">@lang('base.account.language')</label>
                                     <div>
                                         <select name="language" id="language" class="form-control">
@@ -111,29 +102,25 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><br>
+                        </div>
                         <div class="box-footer with-border">
                             {!! csrf_field() !!}
                             <input type="hidden" name="do_action" value="identity" />
-                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                        </div><br>
+                            <button type="submit" class="btn btn-primaryc pull-right">@lang('base.account.update_identity')</button>
+							<div class="clearfix"></div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-	</div>
-	</div>
-	</div>
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Email</h5>
-								</div>
-								<div class="card-body py-3">
-                <div class="box">
+        <div class="row" style="display: block;">
+            <div class="col-xs-12" style="width: 100%;">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h3 class="card-title">@lang('base.account.update_email')</h3>
+                    </div>
                     <form action="{{ route('account') }}" method="post">
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="form-group">
                                 <label for="new_email" class="control-label">@lang('base.account.new_email')</label>
                                 <div>
@@ -150,7 +137,7 @@
                         <div class="box-footer">
                             {!! csrf_field() !!}
                             <input type="hidden" name="do_action" value="email" />
-                            <input type="submit" class="btn btn-primary btn-sm" value="Save" />
+                            <input type="submit" class="btn btn-primaryc pull-right" value="@lang('base.account.update_email')" />
                         </div>
                     </form>
                 </div>

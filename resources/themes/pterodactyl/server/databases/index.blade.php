@@ -20,13 +20,12 @@
 @endsection
 
 @section('content')
-					<div class="row">
+<div class="row">
     <div class="{{ $allowCreation && Gate::allows('create-database', $server) ? 'col-xs-12 col-sm-8' : 'col-xs-12' }}">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Databases</h5>
-								</div>
-								<div class="card-body py-3">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@lang('server.config.database.your_dbs')</h3>
+            </div>
             @if(count($databases) > 0)
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
@@ -72,43 +71,44 @@
                 </div>
             @else
                 <div class="box-body">
-			Er zijn geen databases aangemaakt.
+                    <div class="alert alert-info no-margin-bottom">
+                        @lang('server.config.database.no_dbs')
+                    </div>
                 </div>
             @endif
         </div>
     </div>
-    </div>
     @if($allowCreation && Gate::allows('create-database', $server))
         <div class="col-xs-12 col-sm-4">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Database aanmaken</h5>
-								</div>
-								<div class="card-body py-3">
             <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Create New Database</h3>
+                </div>
                 @if($overLimit)
                     <div class="box-body">
                         <div class="alert alert-danger no-margin">
-                            You are currently using <strong>{{ count($databases) }}</strong> of your <strong>{{ $server->database_limit ?? '8' }}</strong> allowed databases.
+                            You are currently using <strong>{{ count($databases) }}</strong> of your <strong>{{ $server->database_limit ?? '∞' }}</strong> allowed databases.
                         </div>
                     </div>
                 @else
                     <form action="{{ route('server.databases.new', $server->uuidShort) }}" method="POST">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="pDatabaseName" class="control-label">Database naam</label>
+                                <label for="pDatabaseName" class="control-label">Database</label>
                                 <div class="input-group">
-                                    <input id="pDatabaseName" type="text" name="database" class="form-control" placeholder="Naam" />
+                                    <span class="input-group-addon">s{{ $server->id }}_</span>
+                                    <input id="pDatabaseName" type="text" name="database" class="form-control" placeholder="database" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="pRemote" class="control-label">Toegestaande IP's</label>
+                                <label for="pRemote" class="control-label">Connections</label>
                                 <input id="pRemote" type="text" name="remote" class="form-control" value="%" />
-                                <p class="text-muted small">Deze IP's hebben toegang tot uw database, gebruik <code>%</code> voor alle IP's.</p>
+                                <p class="text-muted small">This should reflect the IP address that connections are allowed from. Uses standard MySQL notation. If unsure leave as <code>%</code>.</p>
                             </div>
                         </div>
                         <div class="box-footer">
                             {!! csrf_field() !!}
+                            <p class="text-muted small">You are currently using <strong>{{ count($databases) }}</strong> of <strong>{{ $server->database_limit ?? '&infin;' }}</strong> databases. A username and password for this database will be randomly generated after form submission.</p>
                             <input type="submit" class="btn btn-sm btn-success pull-right" value="Create Database" />
                         </div>
                     </form>

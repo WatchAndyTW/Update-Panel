@@ -4,42 +4,62 @@
 {{-- This software is licensed under the terms of the MIT license. --}}
 {{-- https://opensource.org/licenses/MIT --}}
 
-<div class="box-header with-border">
-    <h3 class="box-title">server{{ $directory['header'] }}</h3>
-    <div class="box-tools right">
-        <a href="/server/{{ $server->uuidShort }}/files/add/@if($directory['header'] !== '')?dir={{ $directory['header'] }}@endif">
-            <button class="btn btn-success btn-sm btn-icon">
-                New file <i class="fas fa-file"></i>
-            </button>
-        </a>
-        <button class="btn btn-sm btn-success btn-icon" data-action="add-folder">
-            New folder <i class="fas fa-folder"></i>
-        </button>
-		<label class="btn btn-primary btn-sm btn-icon">
-            Upload <i class="fa fa-fw fa-upload"></i><input type="file" id="files_touch_target" class="hidden">
-        </label>
-        <div class="btn-group hidden-xs">
-            <button type="button" id="mass_actions" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mass actions <span class="caret"></span>
+<div class="card-header card-header-tabs card-header-warning">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <span class="nav-tabs-title">/home/container{{ $directory['header'] }}</span>
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                          <a class="nav-link" href="/server/{{ $server->uuidShort }}/files/add/@if($directory['header'] !== '')?dir={{ $directory['header'] }}@endif">
+                            <i class="material-icons">bug_report</i> New File
+                            <div class="ripple-container"></div>
+                          <div class="ripple-container"></div></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-action="add-folder" data-toggle="tab">
+                            <i class="material-icons">code</i> New Folder
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                        </li>
+                          <a class="nav-link" style=" border: none;"><label style=" color: #fff; "> <input type="file" id="files_touch_target" class="hidden">
+                            <i class="material-icons">cloud</i> Upload
+                            <div class="ripple-container"></div>
+                          </label>
+						  </a>
+                        </li>
+                        </li>
+        <div class="nav-item hidden-xs">
+            <button type="button" id="mass_actions" class="btn btn-sm btn-default dropdown-toggle disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @lang('server.files.mass_actions') <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-massactions">
-                <li class="dropdown-item"><a href="#" id="selective-deletion" data-action="selective-deletion"> <i class="fas fa-trash-alt"></i> Delete</a></li>
+                <li><a href="#" id="selective-deletion" data-action="selective-deletion">@lang('server.files.delete') <i class="fa fa-fw fa-trash-o"></i></a></li>
             </ul>
         </div>
-    </div>
-	<br>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
 </div>
+
+
+
+
 <div class="box-body table-responsive no-padding">
     <table class="table table-hover" id="file_listing" data-current-dir="{{ rtrim($directory['header'], '/') . '/' }}">
         <thead>
             <tr>
-                <th class="middle min-size">
-                    <input type="checkbox" class="select-all-files hidden-xs" data-action="selectAll">
+            <th class="middle min-size">
+				<div class="form-check" style="pointer-events: none">
+					<label class="form-check-label"><input data-action="selectAll" class="form-check-input" type="checkbox"><span class="form-check-sign"><span class="check"></span></span></label>
+					<i class="fa fa-refresh muted muted-hover use-pointer" data-action="reload-files" style="font-size:14px; pointer-events: auto;"></i>
+				</div>
                 </th>
                 <th>@lang('server.files.file_name')</th>
                 <th class="hidden-xs">@lang('server.files.size')</th>
                 <th class="hidden-xs">@lang('server.files.last_modified')</th>
-                <th></th>
             </tr>
         </thead>
         <tbody id="append_files_to">
@@ -101,7 +121,7 @@
                             'application/x-bzip2',
                             'application/java-archive'
                         ]))
-                            <i class="fas fa-file-archive" style="margin-left: 2px;"></i>
+                            <i class="fa fa-file-archive-o" style="margin-left: 2px;"></i>
                         @elseif(in_array($file['mime'], [
                             'application/json',
                             'application/javascript',
@@ -136,7 +156,7 @@
                         @elseif($file['mime'] === 'application/pdf')
                             <i class="fa fa-file-pdf-o" style="margin-left: 2px;"></i>
                         @else
-                            <i class="fas fa-file" style="margin-left: 2px;"></i>
+                            <i class="fa fa-file-text-o" style="margin-left: 2px;"></i>
                         @endif
                     </td>
                     <td data-identifier="name" data-name="{{ rawurlencode($file['entry']) }}" data-path="@if($file['directory'] !== ''){{ rawurlencode($file['directory']) }}@endif/">

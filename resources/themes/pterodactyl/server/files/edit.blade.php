@@ -20,25 +20,19 @@
 @endsection
 
 @section('content')
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Edit file</h5>
-								</div>
-								<div class="card-body py-3">
+<div class="row" style="display: block;">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ $file }}</h3>
             </div>
-            <input style="display:none" name="file" value="{{ $file }}" />
-            <textarea hidden id="editorSetContent" class="hidden">{{ $contents }}</textarea>
+            <input type="hidden" name="file" value="{{ $file }}" />
+            <textarea id="editorSetContent" class="hidden">{{ $contents }}</textarea>
             <div class="overlay" id="editorLoadingOverlay"><i class="fa fa-refresh fa-spin"></i></div>
             <div class="box-body" style="height:500px;" id="editor"></div>
             <div class="box-footer with-border">
-		<br>
-                <button class="btn btn-sm btn-primary" id="save_file"><i class="fa fa-fw fa-save"></i> &nbsp;Save</button>
-                <a href="/server/{{ $server->uuidShort }}/files#{{ rawurlencode($directory) }}" class="pull-right"><button class="btn btn-primary btn-sm">Back to files</button></a>
+                <button class="btn btn-sm btn-primary" id="save_file"><i class="fa fa-fw fa-save"></i> &nbsp;@lang('server.files.edit.save')</button>
+                <a href="/server/{{ $server->uuidShort }}/files#{{ rawurlencode($directory) }}" class="pull-right"><button class="btn btn-default btn-sm">@lang('server.files.edit.return')</button></a>
             </div>
         </div>
     </div>

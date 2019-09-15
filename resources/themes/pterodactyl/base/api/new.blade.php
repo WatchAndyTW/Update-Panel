@@ -4,14 +4,16 @@
     @lang('base.api.new.header')
 @endsection
 
+@section('content-header')
+    <h1>@lang('base.api.new.header')<small>@lang('base.api.new.header_sub')</small></h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
+        <li class="active">@lang('navigation.account.api_access')</li>
+        <li class="active">@lang('base.api.new.header')</li>
+    </ol>
+@endsection
+
 @section('content')
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Security</h5>
-								</div>
-								<div class="card-body py-3">
     <div class="row">
         <form method="POST" action="{{ route('account.api.new') }}">
             <div class="col-sm-6 col-xs-12">

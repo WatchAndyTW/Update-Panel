@@ -20,8 +20,8 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
+<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
                 <li><a href="{{ route('admin.servers.view', $server->id) }}">About</a></li>
@@ -32,7 +32,7 @@
                     <li><a href="{{ route('admin.servers.view.database', $server->id) }}">Database</a></li>
                     <li><a href="{{ route('admin.servers.view.manage', $server->id) }}">Manage</a></li>
                 @endif
-                <li class="tab-danger active"><a href="{{ route('admin.servers.view.delete', $server->id) }}">Delete</a></li>
+                <li class="tab-danger active1"><a href="{{ route('admin.servers.view.delete', $server->id) }}">Delete</a></li>
                 <li class="tab-success"><a href="{{ route('server.index', $server->uuidShort) }}"><i class="fa fa-external-link"></i></a></li>
             </ul>
         </div>

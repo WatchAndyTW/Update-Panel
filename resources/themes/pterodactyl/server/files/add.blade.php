@@ -15,28 +15,32 @@
     @parent
 @endsection
 
+@section('content-header')
+    <h1>@lang('server.files.add.header')<small>@lang('server.files.add.header_sub')</small></h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
+        <li><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
+        <li><a href="{{ route('server.files.index', $server->uuidShort) }}">@lang('navigation.server.file_browser')</a></li>
+        <li class="active">@lang('navigation.server.create_file')</li>
+    </ol>
+@endsection
+
 @section('content')
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Create file</h5>
-								</div>
-								<div class="card-body py-3">
+<div class="row">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="box">
             <div class="box-header with-border">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Filename" id="file_name" value="{{ $directory }}">
+                    <span class="input-group-addon"><code>/home/container/</code></span>
+                    <input type="text" class="form-control" placeholder="@lang('server.files.add.name')" id="file_name" value="{{ $directory }}">
                 </div>
-		<br>
             </div>
             <div class="box-body" style="height:500px;" id="editor"></div>
             <div class="box-footer with-border">
                 <div class="row">
                     <div class="col-sm-8">
-			<br>
-                        <button class="btn btn-sm btn-primary" id="create_file">Create</button>
-                        <a href="{{ route('server.files.index', [ 'server' => $server->uuidShort, 'dir' => $directory ]) }}"><button class="btn btn-default btn-sm">Cancel</button></a>
+                        <button class="btn btn-sm btn-primary" id="create_file">@lang('server.files.add.create')</button>
+                        <a href="{{ route('server.files.index', [ 'server' => $server->uuidShort, 'dir' => $directory ]) }}"><button class="btn btn-default btn-sm">@lang('strings.cancel')</button></a>
                     </div>
                     <div class="col-sm-4">
                         <select name="aceMode" id="aceMode" class="form-control">

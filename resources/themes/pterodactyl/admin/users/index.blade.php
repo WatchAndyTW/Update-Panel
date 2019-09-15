@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="width: 100%;">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">User List</h3>
@@ -75,7 +75,7 @@
             </div>
             @if($users->hasPages())
                 <div class="box-footer with-border">
-                    <div class="col-md-12 text-center">{!! $users->appends(['query' => Request::input('query')])->render() !!}</div>
+                    <div class="col-md-12 text-center" style="width: 100%;>{!! $users->appends(['query' => Request::input('query')])->render() !!}</div>
                 </div>
             @endif
         </div>

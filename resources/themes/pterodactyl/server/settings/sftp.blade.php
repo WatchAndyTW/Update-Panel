@@ -20,33 +20,28 @@
 @endsection
 
 @section('content')
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">SFTP beheer</h5>
-								</div>
-								<div class="card-body py-3">
+<div class="row">
+    <div class="col-xs-12">
         <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">@lang('server.config.sftp.details')</h3>
+            </div>
             <div class="box-body">
                 <div class="form-group">
-                    <label class="control-label">Connection</label>
+                    <label class="control-label">@lang('server.config.sftp.conn_addr')</label>
                     <div>
                         <input type="text" class="form-control" readonly value="sftp://{{ $node->fqdn }}:{{ $node->daemonSFTP }}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="control-label">Username</label>
+                    <label for="password" class="control-label">@lang('strings.username')</label>
                     <div>
                         <input type="text" class="form-control" readonly value="{{ auth()->user()->username }}.{{ $server->uuidShort }}" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
-                    <div>
-                        <input type="text" class="form-control" readonly value="The password is the same as your account." />
-                    </div>
-                </div>
+            </div>
+            <div class="box-footer">
+                <p class="small text-muted no-margin-bottom">@lang('server.config.sftp.warning')</p>
             </div>
         </div>
     </div>

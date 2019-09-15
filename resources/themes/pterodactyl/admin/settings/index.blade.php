@@ -39,19 +39,19 @@
                                             $level = old('pterodactyl:auth:2fa_required', config('pterodactyl.auth.2fa_required'));
                                         @endphp
                                         <label class="btn btn-primary @if ($level == 0) active @endif">
-                                            <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="0" @if ($level == 0) checked @endif> Not Required
+                                            <input type="radio" style="display:none;" name="pterodactyl:auth:2fa_required" autocomplete="off" value="0" @if ($level == 0) checked @endif> Not Required
                                         </label>
                                         <label class="btn btn-primary @if ($level == 1) active @endif">
-                                            <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="1" @if ($level == 1) checked @endif> Admin Only
+                                            <input type="radio" style="display:none;" name="pterodactyl:auth:2fa_required" autocomplete="off" value="1" @if ($level == 1) checked @endif> Admin Only
                                         </label>
                                         <label class="btn btn-primary @if ($level == 2) active @endif">
-                                            <input type="radio" name="pterodactyl:auth:2fa_required" autocomplete="off" value="2" @if ($level == 2) checked @endif> All Users
+                                            <input type="radio" style="display:none;" name="pterodactyl:auth:2fa_required" autocomplete="off" value="2" @if ($level == 2) checked @endif> All Users
                                         </label>
                                     </div>
                                     <p class="text-muted"><small>If enabled, any account falling into the selected grouping will be required to have 2-Factor authentication enabled to use the Panel.</small></p>
                                 </div>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-9">
                                 <label class="control-label">Default Language</label>
                                 <div>
                                     <select name="app:locale" class="form-control">

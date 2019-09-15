@@ -9,14 +9,20 @@
     @lang('base.api.index.header')
 @endsection
 
+@section('content-header')
+    <h1>@lang('base.api.index.header')<small>@lang('base.api.index.header_sub')</small></h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
+        <li class="active">@lang('navigation.account.api_access')</li>
+    </ol>
+@endsection
+
 @section('content')
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Security</h5>
-								</div>
-								<div class="card-body py-3">
+    <div class="row" style="display: block;">
+        <div class="col-xs-12" style="width: 100%;">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Credentials List</h3>
                     <div class="box-tools">
                         <a href="{{ route('account.api.new') }}" class="btn btn-sm btn-primary">Create New</a>
                     </div>
