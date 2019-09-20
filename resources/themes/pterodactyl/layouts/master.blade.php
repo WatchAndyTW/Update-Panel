@@ -44,7 +44,7 @@
         <div class="wrapper">
             <header class="main-header">
                 <a href="{{ route('index') }}" class="logo">
-                    <span class="logo-lg"><img src="{!! Theme::url('img/logo.png?t={cache-version}') !!}" class="logo-image"></span>
+                    <span class="logo-lg"><img src="/themes/pterodactyl/img/logo.png" class="logo-image"></span>
                     <span class="logo-mini"><img src="/favicons/android-chrome-192x192.png"></span>
                 </a>
                 <nav class="navbar navbar-static-top">
