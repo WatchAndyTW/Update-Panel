@@ -269,22 +269,23 @@ $(document).ready(function () {
                 datasets: [
                     {
                         label: "Percent Use",
-                        fill: false,
-                        lineTension: 0.03,
-                        backgroundColor: "#853698",
-                        borderColor: "#853698",
+                        fill: true,
+                        lineTension: 0.3,
+                        borderWidth: 1.5,
+                        backgroundColor: "rgba(130, 94, 228, 0.5)",
+                        borderColor: "rgba(94, 114, 228, 0.9)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "#853698",
-                        pointBackgroundColor: "#853698",
+                        pointBorderColor: "#5e72e4",
+                        pointBackgroundColor: "#fff",
                         pointBorderWidth: 1,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "#853698",
-                        pointHoverBorderColor: "#853698",
+                        pointHoverBackgroundColor: "#5e72e4",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
                         pointHoverBorderWidth: 2,
-                        pointRadius: 1,
+                        pointRadius: 3,
                         pointHitRadius: 10,
                         data: CPUData,
                         spanGaps: false,
@@ -300,7 +301,7 @@ $(document).ready(function () {
                     display: false,
                 },
                 animation: {
-                    duration: 1,
+                    duration: 10,
                 }
             }
         });
@@ -314,22 +315,23 @@ $(document).ready(function () {
                 datasets: [
                     {
                         label: "Memory Use",
-                        fill: false,
-                        lineTension: 0.03,
-                        backgroundColor: "#853698",
-                        borderColor: "#853698",
+                        fill: true,
+                        lineTension: 0.3,
+                        borderWidth: 1.5,
+                        backgroundColor: "rgba(130, 94, 228, 0.5)",
+                        borderColor: "rgba(94, 114, 228, 0.9)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "#853698",
+                        pointBorderColor: "#5e72e4",
                         pointBackgroundColor: "#fff",
                         pointBorderWidth: 1,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "#853698",
-                        pointHoverBorderColor: "#853698",
+                        pointHoverBackgroundColor: "#5e72e4",
+                        pointHoverBorderColor: "rgba(94, 114, 228, 1)",
                         pointHoverBorderWidth: 2,
-                        pointRadius: 1,
+                        pointRadius: 3,
                         pointHitRadius: 10,
                         data: MemoryData,
                         spanGaps: false,
@@ -345,7 +347,7 @@ $(document).ready(function () {
                     display: false,
                 },
                 animation: {
-                    duration: 1,
+                    duration: 10,
                 }
             }
         });

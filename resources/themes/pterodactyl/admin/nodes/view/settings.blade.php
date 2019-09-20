@@ -20,12 +20,12 @@
 @endsection
 
 @section('content')
-<div class="navlinks" style=" margin-top: 0px!important;color: white; ">
-    <div class="col-xs-12" style="width: 100%;">
+<div class="row">
+    <div class="col-xs-12">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
                 <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
-                <li class="active1"><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
+                <li class="active"><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
                 <li><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
                 <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
                 <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
@@ -41,20 +41,20 @@
                     <h3 class="box-title">Settings</h3>
                 </div>
                 <div class="box-body row">
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label for="name" class="control-label">Node Name</label>
                         <div>
                             <input type="text" autocomplete="off" name="name" class="form-control" value="{{ old('name', $node->name) }}" />
                             <p class="text-muted"><small>Character limits: <code>a-zA-Z0-9_.-</code> and <code>[Space]</code> (min 1, max 100 characters).</small></p>
                         </div>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label for="description" class="control-label">Description</label>
                         <div>
                             <textarea name="description" id="description" rows="4" class="form-control">{{ $node->description }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label for="name" class="control-label">Location</label>
                         <div>
                             <select name="location_id" class="form-control">
@@ -64,14 +64,14 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label for="public" class="control-label">Allow Automatic Allocation <sup><a data-toggle="tooltip" data-placement="top" title="Allow automatic allocation to this Node?">?</a></sup></label>
                         <div>
                             <input type="radio" name="public" value="1" {{ (old('public', $node->public) === '1') ? 'checked' : '' }} id="public_1" checked> <label for="public_1" style="padding-left:5px;">Yes</label><br />
                             <input type="radio" name="public" value="0" {{ (old('public', $node->public) === '0') ? 'checked' : '' }} id="public_0"> <label for="public_0" style="padding-left:5px;">No</label>
                         </div>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label for="fqdn" class="control-label">Fully Qualified Domain Name</label>
                         <div>
                             <input type="text" autocomplete="off" name="fqdn" class="form-control" value="{{ old('fqdn', $node->fqdn) }}" />
@@ -80,7 +80,7 @@
                                 <a tabindex="0" data-toggle="popover" data-trigger="focus" title="Why do I need a FQDN?" data-content="In order to secure communications between your server and this node we use SSL. We cannot generate a SSL certificate for IP Addresses, and as such you will need to provide a FQDN.">Why?</a>
                             </small></p>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label class="form-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> Communicate Over SSL</label>
                         <div>
                             <div class="radio radio-success radio-inline">
@@ -94,7 +94,7 @@
                         </div>
                         <p class="text-muted small">In most cases you should select to use a SSL connection. If using an IP Address or you do not wish to use SSL at all, select a HTTP connection.</p>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label class="form-label"><span class="label label-warning"><i class="fa fa-power-off"></i></span> Behind Proxy</label>
                         <div>
                             <div class="radio radio-success radio-inline">
@@ -108,7 +108,7 @@
                         </div>
                         <p class="text-muted small">If you are running the daemon behind a proxy such as Cloudflare, select this to have the daemon skip looking for certificates on boot.</p>
                     </div>
-                    <div class="form-group col-xs-12" style="width: 100%;">
+                    <div class="form-group col-xs-12">
                         <label class="form-label"><span class="label label-warning"><i class="fa fa-wrench"></i></span> Maintenance Mode</label>
                         <div>
                             <div class="radio radio-success radio-inline">
@@ -131,7 +131,7 @@
                     <h3 class="box-title">Allocation Limits</h3>
                 </div>
                 <div class="box-body row">
-                    <div class="col-xs-12" style="width: 100%;">
+                    <div class="col-xs-12">
                         <div class="row">
                             <div class="form-group col-xs-6">
                                 <label for="memory" class="control-label">Total Memory</label>
@@ -150,7 +150,7 @@
                         </div>
                         <p class="text-muted small">Enter the total amount of memory available on this node for allocation to servers. You may also provide a percentage that can allow allocation of more than the defined memory.</p>
                     </div>
-                    <div class="col-xs-12" style="width: 100%;">
+                    <div class="col-xs-12">
                         <div class="row">
                             <div class="form-group col-xs-6">
                                 <label for="disk" class="control-label">Disk Space</label>
@@ -210,7 +210,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12" style="width: 100%;">
+        <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Save Settings</h3>

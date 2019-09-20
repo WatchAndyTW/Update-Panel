@@ -29,6 +29,10 @@ class ActionsClass {
         this.element = undefined;
     }
 
+    sanitizedString(value) {
+        return $('<div>').text(value).html();
+    }
+
     folder(path) {
         let inputValue
         if (path) {
@@ -296,7 +300,7 @@ class ActionsClass {
         swal({
             type: 'warning',
             title: '',
-            text: 'Are you sure you want to delete <code>' + delName + '</code>?',
+            text: 'Are you sure you want to delete <code>' + this.sanitizedString(delName) + '</code>?',
             html: true,
             showCancelButton: true,
             showConfirmButton: true,
@@ -393,8 +397,10 @@ class ActionsClass {
         {
             let formattedItems = "";
             let i = 0;
+            let self = this;
+
             $.each(selectedItems, function(key, value) {
-                formattedItems += ("<code>" + value + "</code>, ");
+                formattedItems += ("<code>" + self.sanitizedString(value) + "</code>, ");
                 i++;
                 return i < 5;
             });
@@ -536,7 +542,7 @@ class ActionsClass {
                 type: 'error',
                 title: 'Whoops!',
                 html: true,
-                text: error
+                text: this.sanitizedString(error)
             });
         });
     }

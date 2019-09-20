@@ -20,18 +20,18 @@
 
 @section('content')
 <div class="row">
-    <form action="{{ route('admin.nests.view', $nest->id) }}" method="POST" style="display: contents;"> 
-        <div class="col-sm-6">
+    <form action="{{ route('admin.nests.view', $nest->id) }}" method="POST">
+        <div class="col-md-6">
             <div class="box">
-                <div class="box-body row">
+                <div class="box-body">
                     <div class="form-group">
-					<div class="box-header with-border"> Name </div>
+                        <label class="control-label">Name <span class="field-required"></span></label>
                         <div>
                             <input type="text" name="name" class="form-control" value="{{ $nest->name }}" />
                             <p class="text-muted"><small>This should be a descriptive category name that encompasses all of the options within the service.</small></p>
                         </div>
                     </div>
-                    <div class="form-group" style="width: 100%;">
+                    <div class="form-group">
                         <label class="control-label">Description <span class="field-required"></span></label>
                         <div>
                             <textarea name="description" class="form-control" rows="7">{{ $nest->description }}</textarea>
@@ -46,9 +46,9 @@
             </div>
         </div>
     </form>
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <div class="box">
-            <div class="box-body row">
+            <div class="box-body">
                 <div class="form-group">
                     <label class="control-label">Nest ID</label>
                     <div>
@@ -75,7 +75,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12" style="width:100%">
+    <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Nest Eggs</h3>
@@ -114,7 +114,7 @@
     @parent
     <script>
         $('#deleteButton').on('mouseenter', function (event) {
-            $(this).find('i').html(' Delete Nest');
+            $(this).find('i').html('&nbsp;&nbsp;<font face="Open Sans">Delete Nest</font>');
         }).on('mouseleave', function (event) {
             $(this).find('i').html('');
         });

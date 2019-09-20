@@ -72,6 +72,10 @@
                     <div class="form-group">
                         <label class="control-label" for="pImportFile">Egg File <span class="field-required"></span></label>
                         <div>
+                            <!-- <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-default btn-file"><span>Choose file</span><input id="pImportFile" type="file" name="import_file" class="form-control" accept="application/json" /></span>
+                                <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
+                            </div> -->
                             <input id="pImportFile" type="file" name="import_file" class="form-control" accept="application/json" />
                             <p class="small text-muted">Select the <code>.json</code> file for the new egg that you wish to import.</p>
                         </div>

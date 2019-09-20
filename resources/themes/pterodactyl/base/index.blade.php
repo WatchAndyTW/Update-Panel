@@ -19,7 +19,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-12" style="width: 100%;">
+    <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">@lang('base.index.list')</h3>
@@ -44,6 +44,7 @@
                             <th>@lang('strings.connection')</th>
                             <th class="text-center hidden-sm hidden-xs">@lang('strings.memory')</th>
                             <th class="text-center hidden-sm hidden-xs">@lang('strings.cpu')</th>
+                            <th class="text-center hidden-sm hidden-xs">Disk</th>
                             <th class="text-center">@lang('strings.relation')</th>
                             <th class="text-center">@lang('strings.status')</th>
                         </tr>
@@ -53,15 +54,16 @@
                                 <td><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></td>
                                 <td>{{ $server->getRelation('node')->name }}</td>
                                 <td><code>{{ $server->getRelation('allocation')->alias }}:{{ $server->getRelation('allocation')->port }}</code></td>
-                                <td class="text-center hidden-sm hidden-xs"><span data-action="memory">--</span> / {{ $server->memory === 0 ? '∞' : $server->memory }} MB</td>
-                                <td class="text-center hidden-sm hidden-xs"><span data-action="cpu" data-cpumax="{{ $server->cpu }}">--</span> %</td>
+                                <td class="text-center hidden-sm hidden-xs"><span data-action="memory">0</span> / {{ $server->memory === 0 ? '∞' : $server->memory }} MB</td>
+                                <td class="text-center hidden-sm hidden-xs"><span data-action="cpu" data-cpumax="{{ $server->cpu }}">0</span> %</td>
+                                <td class="text-center hidden-sm hidden-xs"><span data-action="disk">--</span> / {{ $server->disk === 0 ? '∞' : $server->disk }} MB </td>
                                 <td class="text-center">
                                     @if($server->user->id === Auth::user()->id)
                                         <span class="label bg-purple">@lang('strings.owner')</span>
                                     @elseif(Auth::user()->root_admin)
                                         <span class="label bg-maroon">@lang('strings.admin')</span>
                                     @else
-                                        <span class="label bg-blue">@lang('strings.subuser')</span>
+                                        <span class="label bg-sub">@lang('strings.subuser')</span>
                                     @endif
                                 </td>
                                 @if($server->node->maintenance_mode)
@@ -76,7 +78,7 @@
                             </tr>
                             @if (! empty($server->description))
                                 <tr class="server-description">
-                                    <td colspan="7"><p class="text-muted small no-margin">{{ str_limit($server->description, 400) }}</p></td>
+                                    <!-- <td colspan="7"><p class="text-muted small no-margin">{{ str_limit($server->description, 400) }}</p></td> -->
                                 </tr>
                             @endif
                         @endforeach
@@ -98,7 +100,7 @@
     <script>
         $('tr.server-description').on('mouseenter mouseleave', function (event) {
             $(this).prev('tr').css({
-                'background-color': (event.type === 'mouseenter') ? '#f5f5f5' : '',
+                'background-color': (event.type === 'mouseenter') ? 'rgba(80, 80, 80, 0.32)' : '',
             });
         });
     </script>

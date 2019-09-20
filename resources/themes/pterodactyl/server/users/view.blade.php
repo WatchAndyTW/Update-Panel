@@ -50,22 +50,21 @@
     </div>
     <div class="row">
         @foreach($permlist as $block => $perms)
-             <div class="col-sm-6" style="max-width: 100%;">
-                <div class="card">
-                    <div class="card-header card-header-tabs card-header-warning">
-                        <h3 class="card-title">@lang('server.users.new.' . $block . '_header')</h3>
+            <div class="col-sm-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">@lang('server.users.new.' . $block . '_header')</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="box-body">
                         @foreach($perms as $permission => $daemon)
-                            <div class="tab-content">
-                                <div class="tab-pane active">
-
-	<div class="form-check">
-		<label for="{{ $permission }}" class="form-check-label">
-        <input id="{{ $permission }}" class="form-check-input" name="permissions[]" type="checkbox" @if(isset($permissions[$permission]))checked="checked"@endif @cannot('edit-subuser', $server)disabled="disabled"@endcannot value="{{ $permission }}"/>
-		<span class="form-check-sign"><span class="check"></span></span> <p class="text-muted small" style=" font-size: 100%; ">@lang('server.users.new.' . str_replace('-', '_', $permission) . '.description')</p></label>
-	</div>
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary no-margin-bottom">
+                                    <input id="{{ $permission }}" name="permissions[]" type="checkbox" @if(isset($permissions[$permission]))checked="checked"@endif @cannot('edit-subuser', $server)disabled="disabled"@endcannot value="{{ $permission }}"/>
+                                    <label for="{{ $permission }}" class="strong">
+                                        @lang('server.users.new.' . str_replace('-', '_', $permission) . '.title')
+                                    </label>
                                 </div>
+                                <p class="text-muted small">@lang('server.users.new.' . str_replace('-', '_', $permission) . '.description')</p>
                             </div>
                         @endforeach
                     </div>
