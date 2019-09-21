@@ -81,61 +81,61 @@
                         <li class="header">BASIC ADMINISTRATION</li>
                         <li class="{{ Route::currentRouteName() !== 'admin.index' ?: 'active' }}">
                             <a href="{{ route('admin.index') }}">
-                                <i class="fa fa-home"></i> <span>Overview</span>
+                                <i class="fa fa-home"></i> <span>資訊</span>
                             </a>
                         </li>
                         <li class="{{ Route::currentRouteName() !== 'admin.statistics' ?: 'active' }}">
                             <a href="{{ route('admin.statistics') }}">
-                                <i class="fa fa-tachometer"></i> <span>Statistics</span>
+                                <i class="fa fa-tachometer"></i> <span>統計</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.settings') ?: 'active' }}">
                             <a href="{{ route('admin.settings')}}">
-                                <i class="fa fa-wrench"></i> <span>Settings</span>
+                                <i class="fa fa-wrench"></i> <span>設定</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.api') ?: 'active' }}">
                             <a href="{{ route('admin.api.index')}}">
-                                <i class="fa fa-gamepad"></i> <span>Application API</span>
+                                <i class="fa fa-gamepad"></i> <span>應用程式API</span>
                             </a>
                         </li>
                         <hr class="my-3">
                         <li class="header">MANAGEMENT</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
                             <a href="{{ route('admin.databases') }}">
-                                <i class="fa fa-database"></i> <span>Databases</span>
+                                <i class="fa fa-database"></i> <span>資料庫</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.locations') ?: 'active' }}">
                             <a href="{{ route('admin.locations') }}">
-                                <i class="fa fa-globe"></i> <span>Locations</span>
+                                <i class="fa fa-globe"></i> <span>區域</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nodes') ?: 'active' }}">
                             <a href="{{ route('admin.nodes') }}">
-                                <i class="fa fa-sitemap"></i> <span>Nodes</span>
+                                <i class="fa fa-sitemap"></i> <span>節點</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.servers') ?: 'active' }}">
                             <a href="{{ route('admin.servers') }}">
-                                <i class="fa fa-server"></i> <span>Servers</span>
+                                <i class="fa fa-server"></i> <span>伺服器</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.users') ?: 'active' }}">
                             <a href="{{ route('admin.users') }}">
-                                <i class="fa fa-users"></i> <span>Users</span>
+                                <i class="fa fa-users"></i> <span>使用者</span>
                             </a>
                         </li>
                         <hr class="my-3">
                         <li class="header">SERVICE MANAGEMENT</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nests') ?: 'active' }}">
                             <a href="{{ route('admin.nests') }}">
-                                <i class="fa fa-th-large"></i> <span>Nests</span>
+                                <i class="fa fa-th-large"></i> <span>伺服器樣式</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.packs') ?: 'active' }}">
                             <a href="{{ route('admin.packs') }}">
-                                <i class="fa fa-archive"></i> <span>Packs</span>
+                                <i class="fa fa-archive"></i> <span>檔案包</span>
                             </a>
                         </li>
                     </ul>

@@ -32,7 +32,7 @@
             </div>
             <div class="box-body">
                 @if ($version->isLatestPanel())
-                    目前面板版本為 <code>{{ config('app.version') }}</code> 版本為最新版本!
+                    目前面板版本為 <code>{{ config('app.version') }}</code>. 面板為最新版本!
                 @else
                     目前面板版本為 <code>{{ config('app.version') }}</code> 面板最新版本為 <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a>. <strong>請盡快更新!</strong>
                 @endif
