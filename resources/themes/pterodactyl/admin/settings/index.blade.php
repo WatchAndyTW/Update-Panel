@@ -28,7 +28,7 @@
                                 <label class="control-label">面板名稱</label>
                                 <div>
                                     <input type="text" class="form-control" name="app:name" value="{{ old('app:name', config('app.name')) }}" />
-                                    <p class="text-muted"><small>This is the name that is used throughout the panel and in emails sent to clients.</small></p>
+                                    <p class="text-muted"><small>面板顯示之名稱(非為左上圖片)</small></p>
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
