@@ -2,14 +2,14 @@
 @include('partials/admin.settings.nav', ['activeTab' => 'mail'])
 
 @section('title')
-    Mail Settings
+    郵件設定
 @endsection
 
 @section('content-header')
-    <h1>Mail Settings<small>Configure how Pterodactyl should handle sending emails.</small></h1>
+    <h1>郵件設定<small>Configure how Pterodactyl should handle sending emails.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li class="active">Settings</li>
+        <li class="active">郵件設定</li>
     </ol>
 @endsection
 
@@ -19,7 +19,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Email Settings</h3>
+                    <h3 class="box-title">郵件設定</h3>
                 </div>
                 @if($disabled)
                     <div class="box-body">
@@ -36,21 +36,21 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">SMTP Host</label>
+                                    <label class="control-label">SMTP主機IP</label>
                                     <div>
                                         <input required type="text" class="form-control" name="mail:host" value="{{ old('mail:host', config('mail.host')) }}" />
                                         <p class="text-muted small">Enter the SMTP server address that mail should be sent through.</p>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label class="control-label">SMTP Port</label>
+                                    <label class="control-label">SMTP連接埠</label>
                                     <div>
                                         <input required type="number" class="form-control" name="mail:port" value="{{ old('mail:port', config('mail.port')) }}" />
                                         <p class="text-muted small">Enter the SMTP server port that mail should be sent through.</p>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="control-label">Encryption</label>
+                                    <label class="control-label">加密方式</label>
                                     <div>
                                         @php
                                             $encryption = old('mail:encryption', config('mail.encryption'));
@@ -64,14 +64,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Username <span class="field-optional"></span></label>
+                                    <label class="control-label">使用者名稱 <span class="field-optional"></span></label>
                                     <div>
                                         <input type="text" class="form-control" name="mail:username" value="{{ old('mail:username', config('mail.username')) }}" />
                                         <p class="text-muted small">The username to use when connecting to the SMTP server.</p>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Password <span class="field-optional"></span></label>
+                                    <label class="control-label">密碼 <span class="field-optional"></span></label>
                                     <div>
                                         <input type="password" class="form-control" name="mail:password"/>
                                         <p class="text-muted small">The password to use in conjunction with the SMTP username. Leave blank to continue using the existing password. To set the password to an empty value enter <code>!e</code> into the field.</p>
@@ -81,17 +81,17 @@
                             <div class="row">
                                 <hr />
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Mail From</label>
+                                    <label class="control-label">寄出地址</label>
                                     <div>
                                         <input required type="email" class="form-control" name="mail:from:address" value="{{ old('mail:from:address', config('mail.from.address')) }}" />
-                                        <p class="text-muted small">Enter an email address that all outgoing emails will originate from.</p>
+                                        <p class="text-muted small">輸入所有外發電子郵件將來自的電子郵件地址</p>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Mail From Name <span class="field-optional"></span></label>
+                                    <label class="control-label">寄件者名稱 <span class="field-optional"></span></label>
                                     <div>
                                         <input type="text" class="form-control" name="mail:from:name" value="{{ old('mail:from:name', config('mail.from.name')) }}" />
-                                        <p class="text-muted small">The name that emails should appear to come from.</p>
+                                        <p class="text-muted small">電子郵件應顯示的名稱</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,8 +99,8 @@
                         <div class="box-footer">
                             {{ csrf_field() }}
                             <div class="pull-right">
-                                <button type="button" id="testButton" class="btn btn-sm btn-success">Test</button>
-                                <button type="button" id="saveButton" class="btn btn-sm btn-primary">Save</button>
+                                <button type="button" id="testButton" class="btn btn-sm btn-success">測試</button>
+                                <button type="button" id="saveButton" class="btn btn-sm btn-primary">儲存</button>
                             </div>
                         </div>
                     </form>
