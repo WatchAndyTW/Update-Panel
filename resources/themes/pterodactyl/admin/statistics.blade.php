@@ -26,14 +26,14 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-ios-barcode-outline"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">已使用記憶體 (MegaByte)</span>
+                <span class="info-box-text">已使用記憶體 (MB)</span>
                 <span class="info-box-number">{{ $totalServerRam }} MB</span>
             </div>
         </div>
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">已使用容量 (MegaByte)</span>
+                <span class="info-box-text">已使用容量 (MB)</span>
                 <span class="info-box-number">{{ $totalServerDisk }} MB</span>
             </div>
         </div>
@@ -59,14 +59,14 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-ios-barcode-outline"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">總記憶體(MegaByte)</span>
+                <span class="info-box-text">總記憶體 (MB)</span>
                 <span class="info-box-number">{{ $totalNodeRam }} MB</span>
             </div>
         </div>
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">總容量(MegaByte)</span>
+                <span class="info-box-text">總容量(MB)</span>
                 <span class="info-box-number">{{ $totalNodeDisk }} MB</span>
             </div>
         </div>
