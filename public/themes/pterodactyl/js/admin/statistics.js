@@ -14,7 +14,6 @@ let diskChart = new Chart($('#disk_chart'), {
 });
 
 var freeRam = Pterodactyl.totalNodeRam - Pterodactyl.totalServerRam;
-var freeRam1 = freeRam + " MB"
 let ramChart = new Chart($('#ram_chart'), {
     type: 'pie',
     data: {
@@ -23,7 +22,7 @@ let ramChart = new Chart($('#ram_chart'), {
             {
                 label: 'Memory (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
-                data: [freeRam1, Pterodactyl.totalServerRam]
+                data: [freeRam, Pterodactyl.totalServerRam]
             }
         ]
     }
