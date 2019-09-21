@@ -7,13 +7,14 @@ let diskChart = new Chart($('#disk_chart'), {
             {
                 label: 'Disk (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
-                data: [freeDisk, Pterodactyl.totalServerDisk + " MB"]
+                data: [freeDisk, Pterodactyl.totalServerDisk]
             }
         ]
     }
 });
 
 var freeRam = Pterodactyl.totalNodeRam - Pterodactyl.totalServerRam;
+var freeRam1 = freeRam + " MB"
 let ramChart = new Chart($('#ram_chart'), {
     type: 'pie',
     data: {
@@ -22,7 +23,7 @@ let ramChart = new Chart($('#ram_chart'), {
             {
                 label: 'Memory (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
-                data: [freeRam, Pterodactyl.totalServerRam + " MB"]
+                data: [freeRam1, Pterodactyl.totalServerRam]
             }
         ]
     }
