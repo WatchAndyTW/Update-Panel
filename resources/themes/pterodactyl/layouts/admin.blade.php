@@ -78,7 +78,7 @@
                 <section class="sidebar">
                     <hr class="my-3">
                     <ul class="sidebar-menu">
-                        <li class="header">BASIC ADMINISTRATION</li>
+                        <li class="header">基本設定</li>
                         <li class="{{ Route::currentRouteName() !== 'admin.index' ?: 'active' }}">
                             <a href="{{ route('admin.index') }}">
                                 <i class="fa fa-home"></i> <span>資訊</span>
@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <hr class="my-3">
-                        <li class="header">MANAGEMENT</li>
+                        <li class="header">進階管理</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
                             <a href="{{ route('admin.databases') }}">
                                 <i class="fa fa-database"></i> <span>資料庫</span>
@@ -127,7 +127,7 @@
                             </a>
                         </li>
                         <hr class="my-3">
-                        <li class="header">SERVICE MANAGEMENT</li>
+                        <li class="header">服務管理</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nests') ?: 'active' }}">
                             <a href="{{ route('admin.nests') }}">
                                 <i class="fa fa-th-large"></i> <span>伺服器樣式</span>
