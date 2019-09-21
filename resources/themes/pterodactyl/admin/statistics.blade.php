@@ -41,7 +41,7 @@
     <div class="col-xs-12 col-md-8">
         <div class="box box-primary">
             <div class="box-header with-border">
-                Servers
+                伺服器
             </div>
             <div class="box-body">
                 <div class="col-xs-12 col-md-6">
@@ -81,7 +81,7 @@
     <div class="col-xs-12 col-md-8">
         <div class="box box-primary">
             <div class="box-header with-border">
-                Nodes
+                記憶體
             </div>
             <div class="box-body">
                 <div class="col-xs-12 col-md-6">
