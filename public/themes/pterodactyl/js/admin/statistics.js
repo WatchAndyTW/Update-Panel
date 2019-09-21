@@ -2,7 +2,7 @@ var freeDisk = Pterodactyl.totalNodeDisk - Pterodactyl.totalServerDisk;
 let diskChart = new Chart($('#disk_chart'), {
     type: 'pie',
     data: {
-        labels: ['使用中儲存空間', '未使用儲存空間'],
+        labels: ['使用中儲存空間 (MB)', '未使用儲存空間 (MB)'],
         datasets: [
             {
                 label: 'Disk (MB)',
@@ -17,7 +17,7 @@ var freeRam = Pterodactyl.totalNodeRam - Pterodactyl.totalServerRam;
 let ramChart = new Chart($('#ram_chart'), {
     type: 'pie',
     data: {
-        labels: ['使用中記憶體', '未使用記憶體'],
+        labels: ['使用中記憶體 (MB)', '未使用記憶體 (MB)'],
         datasets: [
             {
                 label: 'Memory (MB)',
