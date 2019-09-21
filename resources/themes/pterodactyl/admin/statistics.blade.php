@@ -19,21 +19,21 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="fa fa-server"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Servers</span>
+                <span class="info-box-text">伺服器數量</span>
                 <span class="info-box-number">{{ count($servers) }}</span>
             </div>
         </div>
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-ios-barcode-outline"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total used Memory (in MB)</span>
+                <span class="info-box-text">已使用記憶體(MegaByte)</span>
                 <span class="info-box-number">{{ $totalServerRam }} MB</span>
             </div>
         </div>
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total used Disk (in MB)</span>
+                <span class="info-box-text">已使用容量(MegaByte)</span>
                 <span class="info-box-number">{{ $totalServerDisk }} MB</span>
             </div>
         </div>
@@ -59,21 +59,21 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-ios-barcode-outline"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total RAM</span>
+                <span class="info-box-text">總記憶體(MegaByte)</span>
                 <span class="info-box-number">{{ $totalNodeRam }} MB</span>
             </div>
         </div>
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="ion ion-stats-bars"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total Disk Space</span>
+                <span class="info-box-text">總容量(MegaByte)</span>
                 <span class="info-box-number">{{ $totalNodeDisk }} MB</span>
             </div>
         </div>
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="fa fa-location-arrow"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total Allocations</span>
+                <span class="info-box-text">虛擬IP分配量</span>
                 <span class="info-box-number">{{ $totalAllocations }}</span>
             </div>
         </div>
@@ -99,7 +99,7 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="fa fa-gamepad"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total Eggs</span>
+                <span class="info-box-text">伺服器總樣式</span>
                 <span class="info-box-number">{{ $eggsCount }}</span>
             </div>
         </div>
@@ -108,7 +108,7 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="fa fa-users"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total Users</span>
+                <span class="info-box-text">使用者數量</span>
                 <span class="info-box-number">{{ $usersCount }}</span>
             </div>
         </div>
@@ -117,7 +117,7 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="fa fa-server"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total Nodes</span>
+                <span class="info-box-text">節點數量</span>
                 <span class="info-box-number">{{ count($nodes) }}</span>
             </div>
         </div>
@@ -126,7 +126,7 @@
         <div class="info-box bg-blue">
             <span class="info-box-icon"><i class="fa fa-database"></i></span>
             <div class="info-box-content number-info-box-content">
-                <span class="info-box-text">Total Databases</span>
+                <span class="info-box-text">資料庫數量</span>
                 <span class="info-box-number">{{ $databasesCount }}</span>
             </div>
         </div>
