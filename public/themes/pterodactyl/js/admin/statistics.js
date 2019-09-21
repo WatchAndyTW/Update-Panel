@@ -2,10 +2,10 @@ var freeDisk = Pterodactyl.totalNodeDisk - Pterodactyl.totalServerDisk;
 let diskChart = new Chart($('#disk_chart'), {
     type: 'pie',
     data: {
-        labels: ['Free Disk', 'Used Disk'],
+        labels: ['使用中儲存空間', '未使用儲存空間'],
         datasets: [
             {
-                label: 'Disk (in MB)',
+                label: 'Disk (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
                 data: [freeDisk, Pterodactyl.totalServerDisk]
             }
@@ -17,10 +17,10 @@ var freeRam = Pterodactyl.totalNodeRam - Pterodactyl.totalServerRam;
 let ramChart = new Chart($('#ram_chart'), {
     type: 'pie',
     data: {
-        labels: ['Free RAM', 'Used RAM'],
+        labels: ['使用中記憶體', '未使用記憶體'],
         datasets: [
             {
-                label: 'Memory (in MB)',
+                label: 'Memory (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
                 data: [freeRam, Pterodactyl.totalServerRam]
             }
@@ -32,7 +32,7 @@ var activeServers = Pterodactyl.servers.length - Pterodactyl.suspendedServers;
 let serversChart = new Chart($('#servers_chart'), {
     type: 'pie',
     data: {
-        labels: ['Active', 'Suspended'],
+        labels: ['啟用中', '停用中'],
         datasets: [
             {
                 label: 'Servers',
@@ -46,7 +46,7 @@ let serversChart = new Chart($('#servers_chart'), {
 let statusChart = new Chart($('#status_chart'), {
     type: 'pie',
     data: {
-        labels: ['Online', 'Offline', 'Installing', 'Error'],
+        labels: ['開啟中', '離線中', '安裝中', '錯誤'],
         datasets: [
             {
                 label: '',
