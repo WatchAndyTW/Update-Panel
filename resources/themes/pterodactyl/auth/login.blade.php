@@ -43,7 +43,7 @@
 		
 				
 				<form class="login100-form validate-form" id="loginForm" action="{{ route('auth.login') }}" method="post">
-					<span class="login100-form-title">Login to your account</span>
+					<span class="login100-form-title">SteakHosting面板登入</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input type="text" name="user" class="form-control input-lg input100" value="{{ old('user') }}" required placeholder="@lang('strings.user_identifier')" autofocus>
@@ -68,12 +68,12 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<a href="{{ route('auth.password') }}">I forgot my password</a>
+						<a href="{{ route('auth.password') }}">忘記密碼</a>
 					</div>
 
 					<div class="text-center p-t-90">
 						<a class="txt2" href="#">
-							<p class="small login-copyright text-center">Copyright &copy; 2015 - {{ date('Y') }} <a href="https://pterodactyl.io/">Pterodactyl Software</a>. Theme by HookDonn_.</p>
+							<p class="small login-copyright text-center">Copyright &copy; 2015 - {{ date('Y') }} <a href="https://pterodactyl.io/">Pterodactyl Software</a>. Theme by HookDonn_ && <a href="https://discord.gg/X8EcjFh">SteakHosting.</p>
 						</a>
 					</div>
 					<div class="text-center p-t-5">
