@@ -7,7 +7,7 @@ let diskChart = new Chart($('#disk_chart'), {
             {
                 label: 'Disk (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
-                data: [freeDisk, Pterodactyl.totalServerDisk]
+                data: [freeDisk, Pterodactyl.totalServerDisk + " MB"]
             }
         ]
     }
@@ -22,7 +22,7 @@ let ramChart = new Chart($('#ram_chart'), {
             {
                 label: 'Memory (MB)',
                 backgroundColor: ['#2dce89', '#f5365c'],
-                data: [freeRam, Pterodactyl.totalServerRam]
+                data: [freeRam, Pterodactyl.totalServerRam + " MB"]
             }
         ]
     }
