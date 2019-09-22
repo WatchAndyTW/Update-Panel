@@ -64,7 +64,7 @@
 					
 					<div class="container-login100-form-btn">
 						{!! csrf_field() !!}
-						<button type="submit" class="login100-form-btn btn btn-primary btn-block g-recaptcha pterodactyl-login-button--main" @endif>@lang('auth.sign_in')</button>
+						<button type="submit" class="login100-form-btn btn btn-primary btn-block pterodactyl-login-button--main" @endif>@lang('auth.sign_in')</button>
 					</div>
 					
 					<div class="container-login100-form-btn">
