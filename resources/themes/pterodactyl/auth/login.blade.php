@@ -66,6 +66,11 @@
 						{!! csrf_field() !!}
 						<button type="submit" class="login100-form-btn btn btn-primary btn-block g-recaptcha pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('auth.sign_in')</button>
 					</div>
+					
+					<div class="container-login100-form-btn">
+						{!! csrf_field() !!}
+						<button type="submit" class="login100-form-btn btn btn-primary btn-block g-recaptcha pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>沒有帳號? 立即加入我們的DC群申請吧!</button>
+					</div>
 
 					<div class="text-center p-t-12">
 						<a href="{{ route('auth.password') }}">忘記密碼</a><br>
