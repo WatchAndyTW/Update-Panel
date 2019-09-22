@@ -1,0 +1,4 @@
+﻿https://panel.widh.ga
+https://panel.widh.ga/account
+https://panel.widh.ga/account/security
+https://panel.widh.ga/account/api
