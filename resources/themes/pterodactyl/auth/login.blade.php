@@ -69,7 +69,7 @@
 					
 					<div class="container-login100-form-btn">
 						{!! csrf_field() !!}
-						<button type="submit" class="login100-form-btn pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>沒有帳號? 加入我們的DC群申請吧!</button>
+						<button type="submit" class="pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>沒有帳號? 加入我們的DC群申請吧!</button>
 					</div>
 
 					<div class="text-center p-t-12">
