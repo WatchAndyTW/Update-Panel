@@ -65,11 +65,7 @@
 					<div class="container-login100-form-btn">
 						{!! csrf_field() !!}
 						<button type="submit" class="login100-form-btn btn btn-primary btn-block g-recaptcha pterodactyl-login-button--main" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('auth.sign_in')</button>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						{!! csrf_field() !!}
-						<button type="submit" class="login100-form-btn pterodactyl-login-button--main">沒有帳號? 加入我們的DC群申請吧!</button>
+						<button class="login100-form-btn pterodactyl-login-button--main">沒有帳號? 加入我們的DC群申請吧!</button>
 					</div>
 
 					<div class="text-center p-t-12">
