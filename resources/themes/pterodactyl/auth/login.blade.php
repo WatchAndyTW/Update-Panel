@@ -74,7 +74,6 @@
 
 					<div class="text-center p-t-12">
 						<a href="{{ route('auth.password') }}">忘記密碼</a><br>
-						<a href="https://discord.gg/X8EcjFh">沒有帳號? 立即加入我們的DC群申請吧!</a>
 					</div>
 
 					<div class="text-center p-t-90">
