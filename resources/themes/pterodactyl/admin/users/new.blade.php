@@ -28,31 +28,31 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="email" class="control-label">Email</label>
+                        <label for="email" class="control-label">電子郵件</label>
                         <div>
                             <input type="text" autocomplete="off" name="email" value="{{ old('email') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="username" class="control-label">Username</label>
+                        <label for="username" class="control-label">使用者名稱</label>
                         <div>
                             <input type="text" autocomplete="off" name="username" value="{{ old('username') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name_first" class="control-label">Client First Name</label>
+                        <label for="name_first" class="control-label">名</label>
                         <div>
                             <input type="text" autocomplete="off" name="name_first" value="{{ old('name_first') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name_last" class="control-label">Client Last Name</label>
+                        <label for="name_last" class="control-label">姓</label>
                         <div>
                             <input type="text" autocomplete="off" name="name_last" value="{{ old('name_last') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Default Language</label>
+                        <label class="control-label">預設語言</label>
                         <div>
                             <select name="language" class="form-control">
                                 @foreach($languages as $key => $value)
@@ -72,11 +72,11 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Permissions</h3>
+                    <h3 class="box-title">權限</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group col-md-12">
-                        <label for="root_admin" class="control-label">Administrator</label>
+                        <label for="root_admin" class="control-label">管理員</label>
                         <div>
                             <select name="root_admin" class="form-control">
                                 <option value="0">@lang('strings.no')</option>
@@ -91,7 +91,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Password</h3>
+                    <h3 class="box-title">密碼</h3>
                 </div>
                 <div class="box-body">
                     <div class="alert alert-info">
