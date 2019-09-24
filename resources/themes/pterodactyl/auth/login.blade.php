@@ -69,7 +69,7 @@
 					
 					<div class="container-login100-form-btn">
 					    {!! csrf_field() !!}
-					    <a href="{{ route('auth.register') }}"><button type="button" class="login100-form-btn pterodactyl-login-button--main">註冊</button></a>
+					    <a href="{{ route('index') }}"><button type="button" class="login100-form-btn pterodactyl-login-button--main">註冊</button></a>
 					</div>
 
 					<div class="text-center p-t-12">
