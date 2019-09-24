@@ -1,0 +1,225 @@
+Backup folder:
+Please run this command in your server as root.
+- mkdir /backup/
+
+
+
+
+src/http/routes.js
+Please insert this codes to src/http/routes.js above the RestServer.listen( ... line
+
+// Backup
+RestServer.post('/v1/server/backup/create', (req, res, next) => {
+    Routes.backupCreate();
+    return next();
+});
+
+RestServer.post('/v1/server/backup/restore', (req, res, next) => {
+    Routes.backupRestore();
+    return next();
+});
+
+RestServer.post('/v1/server/backup/delete', (req, res, next) => {
+    Routes.backupDelete();
+    return next();
+});
+
+RestServer.get('/v1/server/backup/download/:token', (req, res, next) => {
+    Routes.backupDownload();
+    return next();
+});
+
+
+
+
+src/controllers/routes.js
+Please insert this codes to src/controllers/routes.js under the const Cache = require('memory-cache'); line
+
+const { exec } = require('child_process');
+
+
+
+
+src/controllers/routes.js
+Please insert this codes to src/controllers/routes.js above the downloadServerFile() ... line
+
+backupCreate() {
+	this.auth.allowed('s:backup', (allowedErr, isAllowed) => {
+		if (allowedErr || !isAllowed) return;
+		
+		if ("name" in this.req.params === false)
+			return this.res.send({"success": "false", "error": "Missing name argument"});
+		if ("folder" in this.req.params === false)
+			return this.res.send({"success": "false", "error": "Missing folder argument"});
+		
+		const fileName = this.req.params["name"];
+		const folder = this.req.params["folder"];
+		
+		const auth = this.auth;
+		const uuid = this.auth.server().uuid;
+		
+		Fs.access('/backup/' + uuid + '/' + fileName + '.zip', error => {
+			if (!error) {
+				this.res.send({"success": "false", "error": "Backup in this name already exists"});
+			} else {
+				this.auth.server().suspend(err => {
+					exec('mkdir /backup/' + uuid, function(err, stdout, stderr) {});
+					
+					this.res.send({"success": "true"});
+					
+					exec('cd /srv/daemon-data/' + uuid + folder + ' && zip -qr /backup/' + uuid + '/' + fileName + '.zip *', function(err, stdout, stderr) {
+						auth.server().unsuspend(err => {});
+						
+						Request(`${Config.get('remote.base')}/api/remote/backup/completed`, {
+							method: 'POST',
+							json: {
+								server_uuid: uuid,
+							},
+							headers: {
+								'Accept': 'application/vnd.pterodactyl.v1+json',
+								'Authorization': `Bearer ${Config.get('keys.0')}`,
+							},
+							timeout: 5000,
+						}, (err, response, body) => {});
+					});
+				});
+			}
+		});
+	});
+}
+
+backupRestore() {
+	this.auth.allowed('s:backup', (allowedErr, isAllowed) => {
+		if (allowedErr || !isAllowed) return;
+		
+		if ("name" in this.req.params === false)
+			return this.res.send({"success": "false", "error": "Missing name argument"});
+		if ("folder" in this.req.params === false)
+			return this.res.send({"success": "false", "error": "Missing folder argument"});
+		
+		const fileName = this.req.params["name"];
+		const folder = this.req.params["folder"];
+
+		const uuid = this.auth.server().uuid;
+		
+		const res = this.res;
+		
+		Fs.access('/backup/' + uuid + '/' + fileName + '.zip', error => {
+			if (!error) {
+				this.auth.server().suspend(err => {
+					this.res.send({"success": "true"});
+					
+					const auth = this.auth;
+					
+					exec('unzip -qo /backup/' + uuid + '/' + fileName + '.zip -d /srv/daemon-data/' + uuid + folder, function (err, stdout, srderr) {
+						auth.server().unsuspend(err => {});
+						
+						Request(`${Config.get('remote.base')}/api/remote/backup/completed`, {
+							method: 'POST',
+							json: {
+								server_uuid: uuid,
+							},
+							headers: {
+								'Accept': 'application/vnd.pterodactyl.v1+json',
+								'Authorization': `Bearer ${Config.get('keys.0')}`,
+							},
+							timeout: 5000,
+						}, (err, response, body) => {});
+					});
+				});
+			} else {
+				res.send({"success": "false", "error": "File not found: " + fileName + '.zip'});
+			}
+		});
+	});
+}
+
+backupDelete() {
+	this.auth.allowed('s:backup', (allowedErr, isAllowed) => {
+		if (allowedErr || !isAllowed) return;
+		
+		if ("name" in this.req.params === false)
+			return this.res.send({"success": "false", "error": "Missing name argument"});
+		
+		const fileName = this.req.params["name"];
+
+		const uuid = this.auth.server().uuid;
+		
+		const res = this.res;
+		
+		Fs.access('/backup/' + uuid + '/' + fileName + '.zip', error => {
+			if (!error) {
+				exec('rm -rf /backup/' + uuid + '/' + fileName + '.zip', function(err, stdout, stderr) {
+					if (err) {
+						res.send({"success": "false", "error": "Rm error"});
+					} else {
+						res.send({"success": "true"});
+					}
+				});
+			} else {
+				res.send({"success": "false", "error": "File not found: " + fileName + '.zip'});
+			}
+		});
+	});
+}
+
+backupDownload() {	
+	Request(`${Config.get('remote.base')}/api/remote/backup/download-verify`, {
+		method: 'POST',
+		json: {
+			token: this.req.params.token,
+		},
+		headers: {
+			'Accept': 'application/vnd.pterodactyl.v1+json',
+			'Authorization': `Bearer ${Config.get('keys.0')}`,
+		},
+		timeout: 5000,
+	}, (err, response, body) => {
+		if (err) {
+			return this.res.send(500, { "error": "An error occured while attempting to perform this request." });
+		}
+		
+		if (response.statusCode === 200) {
+			try {
+				const json = _.isString(body) ? JSON.parse(body) : body;
+				if (!_.isUndefined(json) && json.path && json.name) {
+					const Server = this.auth.allServers();
+					if (_.isUndefined(Server[json.server])) {
+						return this.res.send(404, { 'error': 'No server found for the specified resource.' });
+					}
+					
+					const uuid = json.server;
+					const fileName = json.path;
+					const origName = json.name;
+					
+					const Mimetype = Mime.getType('/backup/' + uuid + '/' + fileName + '.zip');
+					const Stat = Fs.statSync('/backup/' + uuid + '/' + fileName + '.zip');
+					if (!Stat.isFile()) {
+						return this.res.send({"success": "false", "error": "Could not locate the requested file."});
+					}
+					
+					this.res.writeHead(200, {
+						"Content-Disposition": "attachment; filename=" + origName + ".zip",
+						'Content-Type': Mimetype,
+						'Content-Length': Stat.size
+					});
+
+					const readStream = Fs.createReadStream('/backup/' + uuid + '/' + fileName + '.zip');
+					readStream.pipe(this.res);	
+				} else {
+					return this.res.send(424, { 'error': 'The upstream response did not include a valid download path.' });
+				}
+			} catch (ex) {
+				return this.res.send(500, { 'error': 'An unexpected error occured while attempting to process this request.' + ex });
+			}
+		} else {
+			this.res.redirect(this.req.header('Referer') || Config.get('remote.base'), _.constant(''));
+		}
+	});
+}
+
+
+
+
+After you inserted this codes, run this command:
+- service wings restart
