@@ -42,7 +42,7 @@
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Safely Delete Server</h3>
+                <h3 class="box-title">安全刪除</h3>
             </div>
             <div class="box-body">
                 <p>This action will attempt to delete the server from both the panel and daemon. If either one reports an error the action will be cancelled.</p>
@@ -59,7 +59,7 @@
     <div class="col-md-6">
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title">Force Delete Server</h3>
+                <h3 class="box-title">強制刪除</h3>
             </div>
             <div class="box-body">
                 <p>This action will attempt to delete the server from both the panel and daemon. If the daemon does not respond, or reports an error the deletion will continue.</p>
