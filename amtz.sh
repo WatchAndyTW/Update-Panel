@@ -2,7 +2,7 @@
 
 if [ ! -f "artisan" ]; then
     echo "Could not find the Artisan file, Moving to Default Location."
-    cd /var/www/pterodactyl
+    cd /home/p-panel.amtz.xyz
 fi
 
 if [ ! -f "artisan" ]; then
